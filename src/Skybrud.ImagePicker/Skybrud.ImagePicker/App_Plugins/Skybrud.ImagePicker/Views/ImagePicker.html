@@ -1,0 +1,55 @@
+﻿<div class="SkybrudPropertyEditors ImagePicker" ng-controller="Skybrud.ImagePicker.Controller">
+    
+    <div style="float: left; width: 266px; margin-right: 20px">
+        <div>
+            <div class="image" ng-if="control.value.image">
+                <img ng-src="{{control.value.image}}?width=250" alt="{{control.value.properties[5].value}}" /><br />
+                <a href class="remove" ng-click="removeImage()"><i class="icon icon-delete"></i></a>
+            </div>
+            <div ng-if="!control.value.image" style="border: none">
+                <div class="usky-editor-placeholder" ng-click="addImage()">
+                    <i class="icon icon-picture"></i>
+                    <div ng-id="!control.$inserted" class="help-text">Indsæt et billede</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div style="float: left;">
+    
+        <label ng-if="cfg.hasAltText">
+            <input type="text" class="alttext" ng-model="control.value.alttext" placeholder="Alt-tekst" />
+        </label>
+        
+        <label ng-if="cfg.hasDescription">
+            <textarea class="description" ng-model="control.value.description" placeholder="Billedbeskrivelse"></textarea>
+        </label>
+        
+        <label ng-if="cfg.hasLink">
+            <div class="link" ng-if="control.value.link">
+                <a href="{{control.value.link.url}}" class="link" target="_blank">{{control.value.link.name || control.value.link.url}}</a>
+                <a class="edit link" href="#" prevent-default="" ng-click="editLink()"><i class="icon icon-edit"></i></a>
+                <a class="remove link" href="#" prevent-default="" ng-click="removeLink()">Fjern link <i class="icon icon-delete"></i></a>
+            </div>
+            <div ng-if="!control.value.link">
+                <a class="link" href="#" prevent-default="" ng-click="addLink()" ng-show="!control.value.link">Vælg link <i class="icon icon-add"></i></a>
+            </div>
+        </label>
+    </div>
+    
+    <div style="clear: both;"></div>
+
+
+
+    
+
+
+
+    <!-- debug -->
+    <!--<hr />
+    <pre style=" font-size: 10px; line-height: 12px; white-space: pre-wrap;">{{cfgR | json}}</pre>
+
+    <pre style=" font-size: 10px; line-height: 12px; white-space: pre-wrap;">{{control.value | json}}</pre>-->
+
+</div>

@@ -1,0 +1,9 @@
+src/packages/
+src/Skybrud.ImagePicker/packages/
+src/Skybrud.ImagePicker/bin/
+src/Skybrud.ImagePicker/obj/
+*.suo
+*.user
+src/Skybrud.ImagePicker/App_Data/NuGetBackup/
+node_modules/
+releases/temp/

@@ -1,0 +1,19 @@
+﻿{
+	propertyEditors: [
+		{
+			alias: "Skybrud.ImagePicker",
+			name: "Skybrud Image Picker",
+			editor: {
+				view: "~/App_Plugins/Skybrud.ImagePicker/Views/ImagePicker.html",
+				hideLabel: false,
+				valueType: "JSON"	
+			}
+		}
+	],
+	javascript: [
+		"~/App_Plugins/Skybrud.ImagePicker/Controllers/ImagePicker.js"
+	],
+	css: [
+		"~/App_Plugins/Skybrud.ImagePicker/Styles/ImagePicker.css"
+	]
+}

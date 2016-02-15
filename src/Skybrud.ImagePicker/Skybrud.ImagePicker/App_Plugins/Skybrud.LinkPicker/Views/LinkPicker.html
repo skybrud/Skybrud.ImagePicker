@@ -1,0 +1,49 @@
+﻿<div class="SkybrudPropertyEditors LinkPicker" ng-controller="Skybrud.LinkPicker.Controller" ng-class="{SingleLinkPicker: cfg.limit == 1, MultiLinkPicker: cfg.limit != 1}">
+
+    <div ng-show="!cfg.showTable">
+        <ul ui-sortable ng-model="model.value">
+            <li ng-repeat="link in model.value">
+                <a href="{{link.url}}" target="_blank">{{link.name || link.url}}</a>
+                <a class="edit" href="#" prevent-default="" ng-click="editLink(link, $index)"><i class="icon icon-edit"></i></a>
+                <a class="remove" href="#" prevent-default="" ng-click="removeLink($index)"><i class="icon icon-delete"></i></a>
+                <i class="icon icon-navigation handle" ng-show="model.value.length > 1"></i>
+            </li>
+        </ul>
+        <div class="actions">
+            <a class="link" href="#" prevent-default="" ng-click="addLink()" ng-show="!cfg.limit || model.value.length < cfg.limit">Add link <i class="icon icon-add"></i></a>
+        </div>
+    </div>
+
+    <div class="table" ng-show="cfg.showTable">
+        <table ng-show="model.value.length">
+            <thead>
+                <tr>
+                    <th ng-show="cfg.columns.type">Type</th>
+                    <th ng-show="cfg.columns.id">ID</th>
+                    <th ng-show="cfg.columns.name">Name</th>
+                    <th ng-show="cfg.columns.url">Url</th>
+                    <th ng-show="cfg.columns.target">Target</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody ui-sortable="sortableOptions" ng-model="model.value">
+                <tr ng-repeat="link in model.value">
+                    <td ng-show="cfg.columns.type" style="text-transform: capitalize;">{{link.mode}}</td>
+                    <td ng-show="cfg.columns.id">{{link.id}}</td>
+                    <td ng-show="cfg.columns.name">{{link.name}}</td>
+                    <td ng-show="cfg.columns.url"><a href="{{link.url}}" target="_blank">{{link.url}}</a></td>
+                    <td ng-show="cfg.columns.target">{{link.target}}</td>
+                    <td style="text-align: right;">
+                        <a class="edit" href="#" prevent-default="" ng-click="editLink(link, $index)"><i class="icon icon-edit"></i></a>
+                        <a class="remove" href="#" prevent-default="" ng-click="removeLink($index)"><i class="icon icon-delete"></i></a>
+                        <i class="icon icon-navigation handle" ng-show="model.value.length > 1"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions">
+            <a class="link" href="#" prevent-default="" ng-click="addLink()" ng-show="!cfg.limit || model.value.length < cfg.limit">Add link <i class="icon icon-add"></i></a>
+        </div>
+    </div>
+
+</div>

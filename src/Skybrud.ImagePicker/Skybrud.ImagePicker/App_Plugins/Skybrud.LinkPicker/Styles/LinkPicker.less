@@ -1,0 +1,43 @@
+﻿.SkybrudPropertyEditors {
+
+    &.LinkPicker {
+
+        ul { margin: 0; list-style-type: none; }
+
+        @import "Table";
+
+    }
+    
+    &.LinkPickerOptions {
+        .option {
+            display: flex;
+            &.limit {
+                input { width: 50px; }
+            }
+            &.types, &.columns {
+                label {
+                    display: block;
+                    margin-left: 0;
+                }
+            }
+            & + .option {
+                margin-top: 20px;
+            }
+        }
+        label {
+            width: 400px;
+            padding-left: 0;
+        }
+        .value {
+            display: inline-block;
+            label {
+                width: auto;
+                padding-left: 0;
+                & + label {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+}
