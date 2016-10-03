@@ -47,7 +47,7 @@ namespace Skybrud.ImagePicker {
             return new ImagePickerItem {
                 Image = image,
                 AltText = obj.GetString("alttext"),
-                Description = obj.GetString("description"),
+                Description = new MvcHtmlString(obj.GetString("description")),
                 Link = null //TODO:
             };
         }

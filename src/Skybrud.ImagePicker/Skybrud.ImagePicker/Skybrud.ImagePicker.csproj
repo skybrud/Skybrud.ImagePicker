@@ -158,6 +158,10 @@
       <HintPath>..\packages\Skybrud.LinkPicker.1.0.0\lib\net45\Skybrud.LinkPicker.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Skybrud.Umbraco.GridData, Version=1.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Skybrud.Umbraco.GridData.1.5.1\lib\net45\Skybrud.Umbraco.GridData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SQLCE4Umbraco, Version=1.0.5885.31229, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.4.0\lib\SQLCE4Umbraco.dll</HintPath>
       <Private>True</Private>
@@ -177,6 +181,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -256,8 +261,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\Json\JArrayExtensionMethods.cs" />
+    <Compile Include="Extensions\Json\JObjectExtensionMethods.cs" />
+    <Compile Include="Extensions\PublishedContentExtensions.cs" />
+    <Compile Include="Grid\Config\GridEditorImagePickerConfig.cs" />
+    <Compile Include="Grid\Config\GridEditorImagePickerTitleConfig.cs" />
+    <Compile Include="Grid\Converters\ImagePickerGridConverter.cs" />
+    <Compile Include="Grid\Values\GridControlImagePickerValue.cs" />
     <Compile Include="ImagePickerItem.cs" />
+    <Compile Include="ImagePickerList.cs" />
+    <Compile Include="ImagePickerPropertyValueConverter.cs" />
+    <Compile Include="Json\Converters\ImagePickerEnumConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -289,6 +305,7 @@
     <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPicker.html" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPickerPreValues.html" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
