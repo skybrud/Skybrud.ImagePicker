@@ -1,5 +1,23 @@
 ﻿<div class="SkybrudPropertyEditors LinkPickerOptions" ng-controller="Skybrud.LinkPickerPreValues.Controller">
+
+    <div class="option titleShow">
+        <label>
+            Show title field
+            <small>Allows editor to specify a title for the link picker.</small>
+        </label>
+        <input type="checkbox" ng-model="model.value.title.show" />
+    </div>
+
+    <div class="option titlePlaceholder">
+        <label>
+            Title placeholder
+            <small>Specify a custom placeholder for the title.</small>
+        </label>
+        <input type="text" ng-model="model.value.title.placeholder" />
+    </div>
     
+    <hr />
+
     <div class="option limit">
         <label>
             Limit
@@ -10,7 +28,7 @@
 
     <div class="option types">
         <label>
-            Table columns
+            Link types
             <small>Specify which types of links can be inserted. <em>Coming soon ;)</em></small>
         </label>
         <div class="value">
@@ -28,6 +46,8 @@
             </label>
         </div>
     </div>
+    
+    <hr />
 
     <div class="option showTable">
         <label>
