@@ -261,8 +261,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\Json\JArrayExtensionMethods.cs" />
-    <Compile Include="Extensions\Json\JObjectExtensionMethods.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="Grid\Config\GridEditorImagePickerConfig.cs" />
     <Compile Include="Grid\Config\GridEditorImagePickerTitleConfig.cs" />
