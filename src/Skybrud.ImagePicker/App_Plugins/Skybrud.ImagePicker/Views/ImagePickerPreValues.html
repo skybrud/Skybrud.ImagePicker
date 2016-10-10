@@ -1,0 +1,109 @@
+﻿<div class="SkybrudPropertyEditors SkybrudImagePickerPreValues" ng-controller="Skybrud.ImagePickerPreValues.Controller">
+
+    <div class="optionGroup">
+        <div class="optionGroupTitle">General</div>
+        <label class="option limit">
+            <div class="key">
+                Limit
+                <small>Enter the maximum number of images allowed. If set to 0, no limit will be enforced.</small>
+            </div>
+            <div class="value">
+                <input type="number" ng-model="model.value.limit" />
+            </div>
+        </label>
+        <label class="option titleShow checkbox">
+            <div class="key">
+                Show title field
+                <small>Allows editor to specify a title for the image picker (eg. if used for a gallery).</small>
+            </div>
+            <div class="value">
+                <input type="checkbox" ng-model="model.value.title.show" />
+            </div>
+        </label>
+        <label class="option titlePlaceholder">
+            <div class="key">
+                Title placeholder
+                <small>Specify a custom placeholder for the title.</small>
+            </div>
+            <div class="value">
+                <input type="text" ng-model="model.value.title.placeholder" />
+            </div>
+        </label>
+    </div>
+
+    <div class="optionGroup">
+        <div class="optionGroupTitle">Layout</div>
+        <label class="option">
+            <div class="key">
+                Default layout
+                <small>Enter the maximum number of images allowed. If set to 0, no limit will be enforced.</small>
+            </div>
+            <div class="value">
+                <select ng-options="item as item.name for item in layouts track by item.alias" ng-model="layout" ng-change="model.value.layout.initial = layout.alias"></select>
+            </div>
+        </label>
+        <label class="option checkbox">
+            <div class="key">
+                Hide layout selector
+                <small>Hide the option to switch between layouts.</small>
+            </div>
+            <div class="value">
+                <input type="checkbox" ng-model="model.value.layout.hideSelector" />
+            </div>
+        </label>
+    </div>
+
+    <div class="optionGroup">
+        <div class="optionGroupTitle">Image</div>
+        <label class="option width">
+            <div class="key">
+                Width
+                <small>Specify the width of the thumbnail image displayed in the property editor.</small>
+            </div>
+            <div class="value">
+                <input type="number" ng-model="model.value.image.width" size="4" /> px
+            </div>
+        </label>
+        <label class="option height">
+            <div class="key">
+                Height
+                <small>Specify the height of the thumbnail image displayed in the property editor.</small>
+            </div>
+            <div class="value">
+                <input type="number" ng-model="model.value.image.height" size="4" /> px
+            </div>
+        </label>
+    </div>
+
+    <div class="optionGroup">
+        <div class="optionGroupTitle">Items</div>
+        <label class="option checkbox">
+            <div class="key">
+                Hide title
+                <small>Hide the option to specify a title for each item.</small>
+            </div>
+            <div class="value">
+                <input type="checkbox" ng-model="model.value.items.hideTitle" />
+            </div>
+        </label>
+        <label class="option checkbox">
+            <div class="key">
+                Hide description
+                <small>Hide the option to specify a description for each item.</small>
+            </div>
+            <div class="value">
+                <input type="checkbox" ng-model="model.value.items.hideDescription" />
+            </div>
+        </label>
+        <label class="option checkbox">
+            <div class="key">
+                Hide link
+                <small>Hide the option to specify a link for each item.</small>
+            </div>
+            <div class="value">
+                <input type="checkbox" ng-model="model.value.items.hideLink" />
+            </div>
+        </label>
+    </div>
+
+</div>
