@@ -12,7 +12,7 @@ Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and
 - <a href="#installation">Installation</a>
 - <a href="#using-the-property-editor">Using the property editor</a>
 - <a href="#using-the-grid-editor">Using the grid editor</a>
-- <a href="#using-the-link-picker-in-your-own-projects">Using the link picker in your own projects</a>
+- <a href="#using-the-image-picker-in-your-own-projects">Using the image picker in your own projects</a>
 
 
 
@@ -89,21 +89,21 @@ The full configuration for the image picker looks like this:
     "config": {
         "limit": 5,
         "layout": {
-        "initial": "list",
-        "hideSelector": false
+            "initial": "list",
+            "hideSelector": false
         },
         "title": {
-        "show": false,
-        "placeholder": ""
+            "show": false,
+            "placeholder": ""
         },
         "image": {
-        "width": 250,
-        "height": 0
+            "width": 250,
+            "height": 0
         },
         "items": {
-        "hideTitle": false,
-        "hideDescription": false,
-        "hideLink": false
+            "hideTitle": false,
+            "hideDescription": false,
+            "hideLink": false
         }
     }
 }
@@ -122,7 +122,7 @@ Given that editor alias is either `Skybrud.ImagePicker` or starts with `Skybrud.
 
 
 
-## Using the link picker in your own projects
+## Using the image picker in your own projects
 
 In relation to the backoffice, the main logic of the image picker has been isolated into an Angular directive that can be used in your custom Angular views.
 
