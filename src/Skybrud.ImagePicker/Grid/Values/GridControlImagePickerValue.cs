@@ -13,6 +13,8 @@ namespace Skybrud.ImagePicker.Grid.Values {
         /// </summary>
         public GridControl Control { get; private set; }
 
+        public bool IsValid { get; private set; }
+
         #endregion
 
         #region Constructors
