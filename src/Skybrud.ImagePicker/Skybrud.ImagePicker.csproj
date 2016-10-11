@@ -279,7 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
     <None Include="App_Plugins\Skybrud.ImagePicker\Styles\ImagePicker.less" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.json" />
