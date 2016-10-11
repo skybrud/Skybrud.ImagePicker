@@ -9,7 +9,7 @@
         "name": "Skybrud.dk",
         "url": "http://www.skybrud.dk/"
     },
-    "readme": "Skybrud.ImagePicker contains a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.",
+    "readme": "Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.",
     "devDependencies": {
         "grunt": "~0.4.5",
         "grunt-contrib-copy": "~0.4.1",

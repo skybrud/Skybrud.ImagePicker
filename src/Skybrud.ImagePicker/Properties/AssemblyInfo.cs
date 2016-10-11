@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Skybrud.ImagePicker")]
-[assembly: AssemblyDescription("Skybrud.ImagePicker contains a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.")]
+[assembly: AssemblyDescription("Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Skybrud.dk")]
 [assembly: AssemblyProduct("Skybrud.ImagePicker")]

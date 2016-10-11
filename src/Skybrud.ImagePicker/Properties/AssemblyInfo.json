@@ -1,6 +1,6 @@
 {
   "title": "Skybrud.ImagePicker",
-  "description": "Skybrud.ImagePicker contains a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.",
+  "description": "Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and a grid editor for selecting a number of images for use in a slider, gallery or similar.",
   "company": "Skybrud.dk",
   "product": "Skybrud.ImagePicker",
   "copyright": "Copyright © 2016",
