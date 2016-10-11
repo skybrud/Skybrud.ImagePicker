@@ -20,7 +20,7 @@ Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and
 
 ## Installation
 
-This package has a few dependencies to some of our other packages, so it's recommended to install via NuGet to have everything run smmothly.
+This package has a few dependencies to some of our other packages, so it's recommended to install via NuGet to have everything run smoothly.
 
 1. [**NuGet Package**][NuGetPackage]  
 Install this NuGet package in your Visual Studio project. Makes updating easy.
