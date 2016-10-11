@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{269235B4-4E01-4F5F-8F09-BCE60AC58FF8}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Skybrud.ImagePicker.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -280,10 +281,9 @@
     <None Include="app.config" />
     <None Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
     <None Include="App_Plugins\Skybrud.ImagePicker\Styles\ImagePicker.less" />
-    <None Include="App_Plugins\Skybrud.LinkPicker\package.manifest" />
-    <None Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.less" />
-    <None Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.less" />
     <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.json" />
+    <None Include="Skybrud.ImagePicker.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\Skybrud.ImagePicker\Controllers\ImagePickerPreValues.js" />
@@ -299,21 +299,12 @@
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\ImagePickerDirective.html" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\ImagePickerGridEditor.html" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\ImagePickerPreValues.html" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Controllers\LinkPickerGridEditor.js" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Controllers\LinkPickerPreValues.js" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Directives\LinkPicker.js" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Services\LinkPickerService.js" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.min.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.min.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPicker.html" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPickerDirective.html" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPickerGridEditor.html" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPickerPreValues.html" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)..\.skybrud\UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
