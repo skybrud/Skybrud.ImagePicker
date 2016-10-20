@@ -24,11 +24,6 @@
     if (!cgf.items.hideTitle) cgf.items.hideTitle = false;
     if (!cgf.items.hideDescription) cgf.items.hideDescription = false;
     if (!cgf.items.hideLink) cgf.items.hideLink = false;
-    
-
-
-
-
 
     $scope.layouts = [
         { name: 'Tiles', alias: 'tiles' },
@@ -41,7 +36,5 @@
             $scope.layout = layout;
         }
     });
-
-    console.log($scope.layouts);
 
 });
