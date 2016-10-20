@@ -96,7 +96,7 @@
                     <div class="item" ng-repeat="item in value.items">
                         <div class="umb-table-row">
                             <div class="umb-table-cell col-thumbnail">
-                                <img ng-show="item.$image" src="{{item.$image.image}}?width=55&amp;height=35&amp;mode=crop" alt="" style="width: 55px; height: 35px; max-width: initial;" />
+                                <img ng-show="item.$image" ng-src="{{item.$image.image}}?width=55&amp;height=35&amp;mode=crop" alt="" style="width: 55px; height: 35px; max-width: initial;" />
                                 <div ng-show="!item.$image" style="width: 55px; height: 30px; padding-top: 5px; text-align: center; max-width: initial; background: #f8f8f8;">
                                     <i class="icon icon-picture"></i>
                                 </div>
