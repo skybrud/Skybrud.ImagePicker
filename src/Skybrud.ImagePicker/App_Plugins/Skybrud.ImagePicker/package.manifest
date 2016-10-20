@@ -23,6 +23,7 @@
 	"javascript": [
 		"~/App_Plugins/Skybrud.ImagePicker/Services/ImagePickerService.js",
 		"~/App_Plugins/Skybrud.ImagePicker/Directives/ImagePicker.js",
+		"~/App_Plugins/Skybrud.ImagePicker/Controllers/ImagePicker.js",
 		"~/App_Plugins/Skybrud.ImagePicker/Controllers/ImagePickerPreValues.js"
 	],
 	"css": [

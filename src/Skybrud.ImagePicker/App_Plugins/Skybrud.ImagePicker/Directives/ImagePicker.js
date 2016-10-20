@@ -150,7 +150,6 @@
                             item.imageId = data.id;
                             item.$image = data;
                             item.$imageUrl = getImageUrl(item);
-                            item.imageUrl = getImageUrl(item);
                             dialogService.closeAll();
                             if (callback) callback(data);
                         }
@@ -173,7 +172,6 @@
                             item.imageId = data.id;
                             item.$image = data;
                             item.$imageUrl = getImageUrl(item);
-                            item.imageUrl = getImageUrl(item);
                             if (callback) callback(data);
 
                             scope.mediaPickerOverlay.show = false;
