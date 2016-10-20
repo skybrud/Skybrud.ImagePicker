@@ -112,6 +112,9 @@
                     link: null
                 };
 
+                // Collapse all open rows
+                scope.toggleOpen({});
+
                 scope.value.items.push(item);
 
                 scope.addImage(item, function() {
@@ -172,6 +175,19 @@
 
             scope.moveItemRight = function (index) {
                 swap(scope.value.items, index, index + 1);
+            };
+
+            scope.toggleOpen = function (item) {
+
+                if (item.$showInfo) {
+                    item.$showInfo = false;
+                    return;
+                }
+
+                angular.forEach(scope.value.items, function (i) {
+                    i.$showInfo = i == item;
+                });
+
             };
 
             scope.sortableOptions = {
