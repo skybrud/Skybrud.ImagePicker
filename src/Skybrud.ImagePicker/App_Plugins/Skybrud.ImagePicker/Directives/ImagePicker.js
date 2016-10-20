@@ -131,20 +131,59 @@
                 }
             };
 
-            scope.addImage = function(item, callback) {
-                dialogService.mediaPicker({
-                    startNodeId: startNodeId,
-                    multiPicker: false,
-                    onlyImages: true,
-                    callback: function (data) {
-                        item.imageId = data.id;
-                        item.$image = data;
-                        item.$imageUrl = getImageUrl(item);
-                        item.imageUrl = getImageUrl(item);
-                        dialogService.closeAll();
-                        if (callback) callback(data);
-                    }
-                });
+            // Opens a dialog/overlay for selecting the image of the item
+            scope.addImage = function (item, callback) {
+
+                // Get the Umbraco version
+                var v = Umbraco.Sys.ServerVariables.application.version.split('.');
+                v = parseFloat(v[0] + '.' + v[1]);
+
+                // The new overlay only works from 7.4 and up, so for older
+                // versions we should use the dialogService instead
+                if (v < 7.4) {
+
+                    dialogService.mediaPicker({
+                        startNodeId: startNodeId,
+                        multiPicker: false,
+                        onlyImages: true,
+                        callback: function (data) {
+                            item.imageId = data.id;
+                            item.$image = data;
+                            item.$imageUrl = getImageUrl(item);
+                            item.imageUrl = getImageUrl(item);
+                            dialogService.closeAll();
+                            if (callback) callback(data);
+                        }
+                    });
+
+                } else {
+
+                    scope.mediaPickerOverlay = {
+                        view: "mediapicker",
+                        title: "Select media",
+                        startNodeId: startNodeId,
+                        multiPicker: false,
+                        onlyImages: true,
+                        disableFolderSelect: true,
+                        show: true,
+                        submit: function (model) {
+
+                            var data = model.selectedImages[0];
+
+                            item.imageId = data.id;
+                            item.$image = data;
+                            item.$imageUrl = getImageUrl(item);
+                            item.imageUrl = getImageUrl(item);
+                            if (callback) callback(data);
+
+                            scope.mediaPickerOverlay.show = false;
+                            scope.mediaPickerOverlay = null;
+
+                        }
+                    };
+
+                }
+
             };
 
             scope.removeImage = function (item) {
