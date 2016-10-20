@@ -234,7 +234,6 @@
                 cursor: 'move',
                 handle: '.handle',
                 tolerance: 'pointer',
-                placeholder: 'imagepicker-sortable-placeholder',
                 containment: 'parent',
                 forcePlaceholderSize: true
             };

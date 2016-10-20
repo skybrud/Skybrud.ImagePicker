@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div ng-show="value.items.length > 0">
-                <div class="umb-table-body" ui-sortable="sortableOptions">
+                <div class="umb-table-body" ui-sortable="sortableOptions" ng-model="value.items">
                     <div class="item" ng-repeat="item in value.items">
                         <div class="umb-table-row">
                             <div class="umb-table-cell col-thumbnail">
