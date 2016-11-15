@@ -55,6 +55,14 @@ namespace Skybrud.ImagePicker {
             get { return Items.Length; }
         }
 
+        /// <summary>
+        /// Gets whether the image picker list is valid (alias of <see cref="HasItems"/>).
+        /// </summary>
+        [JsonIgnore]
+        public bool IsValid {
+            get { return HasItems; }
+        }
+
         #endregion
 
         #region Constructors
