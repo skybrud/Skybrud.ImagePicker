@@ -26,7 +26,7 @@
                 <div class="subpart">
                     <div class="title">Billede</div>
                     <div class="image" ng-if="item.$image">
-                        <img ng-src="{{item.$imageUrl}}" alt="{{control.value.properties[5].value}}" /><br />
+                        <img ng-src="{{item.$imageUrl}}" alt="" /><br />
                         <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
                     </div>
                     <div ng-if="!item.$image" style="border: none">
@@ -137,7 +137,7 @@
                                     <div class="subpart">
                                         <div class="title">Billede</div>
                                         <div class="image" ng-if="item.$image">
-                                            <img ng-src="{{item.$imageUrl}}" alt="{{control.value.properties[5].value}}" /><br />
+                                            <img ng-src="{{item.$imageUrl}}" alt="" /><br />
                                             <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
                                         </div>
                                         <div ng-if="!item.$image" style="border: none">
