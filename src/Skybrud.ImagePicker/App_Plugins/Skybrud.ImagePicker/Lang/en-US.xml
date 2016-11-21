@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="imagepicker">
+
+    <key alias="modeTiles">Tiles</key>
+    <key alias="modeList">List</key>
+
+    <key alias="dialogSelectImage">Select image</key>
+    <key alias="dialogSelectImages">Select images</key>
+
+    <key alias="confirmRemoveTile">Are you sure you wish to remove this tile?</key>
+    <key alias="confirmRemoveRow">Are you sure you wish to remove this row?</key>
+
+    <key alias="labelNotSpecified">Not specified</key>
+    <key alias="labelNoRows">There has not yet been added any images.</key>
+    <key alias="labelMaxRows">You can't add more than the %0% allowed rows.</key>
+
+    <key alias="labelImage">Image</key>
+    <key alias="labelTitle">Title</key>
+    <key alias="labelTitlePlaceholder">Specify title here</key>
+    <key alias="labelDescription">Description</key>
+    <key alias="labelDescriptionPlaceholder">Specify description here</key>
+    
+    <key alias="labelLink">Link</key>
+    <key alias="labelLinkType">Type</key>
+    <key alias="labelLinkUrl">URL</key>
+    <key alias="labelLinkId">ID</key>
+    <key alias="labelLinkText">Text</key>
+    <key alias="labelLinkTarget">Target</key>
+    
+    <key alias="optionAddImage">Add an image</key>
+    <key alias="optionRemoveItem">Remove the image</key>
+    <key alias="optionMoveRight">Move the image to the right</key>
+    <key alias="optionMoveLeft">Move the image to the left</key>
+
+    <key alias="optionEditLink">Edit link</key>
+    <key alias="optionRemoveLink">Remove link</key>
+    <key alias="optionAddLink">Add link</key>
+
+    <key alias="optionAddRow">Add new row</key>
+
+    <key alias="tooltipEditRow">Edit row</key>
+    <key alias="tooltipRemoveRow">Remove row</key>
+
+  </area>
+</language>

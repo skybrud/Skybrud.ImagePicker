@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="da" intName="Danish" localName="dansk" lcid="6" culture="da-DK">
+  <area alias="imagepicker">
+    
+    <key alias="modeTiles">Tiles</key>
+    <key alias="modeList">Liste</key>
+
+    <key alias="dialogSelectImage">Vælg billede</key>
+    <key alias="dialogSelectImages">Vælg billeder</key>
+
+    <key alias="confirmRemoveTile">Er du sikker på at du vil slette denne tile?</key>
+    <key alias="confirmRemoveRow">Er du sikker på at du vil slette denne række?</key>
+
+    <key alias="labelNotSpecified">Ikke angivet</key>
+    <key alias="labelNoRows">Der er endnu ikke tilføjet nogle billeder.</key>
+    <key alias="labelMaxRows">Du kan ikke tilføje flere end de %0% tilladte rækker.</key>
+    
+    <key alias="labelImage">Billede</key>
+    <key alias="labelTitle">Titel</key>
+    <key alias="labelTitle_placeholder">Angiv titel her</key>
+    <key alias="labelDescription">Beskrivelse</key>
+    <key alias="labelDescriptionPlaceholder">Angiv beskrivelse her</key>
+    
+    <key alias="labelLink">Link</key>
+    <key alias="labelLinkType">Type</key>
+    <key alias="labelLinkUrl">URL</key>
+    <key alias="labelLinkId">ID</key>
+    <key alias="labelLinkText">Tekst</key>
+    <key alias="labelLinkTarget">Target</key>
+
+    <key alias="optionAddImage">Add an image</key>
+    <key alias="optionRemove_item">Slet billedet fra galleriet</key>
+    <key alias="optionMoveRight">Flyt billedet til højre</key>
+    <key alias="optionMoveLeft">Flyt billedet til venstre</key>
+
+    <key alias="optionEditLink">Rediger link</key>
+    <key alias="optionRemoveLink">Slet link</key>
+    <key alias="optionAddLink">Tilføj link</key>
+    
+    <key alias="optionAddRow">Tilføj ny række</key>
+
+  </area>
+</language>

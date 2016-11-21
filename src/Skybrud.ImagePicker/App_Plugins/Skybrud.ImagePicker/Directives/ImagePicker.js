@@ -1,4 +1,4 @@
-﻿angular.module('umbraco').directive('skybrudImagepicker', ['dialogService', 'skybrudImagePickerService', 'skybrudLinkPickerService', 'userService', 'entityResource', 'mediaHelper', function (dialogService, p, links, userService, entityResource, mediaHelper) {
+﻿angular.module('umbraco').directive('skybrudImagepicker', ['dialogService', 'skybrudImagePickerService', 'skybrudLinkPickerService', 'userService', 'entityResource', 'mediaHelper', 'localizationService', function (dialogService, p, links, userService, entityResource, mediaHelper, localizationService) {
     return {
         scope: {
             value: '=',
@@ -91,6 +91,38 @@
 
             }
 
+            function initLabels() {
+
+                scope.labels = {
+                    confirmRemoveTile: 'Are you sure you wish to remove this tile?',
+                    confirmRemoveRow: 'Are you sure you wish to remove this row?',
+                    selectImage: 'Select image',
+                    selectImages: 'Select images',
+                    maxRows: 'You can\'t add more than the ' + scope.cfg.limit + ' allowed rows.'
+                };
+
+                localizationService.localize('imagepicker_confirmRemoveTile').then(function (value) {
+                    scope.labels.confirmRemoveTile = value;
+                });
+
+                localizationService.localize('imagepicker_confirmRemoveRow').then(function (value) {
+                    scope.labels.confirmRemoveRow = value;
+                });
+
+                localizationService.localize('imagepicker_dialogSelectImage').then(function (value) {
+                    scope.labels.selectImage = value;
+                });
+
+                localizationService.localize('imagepicker_dialogSelectImages').then(function (value) {
+                    scope.labels.selectImages = value;
+                });
+
+                localizationService.localize('imagepicker_labelMaxRows', [scope.cfg.limit]).then(function (value) {
+                    scope.labels.maxRows = value;
+                });
+
+            }
+
             /// Gets an URL for a cropped version of the image (based on the current configuration)
             function getImageUrl(item) {
                 return item.$image ? item.$image.image + '?width=' + scope.cfg.image.width + '&height=' + scope.cfg.image.height + '&mode=crop' : null;
@@ -126,7 +158,8 @@
             };
 
             scope.removeItem = function (index) {
-                if (confirm('Er du sikker på at du vil slette denne slide?')) {
+                var text = (scope.layout == 'list' ? scope.labels.confirmRemoveRow : scope.labels.confirmRemoveTile);
+                if (confirm(text)) {
                     scope.value.items.splice(index, 1);
                 }
             };
@@ -158,8 +191,8 @@
                 } else {
 
                     scope.mediaPickerOverlay = {
-                        view: "mediapicker",
-                        title: "Select media",
+                        view: 'mediapicker',
+                        title: scope.labels.selectImage,
                         startNodeId: startNodeId,
                         multiPicker: false,
                         onlyImages: true,
@@ -238,6 +271,7 @@
 
             initValue();
             initConfig();
+            initLabels();
 
         }
     };

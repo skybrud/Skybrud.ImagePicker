@@ -27,7 +27,7 @@
 
     $scope.layouts = [
         { name: 'Tiles', alias: 'tiles' },
-        { name: 'Liste', alias: 'list' }
+        { name: 'List', alias: 'list' }
     ];
 
     $scope.layout = $scope.layouts[0];

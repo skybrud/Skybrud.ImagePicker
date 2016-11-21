@@ -280,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\en-US.xml" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\en-GB.xml" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\da-DK.xml" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Controllers\ImagePicker.js" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
     <None Include="App_Plugins\Skybrud.ImagePicker\Styles\ImagePicker.less" />

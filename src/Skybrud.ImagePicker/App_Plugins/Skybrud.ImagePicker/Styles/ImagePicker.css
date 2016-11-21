@@ -21,6 +21,12 @@
   font-size: 10px;
   line-height: 12px;
 }
+.SkybrudImagePicker .umb-table-row {
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  -webkit-user-select: initial;
+  user-select: initial;
+}
 .SkybrudImagePicker .SkybrudImagePickerTiles > div {
   display: flex;
   flex-wrap: wrap;

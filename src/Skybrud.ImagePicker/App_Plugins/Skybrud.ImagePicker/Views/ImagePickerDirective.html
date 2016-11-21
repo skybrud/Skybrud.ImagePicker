@@ -13,18 +13,20 @@
         <div>
             <div class="tile tile-item" ng-repeat="item in value.items" ng-style="itemStyles">
                 <div>
-                    <a href="#" ng-click="removeItem($index);" prevent-default="" style="float: right;" title="Slet billedet fra galleriet">
+                    <a href="#" ng-click="removeItem($index);" prevent-default="" style="float: right;" localize="title" title="@imagepicker_optionRemoveItem">
                         <i class="icon icon-delete"></i>
                     </a>
-                    <a href="#" ng-show="$index < value.items.length - 1" ng-click="moveItemRight($index);" prevent-default="" style="float: right;" title="Flyt billedet til højre">
+                    <a href="#" ng-show="$index < value.items.length - 1" ng-click="moveItemRight($index);" prevent-default="" style="float: right;" localize="title" title="@imagepicker_optionMoveRight">
                         <i class="icon icon-next"></i>
                     </a>
-                    <a href="#" ng-show="$index > 0" ng-click="moveItemLeft($index);" prevent-default="" style="float: right;" title="Flyt billedet til venstre">
+                    <a href="#" ng-show="$index > 0" ng-click="moveItemLeft($index);" prevent-default="" style="float: right;" localize="title" title="@imagepicker_optionMoveLeft">
                         <i class="icon icon-previous"></i>
                     </a>
                 </div>
                 <div class="subpart">
-                    <div class="title">Billede</div>
+                    <div class="title">
+                        <localize key="imagepicker_labelImage">Image</localize>
+                    </div>
                     <div class="image" ng-if="item.$image">
                         <img ng-src="{{item.$imageUrl}}" alt="" /><br />
                         <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
@@ -33,31 +35,56 @@
                         <a href="#" class="usky-editor-placeholder" ng-click="addImage(item)" prevent-default style="display: block; background: white;" ng-style="{width: config.image.width + 'px', height: config.image.height + 'px'}">
                             <div style="padding-top: 40px; text-align: center;">
                                 <i class="icon icon-picture" style="font-size: 22px;"></i><br />
-                                Indsæt et billede
+                                <localize key="imagepicker_optionAddImage">Add an image</localize>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="subpart">
-                    <div class="title">Titel</div>
-                    <input type="text" ng-model="item.title" placeholder="Angiv titel her" style="font-weight: bold;" />
-                </div>
-                <div class="subpart">
-                    <div class="title">Beskrivelse</div>
-                    <textarea ng-model="item.description" placeholder="Angiv beskrivelse her"></textarea>
-                </div>
-                <div class="subpart">
-                    <div class="title">Link</div>
-                    <div ng-show="item.link">
-                        <div><strong>Type:</strong> {{item.link.mode}}</div>
-                        <div><strong>URL:</strong> {{item.link.url}}</div>
-                        <div><strong>ID:</strong> {{item.link.id}}</div>
-                        <div><strong>Tekst:</strong> {{item.link.name}}</div>
-                        <div><strong>Target:</strong> {{item.link.target}}</div>
-                        <a href="#" ng-click="editLink(item)" prevent-default>Rediger link</a>
-                        <a href="#" ng-click="removeLink(item)" prevent-default>Slet link</a>
+                    <div class="title">
+                        <localize key="imagepicker_labelTitle">Title</localize>
                     </div>
-                    <a ng-show="!item.link" class="empty" href="#" prevent-default ng-click="addLink(item)">Tilføj link</a>
+                    <input type="text" ng-model="item.title" style="font-weight: bold;" localize="placeholder" placeholder="@imagepicker_labelTitlePlaceholder" />
+                </div>
+                <div class="subpart">
+                    <div class="title">
+                        <localize key="imagepicker_labelDescription">Description</localize>
+                    </div>
+                    <textarea ng-model="item.description" localize="placeholder" placeholder="@imagepicker_labelDescriptionPlaceholder"></textarea>
+                </div>
+                <div class="subpart">
+                    <div class="title"><localize key="imagepicker_labelLink">Link</localize></div>
+                    <div ng-show="item.link">
+                        <div>
+                            <strong><localize key="imagepicker_labelLinkType">Type</localize>:</strong>
+                            {{item.link.mode}}
+                        </div>
+                        <div>
+                            <strong><localize key="imagepicker_labelLinkUrl">URL</localize>:</strong>
+                            {{item.link.url}}
+                        </div>
+                        <div>
+                            <strong><localize key="imagepicker_labelLinkId">ID</localize>:</strong>
+                            {{item.link.id}}
+                        </div>
+                        <div>
+                            <strong><localize key="imagepicker_labelLinkText">Text</localize>:</strong>
+                            {{item.link.name}}
+                        </div>
+                        <div>
+                            <strong><localize key="imagepicker_labelLinkTarget">Target</localize>:</strong>
+                            {{item.link.target}}
+                        </div>
+                        <a href="#" ng-click="editLink(item)" prevent-default>
+                            <localize key="imagepicker_optionEditLink">Edit link</localize>
+                        </a>
+                        <a href="#" ng-click="removeLink(item)" prevent-default>
+                            <localize key="imagepicker_optionRemoveLink">Remove link</localize>
+                        </a>
+                    </div>
+                    <a ng-show="!item.link" class="empty" href="#" prevent-default ng-click="addLink(item)">
+                        <localize key="imagepicker_optionAddLink">Add link</localize>
+                    </a>
                 </div>
             </div>
             <a href="#" class="tile tile-add" ng-click="addItem()" prevent-default ng-style="itemStyles">
@@ -67,27 +94,42 @@
     </div>
 
     <div class="SkybrudImagePickerList table" ng-show="layout == 'list'">
-        
+
         <style>
-            .SkybrudImagePicker .umb-table-cell.col-thumbnail { width: 60px; flex: initial; }
-            .SkybrudImagePicker .umb-table-cell.col-actions { width: 50px; flex: initial; }
+            .SkybrudImagePicker .umb-table-cell.col-thumbnail {
+                width: 60px;
+                flex: initial;
+            }
+
+            .SkybrudImagePicker .umb-table-cell.col-actions {
+                width: 50px;
+                flex: initial;
+            }
         </style>
-        
+
         <div class="umb-table">
             <div class="umb-table-head">
                 <div class="umb-table-row">
                     <div class="umb-table-cell col-thumbnail"></div>
-                    <div class="umb-table-cell col-name">Billede</div>
-                    <div class="umb-table-cell col-description">Titel</div>
-                    <div class="umb-table-cell">Beskrivelse</div>
-                    <div class="umb-table-cell">Link</div>
+                    <div class="umb-table-cell col-name">
+                        <localize key="imagepicker_labelImage">Image</localize>
+                    </div>
+                    <div class="umb-table-cell col-description">
+                        <localize key="imagepicker_labelTitle">Title</localize>
+                    </div>
+                    <div class="umb-table-cell">
+                        <localize key="imagepicker_labelDescription">Description</localize>
+                    </div>
+                    <div class="umb-table-cell">
+                        <localize key="imagepicker_labelLink">Link</localize>
+                    </div>
                     <div class="umb-table-cell col-actions">&nbsp;</div>
                 </div>
             </div>
             <div class="umb-table-body" ng-show="value.items.length == 0">
                 <div class="umb-table-row">
                     <div class="umb-table-cell" style="flex: 1 1 100%">
-                        Der er endnu ikke tilføjet nogle billeder.
+                        <localize key="imagepicker_labelNoRows">There has not yet been added any images.</localize>
                     </div>
                 </div>
             </div>
@@ -103,18 +145,18 @@
                             </div>
                             <div class="umb-table-cell col-name">
                                 <span ng-show="item.$image">{{item.$image.name}}</span>
-                                <em ng-show="!item.$image">Ikke angivet</em>
+                                <em ng-show="!item.$image"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
                             </div>
                             <div class="umb-table-cell col-title">
-                                <em ng-show="!item.title">Ikke angivet</em>
+                                <em ng-show="!item.title"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
                                 <span ng-show="item.title">{{item.title}}</span>
                             </div>
                             <div class="umb-table-cell col-description">
-                                <em ng-show="!item.description">Ikke angivet</em>
+                                <em ng-show="!item.description"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
                                 <div ng-show="item.description">{{item.description}}</div>
                             </div>
                             <div class="umb-table-cell col-link">
-                                <em ng-show="!item.link">Ikke angivet</em>
+                                <em ng-show="!item.link"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
                                 <div ng-show="item.link">
                                     {{item.link.name}}
                                     <div class="linkUrl">
@@ -124,8 +166,8 @@
                             </div>
                             <div class="umb-table-cell col-actions">
                                 <div>
-                                    <a href="#" ng-click="toggleOpen(item)" prevent-default="" title="Rediger rækken"><i class="icon icon-edit"></i></a>
-                                    <a href="#" ng-click="removeItem($index);" prevent-default="" title="Slet rækken"><i class="icon icon-delete red"></i></a>
+                                    <a href="#" ng-click="toggleOpen(item)" prevent-default="" localize="title" title="@imagepicker_tooltipEditRow"><i class="icon icon-edit"></i></a>
+                                    <a href="#" ng-click="removeItem($index);" prevent-default="" localize="title" title="@imagepicker_tooltipRemoveRow"><i class="icon icon-delete red"></i></a>
                                     <span prevent-default="" title="Flyt rækken"><i class="icon icon-navigation handle"></i></span>
                                 </div>
                             </div>
@@ -135,7 +177,9 @@
                                 <div class="spacer"></div>
                                 <div style="display: flex; flex-wrap: wrap;">
                                     <div class="subpart">
-                                        <div class="title">Billede</div>
+                                        <div class="title">
+                                            <localize key="imagepicker_labelImage">Image</localize>
+                                        </div>
                                         <div class="image" ng-if="item.$image">
                                             <img ng-src="{{item.$imageUrl}}" alt="" /><br />
                                             <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
@@ -144,33 +188,58 @@
                                             <a href="#" class="usky-editor-placeholder" ng-click="addImage(item)" prevent-default style="display: block; background: #f8f8f8;" ng-style="{width: config.image.width + 'px', height: config.image.height + 'px'}">
                                                 <div style="padding-top: 40px; text-align: center;">
                                                     <i class="icon icon-picture" style="font-size: 22px;"></i><br />
-                                                    Indsæt et billede
+                                                    <localize key="imagepicker_optionAddImage">Add an image</localize>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="subpart" style="min-width: 300px;">
                                         <div class="subpart">
-                                            <div class="title">Titel</div>
-                                            <input type="text" ng-model="item.title" placeholder="Angiv titel her" style="font-weight: bold;" />
+                                            <div class="title">
+                                                <localize key="imagepicker_labelTitle">Title</localize>
+                                            </div>
+                                            <input type="text" ng-model="item.title" style="font-weight: bold;" localize="placeholder" placeholder="@imagepicker_labelTitlePlaceholder" />
                                         </div>
                                         <div class="subpart">
-                                            <div class="title">Beskrivelse</div>
-                                            <textarea ng-model="item.description" placeholder="Angiv beskrivelse her"></textarea>
+                                            <div class="title">
+                                                <localize key="imagepicker_labelDescription">Description</localize>
+                                            </div>
+                                            <textarea ng-model="item.description" localize="placeholder" placeholder="@imagepicker_labelDescriptionPlaceholder" />
                                         </div>
                                     </div>
                                     <div class="subpart">
-                                        <div class="title">Link</div>
+                                        <div class="title"><localize key="imagepicker_labelLink">Link</localize></div>
                                         <div ng-show="item.link">
-                                            <div><strong>Type:</strong> {{item.link.mode}}</div>
-                                            <div><strong>URL:</strong> {{item.link.url}}</div>
-                                            <div><strong>ID:</strong> {{item.link.id}}</div>
-                                            <div><strong>Tekst:</strong> {{item.link.name}}</div>
-                                            <div><strong>Target:</strong> {{item.link.target}}</div>
-                                            <a href="#" ng-click="editLink(item)" prevent-default>Rediger link</a>
-                                            <a href="#" ng-click="removeLink(item)" prevent-default>Slet link</a>
+                                            <div>
+                                                <strong><localize key="imagepicker_labelLinkType">Type</localize>:</strong>
+                                                {{item.link.mode}}
+                                            </div>
+                                            <div>
+                                                <strong><localize key="imagepicker_labelLinkUrl">URL</localize>:</strong>
+                                                {{item.link.url}}
+                                            </div>
+                                            <div>
+                                                <strong><localize key="imagepicker_labelLinkId">ID</localize>:</strong>
+                                                {{item.link.id}}
+                                            </div>
+                                            <div>
+                                                <strong><localize key="imagepicker_labelLinkText">Text</localize>:</strong>
+                                                {{item.link.name}}
+                                            </div>
+                                            <div>
+                                                <strong><localize key="imagepicker_labelLinkTarget">Target</localize>:</strong>
+                                                {{item.link.target}}
+                                            </div>
+                                            <a href="#" ng-click="editLink(item)" prevent-default>
+                                                <localize key="imagepicker_optionEditLink">Edit link</localize>
+                                            </a>
+                                            <a href="#" ng-click="removeLink(item)" prevent-default>
+                                                <localize key="imagepicker_optionRemoveLink">Remove link</localize>
+                                            </a>
                                         </div>
-                                        <a ng-show="!item.link" class="empty" href="#" prevent-default ng-click="addLink(item)">Tilføj link</a>
+                                        <a ng-show="!item.link" class="empty" href="#" prevent-default ng-click="addLink(item)">
+                                            <localize key="imagepicker_optionAddLink">Add link</localize>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -182,10 +251,10 @@
         <div style="margin-top: 5px; font-size: 13px;">
             <a href="#" prevent-default ng-click="addItem()" ng-show="config.limit == 0 || value.items.length < config.limit">
                 <i class="icon icon-add"></i>
-                Tilføj ny række
+                <localize key="imagepicker_optionAddRow">Add new row</localize>
             </a>
             <em ng-show="config.limit > 0 && value.items.length >= config.limit">
-                Der kan ikke tilføjes flere end de {{config.limit}} tilladte rækker.
+                {{labels.maxRows}}
             </em>
         </div>
     </div>
