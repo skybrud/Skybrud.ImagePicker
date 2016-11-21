@@ -8,6 +8,9 @@ using Skybrud.Umbraco.GridData.Rendering;
 
 namespace Skybrud.ImagePicker.Grid.Converters {
     
+    /// <summary>
+    /// Grid converter for the ImagePicker.
+    /// </summary>
     public class ImagePickerGridConverter : IGridConverter {
 
         /// <summary>
@@ -24,6 +27,12 @@ namespace Skybrud.ImagePicker.Grid.Converters {
             return value != null;
         }
 
+        /// <summary>
+        /// Converts the specified <code>token</code> into an instance of <see cref="IGridEditorConfig"/>.
+        /// </summary>
+        /// <param name="editor">A reference to the parent <see cref="GridEditor"/>.</param>
+        /// <param name="token">The instance of <see cref="JToken"/> representing the editor config.</param>
+        /// <param name="config">The converted editor config.</param>
         public bool ConvertEditorConfig(GridEditor editor, JToken token, out IGridEditorConfig config) {
             config = null;
             if (IsImagePickerEditor(editor)) {

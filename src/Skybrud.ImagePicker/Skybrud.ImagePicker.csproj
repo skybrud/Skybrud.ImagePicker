@@ -271,6 +271,7 @@
     <Compile Include="Grid\Config\GridEditorImagePickerTitleConfig.cs" />
     <Compile Include="Grid\Converters\ImagePickerGridConverter.cs" />
     <Compile Include="Grid\Values\GridControlImagePickerValue.cs" />
+    <Compile Include="ImagePickerImage.cs" />
     <Compile Include="ImagePickerItem.cs" />
     <Compile Include="ImagePickerList.cs" />
     <Compile Include="ImagePickerPropertyValueConverter.cs" />

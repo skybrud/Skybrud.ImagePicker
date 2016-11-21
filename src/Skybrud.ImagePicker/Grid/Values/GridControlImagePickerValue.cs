@@ -4,6 +4,9 @@ using Skybrud.Umbraco.GridData.Interfaces;
 
 namespace Skybrud.ImagePicker.Grid.Values {
     
+    /// <summary>
+    /// Class representing the value of an ImagePicker control in the Umbraco grid.
+    /// </summary>
     public class GridControlImagePickerValue : ImagePickerList, IGridControlValue {
 
         #region Properties
@@ -13,12 +16,15 @@ namespace Skybrud.ImagePicker.Grid.Values {
         /// </summary>
         public GridControl Control { get; private set; }
 
-        public bool IsValid { get; private set; }
-
         #endregion
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a enw instance based on the specified <code>control</code> and <code>obj</code>.
+        /// </summary>
+        /// <param name="control">The parent control.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         protected GridControlImagePickerValue(GridControl control, JObject obj) : base(obj) {
             Control = control;
         }

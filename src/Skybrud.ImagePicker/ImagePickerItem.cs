@@ -4,7 +4,6 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.LinkPicker;
 using Umbraco.Core.Models;
-using Umbraco.Web;
 
 namespace Skybrud.ImagePicker {
 
@@ -24,11 +23,13 @@ namespace Skybrud.ImagePicker {
         /// <summary>
         /// Gets a reference to the selected image.
         /// </summary>
-        public IPublishedContent Image { get; private set; }
+        [JsonProperty("image")]
+        public ImagePickerImage Image { get; private set; }
 
         /// <summary>
         /// Gets whether an image has been selected for this item.
         /// </summary>
+        [JsonIgnore]
         public bool HasImage {
             get { return Image != null; }
         }
@@ -36,11 +37,13 @@ namespace Skybrud.ImagePicker {
         /// <summary>
         /// Gets the title of this item.
         /// </summary>
+        [JsonProperty("title")]
         public string Title { get; private set; }
 
         /// <summary>
         /// Gets whether a title has been specified for this item.
         /// </summary>
+        [JsonIgnore]
         public bool HasTitle {
             get { return !String.IsNullOrWhiteSpace(Title); }
         }
@@ -48,11 +51,13 @@ namespace Skybrud.ImagePicker {
         /// <summary>
         /// Gets the description of this item.
         /// </summary>
+        [JsonProperty("description")]
         public string Description { get; private set; }
 
         /// <summary>
         /// Gets whether a description has been specified for this item.
         /// </summary>
+        [JsonIgnore]
         public bool HasDescription {
             get { return !String.IsNullOrWhiteSpace(Description); }
         }
@@ -60,11 +65,13 @@ namespace Skybrud.ImagePicker {
         /// <summary>
         /// Gets a reference to the selected <see cref="LinkPickerItem"/>.
         /// </summary>
+        [JsonProperty("link")]
         public LinkPickerItem Link { get; private set; }
 
         /// <summary>
         /// Gets whether a valid link has been specified for this item.
         /// </summary>
+        [JsonIgnore]
         public bool HasLink {
             get { return Link != null && Link.IsValid; }
         }
@@ -73,6 +80,7 @@ namespace Skybrud.ImagePicker {
         /// Gets whether the item is valid. Since an item can exist without a title, description or link, but must have
         /// an image, this property equals calling <see cref="HasImage"/>.
         /// </summary>
+        [JsonIgnore]
         public bool IsValid {
             get { return HasImage; }
         }
@@ -96,7 +104,7 @@ namespace Skybrud.ImagePicker {
         /// <param name="title">The title of the item.</param>
         /// <param name="description">The description of the item.</param>
         /// <param name="link">An instance of <see cref="LinkPickerItem"/> representing the link of the item.</param>
-        public ImagePickerItem(IPublishedContent image, string title, string description, LinkPickerItem link) {
+        public ImagePickerItem(ImagePickerImage image, string title, string description, LinkPickerItem link) {
             Image = image;
             Title = title;
             Description = description;
@@ -108,16 +116,11 @@ namespace Skybrud.ImagePicker {
         /// </summary>
         /// <param name="obj">An instanceo of <see cref="JObject"/> representing the item.</param>
         protected ImagePickerItem(JObject obj) {
-
-            int imageId = obj.GetInt32("imageId");
-            IPublishedContent image = imageId > 0 && UmbracoContext.Current != null ? UmbracoContext.Current.MediaCache.GetById(imageId) : null;
-
             JObject = obj;
-            Image = image;
+            Image = obj.GetInt32("imageId", ImagePickerImage.GetFromId);
             Title = obj.GetString("title") ?? "";
             Description = obj.GetString("description") ?? "";
             Link = obj.GetObject("link", LinkPickerItem.Parse) ?? LinkPickerItem.Parse(new JObject());
-        
         }
 
         #endregion
@@ -131,20 +134,7 @@ namespace Skybrud.ImagePicker {
         /// <returns>Returns an instance of <see cref="ImagePickerItem"/>, or <code>null</code> if <code>obj</code> is
         /// <code>null</code>.</returns>
         public static ImagePickerItem Parse(JObject obj) {
-
-            if (obj == null) return null;
-
-            int imageId = obj.GetInt32("imageId");
-            IPublishedContent image = imageId > 0 && UmbracoContext.Current != null ? UmbracoContext.Current.MediaCache.GetById(imageId) : null;
-            
-            return new ImagePickerItem {
-                JObject = obj,
-                Image = image,
-                Title = obj.GetString("title") ?? "",
-                Description = obj.GetString("description") ?? "",
-                Link = obj.GetObject("link", LinkPickerItem.Parse) ?? LinkPickerItem.Parse(new JObject())
-            };
-        
+            return obj == null ? null : new ImagePickerItem(obj);
         }
 
         #endregion
