@@ -21,6 +21,52 @@
   font-size: 10px;
   line-height: 12px;
 }
+.SkybrudImagePicker .header {
+  margin-bottom: 10px;
+  display: flex;
+}
+.SkybrudImagePicker .header .title {
+  flex-grow: 1;
+}
+.SkybrudImagePicker .header .title input {
+  max-width: initial;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #000;
+  border-color: #ececec;
+  height: 30px;
+  line-height: 30px;
+}
+.SkybrudImagePicker .header .title input:hover {
+  border: 1px solid #ccc;
+}
+.SkybrudImagePicker .header .layout-selector {
+  margin-left: 10px;
+  height: 30px;
+}
+.SkybrudImagePicker .header .layout-selector > div {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: #999;
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.SkybrudImagePicker .header .layout-selector > div:hover {
+  border-color: #d9d9d9;
+  color: #000;
+}
+.SkybrudImagePicker .header .layout-selector > div.active {
+  color: #000;
+}
 .SkybrudImagePicker .umb-table-row {
   -moz-user-select: initial;
   -ms-user-select: initial;
@@ -50,7 +96,7 @@
   border: 2px #d9d9d9 dashed;
   transition: all 150ms ease-in-out;
   position: relative;
-  min-height: 250px;
+  min-height: 175px;
   padding: 4px;
 }
 .SkybrudImagePicker .SkybrudImagePickerTiles .tile.tile-add i {
@@ -94,30 +140,6 @@
 .SkybrudImagePicker .subpart textarea:hover,
 .SkybrudImagePicker .subpart textarea:focus {
   border: 1px solid #ccc;
-}
-.SkybrudImagePicker .layout-selector {
-  height: 30px;
-  margin-bottom: 10px;
-}
-.SkybrudImagePicker .layout-selector > div {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
-  border: 1px solid transparent;
-  color: #999;
-  display: block;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  box-sizing: border-box;
-  text-align: center;
-}
-.SkybrudImagePicker .layout-selector > div:hover {
-  border-color: #d9d9d9;
-  color: #000;
-}
-.SkybrudImagePicker .layout-selector > div.active {
-  color: #000;
 }
 .SkybrudImagePicker .image {
   position: relative;
@@ -189,6 +211,14 @@
   margin: 0 20px 20px 0 !important;
   min-width: 250px;
 }
+.SkybrudImagePicker .umb-table-cell.col-thumbnail {
+  width: 60px;
+  flex: initial;
+}
+.SkybrudImagePicker .umb-table-cell.col-actions {
+  width: 50px;
+  flex: initial;
+}
 .SkybrudImagePicker .linkUrl {
   line-height: 12px;
   font-size: 12px;
@@ -256,4 +286,17 @@
 }
 .SkybrudImagePickerPreValues .optionGroup + .optionGroup {
   margin-top: 40px;
+}
+.ImagePickerDebugger {
+  border: 2px solid red;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.ImagePickerDebugger label {
+  display: block;
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+.ImagePickerDebugger label + label {
+  margin-top: 10px;
 }
