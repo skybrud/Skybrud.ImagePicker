@@ -279,6 +279,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerDebugger.html" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerList.html" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerTiles.html" />
     <None Include="app.config" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\en-US.xml" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\en-GB.xml" />
