@@ -81,6 +81,11 @@
                 if (!scope.cfg.layout) scope.cfg.layout = {};
                 if (scope.cfg.layout.initial != 'tiles') scope.cfg.layout.initial = 'list';
                 if (!scope.cfg.layout.hideSelector) scope.cfg.layout.hideSelector = false;
+                
+                if (!scope.cfg.items) scope.cfg.items = {};
+                if (!scope.cfg.items.hideTitle) scope.cfg.items.hideTitle = false;
+                if (!scope.cfg.items.hideDescription) scope.cfg.items.hideDescription = false;
+                if (!scope.cfg.items.hideLink) scope.cfg.items.hideLink = false;
 
                 scope.itemStyles = {
                     width: scope.cfg.image.width + 'px',

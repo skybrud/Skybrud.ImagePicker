@@ -1,0 +1,67 @@
+﻿<div class="ImagePickerDebugger">
+    <div style="display: flex; flex-wrap: wrap;">
+        <div style="padding-right: 20px;">
+            <div>
+                <strong>Limit</strong>
+            </div>
+            <label>
+                <div>Limit</div>
+                <input type="number" ng-model="config.limit" min="0" max="999" />
+            </label>
+        </div>
+        <div style="padding-right: 20px;">
+            <div>
+                <strong>Layout</strong>
+            </div>
+            <label>
+                <div>Initial layout</div>
+                <select ng-model="config.layout.initial">
+                    <option value="list">List</option>
+                    <option value="tiles">Tiles</option>
+                </select>
+            </label>
+            <label>
+                <input type="checkbox" ng-model="config.layout.hideSelector" /> Hide selector
+            </label>
+        </div>
+        <div style="padding-right: 20px;">
+            <div>
+                <strong>Title</strong>
+            </div>
+            <label>
+                <input type="checkbox" ng-model="config.title.show" /> Show
+            </label>
+            <label>
+                <div>Placeholder</div>
+                <input type="text" ng-model="config.title.placeholder" />
+            </label>
+        </div>
+        <div style="padding-right: 20px;">
+            <div>
+                <strong>Image</strong>
+            </div>
+            <label>
+                <div>Width</div>
+                <input type="number" ng-model="config.image.width" min="0" max="999" />
+            </label>
+            <label>
+                <div>Height</div>
+                <input type="number" ng-model="config.image.height" min="0" max="999" />
+            </label>
+        </div>
+        <div>
+            <div>
+                <strong>Items</strong>
+            </div>
+            <label>
+                <input type="checkbox" ng-model="config.items.hideTitle" /> Hide title
+            </label>
+            <label>
+                <input type="checkbox" ng-model="config.items.hideDescription" /> Hide description
+            </label>
+            <label>
+                <input type="checkbox" ng-model="config.items.hideLink" /> Hide link
+            </label>
+        </div>
+    </div>
+</div>
