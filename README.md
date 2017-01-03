@@ -103,9 +103,15 @@ The full configuration for the image picker looks like this:
             "height": 0
         },
         "items": {
-            "hideTitle": false,
-            "hideDescription": false,
-            "hideLink": false
+            "title": { 
+                "mode":  "required"
+            },
+            "description": { 
+                "mode":  "required"
+            },
+            "link": { 
+                "mode":  "optional"
+            }
         }
     }
 }
