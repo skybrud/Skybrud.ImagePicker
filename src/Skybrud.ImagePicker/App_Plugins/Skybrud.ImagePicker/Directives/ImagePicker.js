@@ -20,6 +20,15 @@
                 startNodeId = userData.startMediaId;
             });
 
+            scope.isRequiredAndMissing = function (id) {
+                if (!contentForm[id] || !contentForm[id].classList) return false;
+                return contentForm[id].classList.contains('ng-invalid') && contentForm[id].classList.contains('ng-invalid-required');
+            }
+
+            function getUniqueId() {
+                return (Math.random() + '').replace('.', '');
+            }
+
             function initValue() {
 
                 // Initialize the value
@@ -31,10 +40,14 @@
 
                     // Get the IDs of the images currently selected
                     var ids = [];
-                    angular.forEach(scope.value.items, function(item) {
-                        if (item.imageId) {
-                            ids.push(item.imageId);
-                        }
+                    angular.forEach(scope.value.items, function (item) {
+
+                        // Make sure the existing items are populated with a unique ID
+                        item.$uniqueId = getUniqueId();
+
+                        // Make sure we pull information about the referenced image
+                        if (item.imageId) ids.push(item.imageId);
+
                     });
 
                     if (ids.length > 0) {
@@ -81,11 +94,18 @@
                 if (!scope.cfg.layout) scope.cfg.layout = {};
                 if (scope.cfg.layout.initial != 'tiles') scope.cfg.layout.initial = 'list';
                 if (!scope.cfg.layout.hideSelector) scope.cfg.layout.hideSelector = false;
-                
+
                 if (!scope.cfg.items) scope.cfg.items = {};
-                if (!scope.cfg.items.hideTitle) scope.cfg.items.hideTitle = false;
-                if (!scope.cfg.items.hideDescription) scope.cfg.items.hideDescription = false;
-                if (!scope.cfg.items.hideLink) scope.cfg.items.hideLink = false;
+                if (!scope.cfg.items.title) scope.cfg.items.title = { mode: 'optional' };
+                if (!scope.cfg.items.description) scope.cfg.items.description = { mode: 'optional' };
+                if (!scope.cfg.items.link) scope.cfg.items.link = { mode: 'optional' };
+
+                scope.cfg.items.title.required = scope.cfg.items.title.mode == 'required';
+                scope.cfg.items.title.hidden = scope.cfg.items.title.mode == 'hidden';
+                scope.cfg.items.description.required = scope.cfg.items.description.mode == 'required';
+                scope.cfg.items.description.hidden = scope.cfg.items.description.mode == 'hidden';
+                scope.cfg.items.link.required = scope.cfg.items.link.mode == 'required';
+                scope.cfg.items.link.hidden = scope.cfg.items.link.mode == 'hidden';
 
                 scope.itemStyles = {
                     width: scope.cfg.image.width + 'px',
@@ -143,6 +163,7 @@
             scope.addItem = function () {
 
                 var item = {
+                    $uniqueId: getUniqueId(),
                     title: '',
                     description: '',
                     imageId: 0,
@@ -231,17 +252,20 @@
             scope.addLink = function (item) {
                 links.addLink(function (link) {
                     item.link = link;
+                    item.$link = 'yup';
                 });
             };
 
             scope.editLink = function (item) {
                 links.editLink(item.link, function (link) {
                     item.link = link;
+                    item.$link = 'yup';
                 });
             };
 
             scope.removeLink = function (item) {
                 item.link = null;
+                item.$link = null;
             };
 
             scope.moveItemLeft = function (index) {

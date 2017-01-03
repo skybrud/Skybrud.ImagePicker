@@ -6,13 +6,13 @@
                 <div class="umb-table-cell col-name">
                     <localize key="imagepicker_labelImage">Image</localize>
                 </div>
-                <div class="umb-table-cell col-description" ng-hide="config.items.hideTitle">
+                <div class="umb-table-cell col-description" ng-hide="cfg.items.title.hidden">
                     <localize key="imagepicker_labelTitle">Title</localize>
                 </div>
-                <div class="umb-table-cell" ng-hide="config.items.hideDescription">
+                <div class="umb-table-cell" ng-hide="cfg.items.description.hidden">
                     <localize key="imagepicker_labelDescription">Description</localize>
                 </div>
-                <div class="umb-table-cell" ng-hide="config.items.hideLink">
+                <div class="umb-table-cell" ng-hide="cfg.items.link.hidden">
                     <localize key="imagepicker_labelLink">Link</localize>
                 </div>
                 <div class="umb-table-cell col-actions">&nbsp;</div>
@@ -36,23 +36,31 @@
                             </div>
                         </div>
                         <div class="umb-table-cell col-name">
-                            <span ng-show="item.$image">{{item.$image.name}}</span>
-                            <em ng-show="!item.$image"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
+                            <div ng-class="{error: isRequiredAndMissing('imagePickerRowImage' + item.$uniqueId)}">
+                                <span ng-show="item.$image">{{item.$image.name}}</span>
+                                <em ng-show="!item.$image"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
+                            </div>
                         </div>
-                        <div class="umb-table-cell col-title" ng-hide="config.items.hideTitle">
-                            <em ng-show="!item.title"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
-                            <span ng-show="item.title">{{item.title}}</span>
+                        <div class="umb-table-cell col-title" ng-hide="cfg.items.title.hidden">
+                            <div ng-class="{error: isRequiredAndMissing('imagePickerRowTitle' + item.$uniqueId)}">
+                                <em ng-show="!item.title"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
+                                <span ng-show="item.title">{{item.title}}</span>
+                            </div>
                         </div>
-                        <div class="umb-table-cell col-description" ng-hide="config.items.hideDescription">
-                            <em ng-show="!item.description"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
-                            <div ng-show="item.description">{{item.description}}</div>
+                        <div class="umb-table-cell col-description" ng-hide="cfg.items.description.hidden">
+                            <div ng-class="{error: isRequiredAndMissing('imagePickerRowDescription' + item.$uniqueId)}">
+                                <em ng-show="!item.description"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
+                                <div ng-show="item.description">{{item.description}}</div>
+                            </div>
                         </div>
-                        <div class="umb-table-cell col-link" ng-hide="config.items.hideLink">
-                            <em ng-show="!item.link"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
-                            <div ng-show="item.link">
-                                {{item.link.name}}
-                                <div class="linkUrl">
-                                    <small>{{item.link.url}}</small>
+                        <div class="umb-table-cell col-link" ng-hide="cfg.items.link.hidden">
+                            <div ng-class="{error: isRequiredAndMissing('imagePickerRowLink' + item.$uniqueId)}">
+                                <em ng-show="!item.link"><localize key="imagepicker_labelNotSpecified">Not specified</localize>&nbsp;</em>
+                                <div ng-show="item.link">
+                                    {{item.link.name}}
+                                    <div class="linkUrl">
+                                        <small>{{item.link.url}}</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +75,7 @@
                     <div class="umb-table-row" ng-show="item.$showInfo">
                         <div style="width: 100%">
                             <div class="spacer"></div>
+                            <input type="hidden" ng-model="item.imageUrl" required id="imagePickerRowImage{{item.$uniqueId}}" />
                             <div style="display: flex; flex-wrap: wrap;">
                                 <div class="subpart">
                                     <div class="title">
@@ -85,21 +94,21 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="subpart" style="min-width: 300px;" ng-hide="config.items.hideTitle && config.items.hideDescription">
-                                    <div class="subpart" ng-hide="config.items.hideTitle">
+                                <div class="subpart" style="min-width: 300px;" ng-hide="config.items.title.hidden && config.items.description.hidden">
+                                    <div class="subpart" ng-hide="config.items.title.hidden">
                                         <div class="title">
                                             <localize key="imagepicker_labelTitle">Title</localize>
                                         </div>
-                                        <input type="text" ng-model="item.title" style="font-weight: bold;" localize="placeholder" placeholder="@imagepicker_labelTitlePlaceholder" />
+                                        <input type="text" ng-model="item.title" style="font-weight: bold;" localize="placeholder" placeholder="@imagepicker_labelTitlePlaceholder" ng-required="cfg.items.title.required" id="imagePickerRowTitle{{item.$uniqueId}}" />
                                     </div>
-                                    <div class="subpart" ng-hide="config.items.hideDescription">
+                                    <div class="subpart" ng-hide="config.items.description.hidden">
                                         <div class="title">
                                             <localize key="imagepicker_labelDescription">Description</localize>
                                         </div>
-                                        <textarea ng-model="item.description" localize="placeholder" placeholder="@imagepicker_labelDescriptionPlaceholder" />
+                                        <textarea ng-model="item.description" localize="placeholder" placeholder="@imagepicker_labelDescriptionPlaceholder" ng-required="cfg.items.description.required" id="imagePickerRowDescription{{item.$uniqueId}}" />
                                     </div>
                                 </div>
-                                <div class="subpart" ng-hide="config.items.hideLink">
+                                <div class="subpart link" ng-hide="config.items.link.hidden">
                                     <div class="title"><localize key="imagepicker_labelLink">Link</localize></div>
                                     <div ng-show="item.link">
                                         <div>
@@ -129,9 +138,12 @@
                                             <localize key="imagepicker_optionRemoveLink">Remove link</localize>
                                         </a>
                                     </div>
-                                    <a ng-show="!item.link" class="empty" href="#" prevent-default ng-click="addLink(item)">
-                                        <localize key="imagepicker_optionAddLink">Add link</localize>
-                                    </a>
+                                    <div ng-show="!item.link" ng-class="{error: isRequiredAndMissing('imagePickerRowLink' + item.$uniqueId)}">
+                                        <a class="empty" href="#" prevent-default ng-click="addLink(item)">
+                                            <localize key="imagepicker_optionAddLink">Add link</localize>
+                                        </a>
+                                    </div>
+                                    <input type="hidden" ng-model="item.$link" ng-required="cfg.items.link.required" id="imagePickerRowLink{{item.$uniqueId}}" />
                                 </div>
                             </div>
                         </div>

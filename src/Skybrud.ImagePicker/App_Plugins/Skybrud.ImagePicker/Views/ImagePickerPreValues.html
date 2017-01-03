@@ -79,29 +79,29 @@
         <div class="optionGroupTitle">Items</div>
         <label class="option checkbox">
             <div class="key">
-                Hide title
-                <small>Hide the option to specify a title for each item.</small>
+                Title
+                <small>Specify whether the title property should be <em>optional</em>, <em>required</em> or <em>hidden</em>.</small>
             </div>
             <div class="value">
-                <input type="checkbox" ng-model="model.value.items.hideTitle" />
+                <select ng-options="item as item.name for item in propertyModes track by item.alias" ng-model="titleMode" ng-change="update()"></select>
             </div>
         </label>
         <label class="option checkbox">
             <div class="key">
-                Hide description
-                <small>Hide the option to specify a description for each item.</small>
+                Description
+                <small>Specify whether the description property should be <em>optional</em>, <em>required</em> or <em>hidden</em>.</small>
             </div>
             <div class="value">
-                <input type="checkbox" ng-model="model.value.items.hideDescription" />
+                <select ng-options="item as item.name for item in propertyModes track by item.alias" ng-model="descriptionMode" ng-change="update()"></select>
             </div>
         </label>
         <label class="option checkbox">
             <div class="key">
-                Hide link
-                <small>Hide the option to specify a link for each item.</small>
+                Link
+                <small>Specify whether the link property should be <em>optional</em> or <em>hidden</em>.</small>
             </div>
             <div class="value">
-                <input type="checkbox" ng-model="model.value.items.hideLink" />
+                <select ng-options="item as item.name for item in propertyModes track by item.alias" ng-model="linkMode" ng-change="update()"></select>
             </div>
         </label>
     </div>

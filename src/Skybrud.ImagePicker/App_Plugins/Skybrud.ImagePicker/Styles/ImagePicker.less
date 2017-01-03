@@ -152,6 +152,7 @@
                 border: 1px solid #ccc;
             }
         }
+
     }
 
     .image {
@@ -229,6 +230,31 @@
 
         .col-actions {
             font-size: 14px;
+        }
+    }
+
+    .show-validation.ng-invalid & .umb-table-cell > .error {
+        background-color: #9d261d!important;
+        padding: 5px 10px;
+        color: white;
+        &:before {
+            margin-right: 5px;
+            font-family: 'icomoon';
+            vertical-align: top;
+            content: "\e25d";
+        }
+    }
+
+    .show-validation.ng-invalid & {
+        .subpart {
+            .usky-editor-placeholder.error {
+                color: #9d261d;
+                border: 1px solid #9d261d;
+                box-sizing: border-box;
+            }
+            &.link .error a {
+                color: #9d261d;
+            }
         }
     }
 
@@ -348,6 +374,7 @@
             background: #f8f8f8;
             padding: 5px 10px;
             font-weight: bold;
+            border-bottom: 1px solid #D9D9D9;
         }
         & + .optionGroup {
             margin-top: 40px;

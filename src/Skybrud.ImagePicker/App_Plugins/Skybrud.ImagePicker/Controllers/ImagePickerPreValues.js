@@ -1,40 +1,65 @@
 ﻿angular.module("umbraco").controller("Skybrud.ImagePickerPreValues.Controller", function ($scope) {
 
+    // List of available layouts
+    $scope.layouts = [
+        { name: 'Tiles', alias: 'tiles' },
+        { name: 'Liste', alias: 'list' }
+    ];
+
+    // List of available modes for "title", "description" and "link"
+    $scope.propertyModes = [
+        { name: 'Optional', alias: 'optional' },
+        { name: 'Required', alias: 'required' },
+        { name: 'Hidden', alias: 'hidden' }
+    ];
+
     if (!$scope.model.value) {
         $scope.model.value = {
             limit: 0
         };
     }
 
-    var cgf = $scope.model.value;
+    var cfg = $scope.model.value;
 
-    if (!cgf.title) cgf.title = {};
-    if (!cgf.title.show) cgf.title.show = false;
-    if (!cgf.title.placeholder) cgf.title.placeholder = '';
+    if (!cfg.title) cfg.title = {};
+    if (!cfg.title.show) cfg.title.show = false;
+    if (!cfg.title.placeholder) cfg.title.placeholder = '';
 
-    if (!cgf.layout) cgf.layout = {};
-    if (!cgf.layout.initial) cgf.layout.initial = 'tiles';
-    if (!cgf.layout.hideSelector) cgf.layout.hideSelector = false;
+    if (!cfg.layout) cfg.layout = {};
+    if (!cfg.layout.initial) cfg.layout.initial = 'tiles';
+    if (!cfg.layout.hideSelector) cfg.layout.hideSelector = false;
 
-    if (!cgf.image) cgf.image = {};
-    if (!cgf.image.width) cgf.image.width = 250;
-    if (!cgf.image.height) cgf.image.height = 0;
+    if (!cfg.image) cfg.image = {};
+    if (!cfg.image.width) cfg.image.width = 250;
+    if (!cfg.image.height) cfg.image.height = 0;
 
-    if (!cgf.items) cgf.items = {};
-    if (!cgf.items.hideTitle) cgf.items.hideTitle = false;
-    if (!cgf.items.hideDescription) cgf.items.hideDescription = false;
-    if (!cgf.items.hideLink) cgf.items.hideLink = false;
+    if (!cfg.items) cfg.items = {};
 
-    $scope.layouts = [
-        { name: 'Tiles', alias: 'tiles' },
-        { name: 'List', alias: 'list' }
-    ];
+    // Set initial values for the dropdowns
+    $scope.titleMode = $scope.propertyModes[0];
+    $scope.descriptionMode = $scope.propertyModes[0];
+    $scope.linkMode = $scope.propertyModes[0];
+
+    // Update the values for "titleMode", "descriptionMode" and "linkMode"
+    angular.forEach($scope.propertyModes, function (mode) {
+        if (cfg.items.title && cfg.items.title.mode == mode.alias) $scope.titleMode = mode;
+        if (cfg.items.description && cfg.items.description.mode == mode.alias) $scope.descriptionMode = mode;
+        if (cfg.items.link && cfg.items.link.mode == mode.alias) $scope.linkMode = mode;
+    });
 
     $scope.layout = $scope.layouts[0];
-    angular.forEach($scope.layouts, function(layout) {
-        if (layout.alias == cgf.layout.initial) {
+    angular.forEach($scope.layouts, function (layout) {
+        if (layout.alias == cfg.layout.initial) {
             $scope.layout = layout;
         }
     });
+
+    $scope.update = function () {
+        cfg.items = {
+            title: { mode: $scope.titleMode.alias },
+            description: { mode: $scope.descriptionMode.alias },
+            link: { mode: $scope.linkMode.alias }
+        };
+    };
 
 });
