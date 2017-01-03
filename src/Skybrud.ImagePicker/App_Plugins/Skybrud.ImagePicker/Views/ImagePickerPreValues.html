@@ -98,7 +98,7 @@
         <label class="option checkbox">
             <div class="key">
                 Link
-                <small>Specify whether the link property should be <em>optional</em> or <em>hidden</em>.</small>
+                <small>Specify whether the link property should be <em>optional</em>, <em>required</em> or <em>hidden</em>.</small>
             </div>
             <div class="value">
                 <select ng-options="item as item.name for item in propertyModes track by item.alias" ng-model="linkMode" ng-change="update()"></select>
