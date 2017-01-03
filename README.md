@@ -16,15 +16,8 @@ Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and
 - <a href="#using-the-image-picker-in-your-own-projects">Using the image picker in your own projects</a>
 
 
-### Examples
 
-The image picker comes with two different display modes - a *list mode* where each the items are shows as rows in a list/table for a quick overview (as shown in the screenshot below), and where a row can be expanded to edit the details:
 
-![image](https://cloud.githubusercontent.com/assets/3634580/21615279/219ed9b0-d1dd-11e6-81bd-b8d96d1c11f8.png)
-
-And a *tiles mode* displaying more details for all items at the same time:
-
-![image](https://cloud.githubusercontent.com/assets/3634580/21615412/af995b00-d1dd-11e6-9214-388134845f41.png)
 
 ## Installation
 
@@ -42,6 +35,20 @@ Install the package through the Umbraco backoffice.-->
 [NuGetPackage]: https://www.nuget.org/packages/Skybrud.ImagePicker
 [UmbracoPackage]: https://our.umbraco.org/projects/backoffice-extensions/skybrudimagepicker/
 [GitHubRelease]: https://github.com/skybrud/Skybrud.ImagePicker/releases
+
+
+
+
+
+## Examples
+
+The image picker comes with two different display modes - a *list mode* where each the items are shows as rows in a list/table for a quick overview (as shown in the screenshot below), and where a row can be expanded to edit the details:
+
+![image](https://cloud.githubusercontent.com/assets/3634580/21615279/219ed9b0-d1dd-11e6-81bd-b8d96d1c11f8.png)
+
+And a *tiles mode* displaying more details for all items at the same time:
+
+![image](https://cloud.githubusercontent.com/assets/3634580/21615412/af995b00-d1dd-11e6-9214-388134845f41.png)
 
 
 
