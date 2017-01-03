@@ -123,7 +123,8 @@
                     confirmRemoveRow: 'Are you sure you wish to remove this row?',
                     selectImage: 'Select image',
                     selectImages: 'Select images',
-                    maxRows: 'You can\'t add more than the ' + scope.cfg.limit + ' allowed rows.'
+                    maxRows: 'You can\'t add more than the ' + scope.cfg.limit + ' allowed rows.',
+                    maxItemsExcdeeded: 'With the selected image(s), you have reached a total of {total} images, but only a maximum of {limit} images are allowed.'
                 };
 
                 localizationService.localize('imagepicker_confirmRemoveTile').then(function (value) {
@@ -146,6 +147,10 @@
                     scope.labels.maxRows = value;
                 });
 
+                localizationService.localize('imagepicker_labelMaxItemsExceeded').then(function (value) {
+                    scope.labels.maxItemsExcdeeded = value;
+                });
+
             }
 
             /// Gets an URL for a cropped version of the image (based on the current configuration)
@@ -162,24 +167,83 @@
 
             scope.addItem = function () {
 
-                var item = {
-                    $uniqueId: getUniqueId(),
-                    title: '',
-                    description: '',
-                    imageId: 0,
-                    link: null
-                };
+                // Get the Umbraco version
+                var v = Umbraco.Sys.ServerVariables.application.version.split('.');
+                v = parseFloat(v[0] + '.' + v[1]);
 
                 // Collapse all open rows
                 scope.toggleOpen({});
+                
+                // The new overlay only works from 7.4 and up, so for older
+                // versions we should use the dialogService instead
+                if (v < 7.4) {
 
-                scope.value.items.push(item);
+                    var item = {
+                        $uniqueId: getUniqueId(),
+                        title: '',
+                        description: '',
+                        imageId: 0,
+                        link: null
+                    };
 
-                scope.addImage(item, function() {
-                    if (scope.layout == 'list') {
-                        item.$showInfo = true;
+                    // Collapse all open rows
+                    scope.toggleOpen({});
+
+                    scope.value.items.push(item);
+
+                    scope.addImage(item, function() {
+                        if (scope.layout == 'list') {
+                            item.$showInfo = true;
+                        }
+                    });
+
+                    return;
+
+                }
+
+                // Open the new media picker overlay
+                scope.mediaPickerOverlay = {
+                    view: 'mediapicker',
+                    title: scope.labels.selectImage,
+                    startNodeId: startNodeId,
+                    multiPicker: true,
+                    onlyImages: true,
+                    disableFolderSelect: true,
+                    show: true,
+                    submit: function (model) {
+
+                        var total = scope.value.items.length + model.selectedImages.length;
+
+                        // Show an alert box if the selected images will exceed the maximum allowed items
+                        if (scope.config.limit > 0 && total > scope.config.limit) {
+                            alert(scope.labels.maxItemsExcdeeded.replace('{total}', total).replace('{limit}', scope.config.limit));
+                            return;
+                        }
+
+                        angular.forEach(model.selectedImages, function (image) {
+
+                            var item = {
+                                $uniqueId: getUniqueId(),
+                                title: '',
+                                description: '',
+                                imageId: image.id,
+                                $image: image,
+                                link: null,
+                                $showInfo: scope.layout == 'list' && model.selectedImages.length == 1
+                            };
+
+                            item.$imageUrl = item.imageUrl = getImageUrl(item);
+
+                            scope.value.items.push(item);
+
+                        });
+
+                        // Make sure we close the overlay again
+                        scope.mediaPickerOverlay.show = false;
+                        scope.mediaPickerOverlay = null;
+
                     }
-                });
+                };
 
             };
 

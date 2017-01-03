@@ -15,6 +15,7 @@
     <key alias="labelNotSpecified">Ikke angivet</key>
     <key alias="labelNoRows">Der er endnu ikke tilføjet nogle billeder.</key>
     <key alias="labelMaxRows">Du kan ikke tilføje flere end de %0% tilladte rækker.</key>
+    <key alias="labelMaxItemsExceeded">Med de valgte billeder er der samlet valgt {total} billeder, hvilket dermed overskrider grænsen på de {limit} tilladte billeder.</key>
     
     <key alias="labelImage">Billede</key>
     <key alias="labelTitle">Titel</key>

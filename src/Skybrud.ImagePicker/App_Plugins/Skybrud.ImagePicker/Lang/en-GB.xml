@@ -15,6 +15,7 @@
     <key alias="labelNotSpecified">Not specified</key>
     <key alias="labelNoRows">There has not yet been added any images.</key>
     <key alias="labelMaxRows">You can't add more than the %0% allowed rows.</key>
+    <key alias="labelMaxItemsExceeded">With the selected image(s), you have reached a total of {total} images, but only a maximum of {limit} images are allowed.</key>
 
     <key alias="labelImage">Image</key>
     <key alias="labelTitle">Title</key>

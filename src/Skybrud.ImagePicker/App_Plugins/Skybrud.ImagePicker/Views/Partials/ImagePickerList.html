@@ -82,7 +82,7 @@
                                         <localize key="imagepicker_labelImage">Image</localize>
                                     </div>
                                     <div class="image" ng-if="item.$image">
-                                        <img ng-src="{{item.$imageUrl}}" alt="" /><br />
+                                        <img ng-src="{{item.imageUrl}}" alt="" /><br />
                                         <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
                                     </div>
                                     <div ng-if="!item.$image" style="border: none">
