@@ -10,13 +10,21 @@ Skybrud.ImagePicker is a package for Umbraco 7+ containing a property editor and
 ## Links
 
 - <a href="#installation">Installation</a>
+- <a href="#examples">Examples</a>
 - <a href="#using-the-property-editor">Using the property editor</a>
 - <a href="#using-the-grid-editor">Using the grid editor</a>
 - <a href="#using-the-image-picker-in-your-own-projects">Using the image picker in your own projects</a>
 
 
+### Examples
 
+The image picker comes with two different display modes - a *list mode* where each the items are shows as rows in a list/table for a quick overview (as shown in the screenshot below), and where a row can be expanded to edit the details:
 
+![image](https://cloud.githubusercontent.com/assets/3634580/21615279/219ed9b0-d1dd-11e6-81bd-b8d96d1c11f8.png)
+
+And a *tiles mode* displaying more details for all items at the same time:
+
+![image](https://cloud.githubusercontent.com/assets/3634580/21615412/af995b00-d1dd-11e6-9214-388134845f41.png)
 
 ## Installation
 
@@ -49,7 +57,7 @@ So to get the list, you can use the `GetImagePickerList` extension method (with 
 ImagePickerList imagePickerList = Model.GetImagePickerList("multiImagePicker");
 ```
 
-Using this extension method, you can be certain to get an instance of `ImagePickerList`. If the property value is nto an `ImagePickerList`, the method will simply return an empty list instead.
+Using this extension method, you can be certain to get an instance of `ImagePickerList`. If the property value is not an image picker, the method will simply return an empty list instead.
 
 If you just need to get the first item, you can use the `GetImagePickerItem` extension method instead:
 
@@ -57,7 +65,7 @@ If you just need to get the first item, you can use the `GetImagePickerItem` ext
 ImagePickerItem imagePickerItem = Model.GetImagePickerItem("singleImagePicker");
 ```
 
-In a similar way, you can be certain that this method will always return an instance of `ImagePickerItem`.
+In a similar way, you can be certain that this method will always return an instance of `ImagePickerItem`, although it may not be valid (eg. if no items have been selected).
 
 Both extension methods are defined in the `Skybrud.ImagePicker.Extensions` namespace.
 
@@ -67,7 +75,7 @@ Both extension methods are defined in the `Skybrud.ImagePicker.Extensions` names
 
 ## Using the grid editor
 
-This package also supports a adding an image picker as a grid control in the Umbraco grid. Since you most likely want to configure the image picker your self, you have to add your own `package.manifest` with the details about the editor.
+This package also supports adding an image picker as a grid control in the Umbraco grid. Since you most likely want to configure the image picker your self, you have to add your own `package.manifest` with the details about the editor.
 
 In it's simplest form (default options), the JSON for the editor can look like this (here with a slider as an example):
 
