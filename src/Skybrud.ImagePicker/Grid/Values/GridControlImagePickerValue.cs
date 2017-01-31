@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Text;
+using Newtonsoft.Json.Linq;
 using Skybrud.Umbraco.GridData;
 using Skybrud.Umbraco.GridData.Interfaces;
 
@@ -27,6 +28,25 @@ namespace Skybrud.ImagePicker.Grid.Values {
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
         protected GridControlImagePickerValue(GridControl control, JObject obj) : base(obj) {
             Control = control;
+        }
+
+        #endregion
+
+        #region Member methods
+
+        public string GetSearchableText() {
+            
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(Title);
+
+            foreach (ImagePickerItem item in Items) {
+                sb.AppendLine(item.Title);
+                sb.AppendLine(item.Description);
+            }
+
+            return sb.ToString();
+
         }
 
         #endregion
