@@ -28,19 +28,19 @@
                 </a>
             </div>
         </div>
-        <div class="subpart" ng-hide="config.items.hideTitle">
+        <div class="subpart" ng-hide="config.items.title.hidden">
             <div class="title">
                 <localize key="imagepicker_labelTitle">Title</localize>
             </div>
             <input type="text" ng-model="item.title" style="font-weight: bold;" localize="placeholder" placeholder="@imagepicker_labelTitlePlaceholder" ng-required="cfg.items.title.required" />
         </div>
-        <div class="subpart" ng-hide="config.items.hideDescription">
+        <div class="subpart" ng-hide="config.items.description.hidden">
             <div class="title">
                 <localize key="imagepicker_labelDescription">Description</localize>
             </div>
             <textarea ng-model="item.description" localize="placeholder" placeholder="@imagepicker_labelDescriptionPlaceholder" ng-required="cfg.items.description.required"></textarea>
         </div>
-        <div class="subpart link" ng-hide="config.items.hideLink">
+        <div class="subpart link" ng-hide="config.items.link.hidden">
             <div class="title"><localize key="imagepicker_labelLink">Link</localize></div>
             <div ng-show="item.link">
                 <div>
