@@ -1,5 +1,5 @@
 ﻿<div>
-    <div class="tile tile-item" ng-repeat="item in value.items" ng-style="itemStyles">
+    <div class="tile tile-item" ng-class="{'single-tile':config.limit == 1 && config.layout.initial == 'tiles' }" ng-repeat="item in value.items" ng-style="itemStyles">
         <div>
             <a href="#" ng-click="removeItem($index);" prevent-default="" style="float: right;" localize="title" title="@imagepicker_optionRemoveItem">
                 <i class="icon icon-delete"></i>
@@ -79,7 +79,8 @@
         <input type="hidden" ng-model="item.imageUrl" required id="imagePickerRowImage{{item.$uniqueId}}" />
         <input type="hidden" ng-model="item.$link" ng-required="cfg.items.link.required" id="imagePickerRowLink{{item.$uniqueId}}" />
     </div>
-    <a href="#" class="tile tile-add" ng-click="addItem()" prevent-default ng-style="itemStyles" ng-show="config.limit == 0 || value.items.length < config.limit">
+    <a href="#" class="tile tile-add" ng-class="{'single-add':config.limit == 1 && config.layout.initial == 'tiles' }" ng-click="addItem()" prevent-default ng-style="itemStyles" ng-show="config.limit == 0 || value.items.length < config.limit">
         <i class="icon icon-add"></i>
+        <div class="help-text" ng-show="config.limit == 1"><localize key="grid_clickToInsertImage">Click to insert image</localize></div>
     </a>
 </div>

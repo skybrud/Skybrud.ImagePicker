@@ -81,6 +81,12 @@
             &.tile-item {
                 border: 1px solid #d9d9d9;
                 background: #F8F8F8;
+
+                &.single-tile {
+                    width: 99% !important;
+                    max-width: 99% !important;
+                    min-height: 350px;
+                }
             }
 
             &.tile-add {
@@ -95,6 +101,29 @@
                 position: relative;
                 min-height: 175px;
                 padding: 4px;
+
+                &.single-add {
+                    margin: 0 auto;
+                    width: 99% !important;
+                    max-width: 99% !important;
+                    height: 250px;
+                    border: 4px dashed #d9d9d9;
+
+                    .help-text {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #666;
+                        position: absolute;
+                        top: 70%;
+                        left: 0;
+                        right: 0;
+                        margin-top: -10px;
+                    }
+
+                    i {
+                        font-size: 64px !important;
+                    }
+                }
 
                 i {
                     font-size: 32px;
@@ -152,7 +181,6 @@
                 border: 1px solid #ccc;
             }
         }
-
     }
 
     .image {
@@ -178,6 +206,17 @@
 
         &:hover .remove {
             display: block;
+        }
+    }
+
+    .single-tile {
+        .image {
+            overflow: hidden;
+            height: 250px;
+        }
+
+        img {
+            width: 100%;
         }
     }
     /*.sortable-helper {
@@ -234,9 +273,10 @@
     }
 
     .show-validation.ng-invalid & .umb-table-cell > .error {
-        background-color: #9d261d!important;
+        background-color: #9d261d !important;
         padding: 5px 10px;
         color: white;
+
         &:before {
             margin-right: 5px;
             font-family: 'icomoon';
@@ -252,6 +292,7 @@
                 border: 1px solid #9d261d;
                 box-sizing: border-box;
             }
+
             &.link .error a {
                 color: #9d261d;
             }
@@ -307,6 +348,7 @@
     position: static;
     height: auto;
     margin: 0;
+
     &:after, &:before {
         display: none;
     }
@@ -316,13 +358,16 @@
 
     .option {
         margin-left: 20px;
+
         .value {
             padding: 10px 5px;
         }
+
         &.checkbox {
             padding: 0;
             min-height: initial;
             padding-bottom: 5px;
+
             .value {
                 padding-left: 10px;
             }
@@ -351,11 +396,12 @@
     .value input[type='number'] {
         width: initial;
     }
-    
+
     .option.width,
     .option.height {
         .value {
             line-height: 30px;
+
             input[type='number'] {
                 width: 50px;
             }
@@ -376,22 +422,24 @@
             font-weight: bold;
             border-bottom: 1px solid #D9D9D9;
         }
+
         & + .optionGroup {
             margin-top: 40px;
         }
     }
-
 }
 
 .ImagePickerDebugger {
     border: 2px solid red;
     margin-bottom: 20px;
     padding: 10px;
+
     label {
         display: block;
         margin: 5px 0 0 0;
         padding: 0;
     }
+
     label + label {
         margin-top: 10px;
     }
