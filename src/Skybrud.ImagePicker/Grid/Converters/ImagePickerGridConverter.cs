@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using System.Globalization;
+using Newtonsoft.Json.Linq;
 using Skybrud.ImagePicker.Grid.Config;
 using Skybrud.ImagePicker.Grid.Values;
 using Skybrud.Umbraco.GridData;
@@ -54,7 +56,17 @@ namespace Skybrud.ImagePicker.Grid.Converters {
         }
 
         private bool IsImagePickerEditor(GridEditor editor) {
-            return editor.Alias.ToLower() == "skybrud.imagepicker" || editor.Alias.ToLower().StartsWith("skybrud.imagepicker.");
+            const string alias = "skybrud.imagepicker";
+            const string view = "/app_plugins/skybrud.imagepicker/views/imagepickergrideditor.html";
+            return ContainsIgnoreCase(editor.View, view) || EqualsIgnoreCase(editor.Alias, alias) || ContainsIgnoreCase(editor.Alias, alias + ".");
+        }
+
+        private bool ContainsIgnoreCase(string source, string value) {
+            return CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, value, CompareOptions.IgnoreCase) >= 0;
+        }
+
+        private bool EqualsIgnoreCase(string source, string value) {
+            return source != null && source.Equals(value, StringComparison.InvariantCultureIgnoreCase);
         }
 
     }
