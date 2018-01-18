@@ -14,7 +14,7 @@ namespace Skybrud.ImagePicker.Grid.Config {
         /// <summary>
         /// Gets whether the title of the image picker list should be shown.
         /// </summary>
-        public bool Show { get; private set; }
+        public bool Show { get; }
             
         #endregion
 

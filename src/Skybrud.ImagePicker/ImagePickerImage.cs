@@ -16,7 +16,7 @@ namespace Skybrud.ImagePicker {
         /// Gets a reference to the underlying instance of <see cref="IPublishedContent"/>.
         /// </summary>
         [JsonIgnore]
-        public IPublishedContent Image { get; private set; }
+        public IPublishedContent Image { get; }
 
         /// <summary>
         /// Gets the width of the image.
@@ -47,7 +47,7 @@ namespace Skybrud.ImagePicker {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>content</code>.
+        /// Initializes a new instance based on the specified <paramref name="content"/>.
         /// </summary>
         /// <param name="content">An instance of <see cref="IPublishedContent"/> representing the selected image.</param>
         protected ImagePickerImage(IPublishedContent content) {
@@ -88,17 +88,17 @@ namespace Skybrud.ImagePicker {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>content</code> into an instance of <see cref="ImagePickerImage"/>.
+        /// Parses the specified <paramref name="content"/> into an instance of <see cref="ImagePickerImage"/>.
         /// </summary>
         /// <param name="content">The instance of <see cref="ImagePickerImage"/> to be parsed.</param>
         /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <code>null</code> if
-        /// <code>content</code> is <code>null</code>.</returns>
+        /// <paramref name="content"/> is <code>null</code>.</returns>
         public static ImagePickerImage GetFromContent(IPublishedContent content) {
             return content == null ? null : new ImagePickerImage(content);
         }
 
         /// <summary>
-        /// Gets a reference to the image with the specified <code>imageId</code>.
+        /// Gets a reference to the image with the specified <paramref name="imageId"/>.
         /// </summary>
         /// <param name="imageId">The ID of the image..</param>
         /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <code>null</code> if the image could not

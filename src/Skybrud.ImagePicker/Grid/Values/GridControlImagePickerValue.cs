@@ -15,7 +15,7 @@ namespace Skybrud.ImagePicker.Grid.Values {
         /// <summary>
         /// Gets a reference to the parent control.
         /// </summary>
-        public GridControl Control { get; private set; }
+        public GridControl Control { get; }
 
         #endregion
 
@@ -34,6 +34,9 @@ namespace Skybrud.ImagePicker.Grid.Values {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets the searchable text for this image picker value.
+        /// </summary>
         public string GetSearchableText() {
             
             StringBuilder sb = new StringBuilder();

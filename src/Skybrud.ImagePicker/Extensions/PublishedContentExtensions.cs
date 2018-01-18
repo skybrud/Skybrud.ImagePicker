@@ -16,10 +16,10 @@ namespace Skybrud.ImagePicker.Extensions {
         /// </summary>
         /// <param name="content">An instance of <see cref="IPublishedContent"/> to read the property from.</param>
         /// <param name="propertyAlias">The alias of the property.</param>
-        /// <returns>Returns an instance of <see cref="ImagePickerItem"/>.</returns>
+        /// <returns>An instance of <see cref="ImagePickerItem"/>.</returns>
         public static ImagePickerItem GetImagePickerItem(this IPublishedContent content, string propertyAlias) {
             var list = content.GetPropertyValue(propertyAlias) as ImagePickerList;
-            ImagePickerItem item = (list == null ? null : list.Items.FirstOrDefault());
+            ImagePickerItem item = list?.Items.FirstOrDefault();
             return item ?? new ImagePickerItem();
         }
 
@@ -28,9 +28,9 @@ namespace Skybrud.ImagePicker.Extensions {
         /// </summary>
         /// <param name="content">An instance of <see cref="IPublishedContent"/> to read the property from.</param>
         /// <param name="propertyAlias">The alias of the property.</param>
-        /// <returns>Returns an instance of <see cref="ImagePickerList"/>.</returns>
+        /// <returns>An instance of <see cref="ImagePickerList"/>.</returns>
         public static ImagePickerList GetImagePickerList(this IPublishedContent content, string propertyAlias) {
-            return (content == null ? null : content.GetPropertyValue<ImagePickerList>(propertyAlias)) ?? new ImagePickerList();
+            return content?.GetPropertyValue<ImagePickerList>(propertyAlias) ?? new ImagePickerList();
         }
     }
 

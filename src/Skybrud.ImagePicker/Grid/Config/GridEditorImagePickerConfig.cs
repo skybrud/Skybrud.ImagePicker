@@ -15,7 +15,7 @@ namespace Skybrud.ImagePicker.Grid.Config {
         /// <summary>
         /// Gets a reference to the parent editor.
         /// </summary>
-        public GridEditor Editor { get; private set; }
+        public GridEditor Editor { get; }
             
         #endregion
 
