@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.LinkPicker;
+using Skybrud.LinkPicker.Json.Converters;
 using Umbraco.Core.Models;
 
 namespace Skybrud.ImagePicker {
@@ -66,6 +67,7 @@ namespace Skybrud.ImagePicker {
         /// Gets a reference to the selected <see cref="LinkPickerItem"/>.
         /// </summary>
         [JsonProperty("link")]
+        [JsonConverter(typeof(LinkPickerItemConverter))]
         public LinkPickerItem Link { get; private set; }
 
         /// <summary>
