@@ -55,17 +55,15 @@ namespace Skybrud.ImagePicker.Grid.Converters {
         }
 
         private bool IsImagePickerEditor(GridEditor editor) {
-            const string alias = "skybrud.imagepicker";
-            const string view = "/app_plugins/skybrud.imagepicker/views/imagepickergrideditor.html";
-            return ContainsIgnoreCase(editor.View, view) || EqualsIgnoreCase(editor.Alias, alias) || ContainsIgnoreCase(editor.Alias, alias + ".");
-        }
 
-        private bool ContainsIgnoreCase(string source, string value) {
-            return CultureInfo.InvariantCulture.CompareInfo.IndexOf(source, value, CompareOptions.IgnoreCase) >= 0;
-        }
+            // The editor may be NULL if it no longer exists in a package.manifest file
+            if (editor == null) return false;
 
-        private bool EqualsIgnoreCase(string source, string value) {
-            return source != null && source.Equals(value, StringComparison.InvariantCultureIgnoreCase);
+            const string alias = "Skybrud.ImagePicker";
+            const string view = "/App_Plugins/Skybrud.ImagePicker/views/ImagePickerGridEditor.html";
+
+            return ContainsIgnoreCase(editor.View.Split('?')[0], view) || EqualsIgnoreCase(editor.Alias, alias) || ContainsIgnoreCase(editor.Alias, alias + ".");
+
         }
 
     }
