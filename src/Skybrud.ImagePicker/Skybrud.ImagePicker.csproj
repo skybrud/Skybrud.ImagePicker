@@ -163,9 +163,8 @@
       <HintPath>..\packages\Skybrud.LinkPicker.1.1.0\lib\net45\Skybrud.LinkPicker.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Skybrud.Umbraco.GridData, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Skybrud.Umbraco.GridData.2.0.0\lib\net45\Skybrud.Umbraco.GridData.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Skybrud.Umbraco.GridData, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Skybrud.Umbraco.GridData.2.0.5\lib\net45\Skybrud.Umbraco.GridData.dll</HintPath>
     </Reference>
     <Reference Include="SQLCE4Umbraco, Version=1.0.5885.31229, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\UmbracoCms.Core.7.4.0\lib\SQLCE4Umbraco.dll</HintPath>
