@@ -63,6 +63,116 @@
 .SkybrudPropertyEditors.LinkPicker .table > table > * > tr > th:last-child {
   border-right: 1px solid #dbdbdb;
 }
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview-add {
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 66.6%;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: #2e8aea;
+  border: 1px dashed #d8d7d9;
+  box-sizing: border-box;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview {
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 66.6%;
+  padding: 5px 15px;
+  margin-bottom: 5px;
+  background: #f8f8f8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__icon {
+  display: -ms-flexbox;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  font-size: 20px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__content {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__name {
+  font-size: 13px;
+  font-weight: bold;
+  color: #000;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__name small {
+  font-weight: normal;
+  font-size: 11px;
+  color: #999;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__description {
+  font-size: 12px;
+  line-height: 1.5em;
+  color: #515054;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__actions {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__action {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #817f85;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__action:hover {
+  color: #2e8aea;
+  text-decoration: none;
+  opacity: 1;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview__action--red:hover {
+  color: #9d261d;
+}
+.SkybrudPropertyEditors.LinkPicker .linkpicker-preview--sortable {
+  cursor: move;
+}
+.SkybrudPropertyEditors.LinkPicker .umbraco-gte76 .linkpicker-preview-add {
+  color: #00aea2;
+}
+.SkybrudPropertyEditors.LinkPicker .umbraco-gte76 .linkpicker-preview {
+  background: #f3f3f5;
+}
+.SkybrudPropertyEditors.LinkPicker .umbraco-gte76 .linkpicker-preview__action:hover {
+  color: #03bfb3;
+}
+.SkybrudPropertyEditors.LinkPicker .umbraco-gte76 .linkpicker-preview__action--red:hover {
+  color: #fe3e39;
+}
+.SkybrudPropertyEditors.LinkPickerOptions .optionGroup .optionGroupTitle {
+  margin-bottom: 20px;
+  background: #f8f8f8;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #D9D9D9;
+}
+.SkybrudPropertyEditors.LinkPickerOptions .optionGroup .option {
+  margin-left: 20px;
+}
+.SkybrudPropertyEditors.LinkPickerOptions .optionGroup + .optionGroup {
+  margin-top: 40px;
+}
 .SkybrudPropertyEditors.LinkPickerOptions .option {
   display: flex;
 }
@@ -82,6 +192,7 @@
   width: 350px;
 }
 .SkybrudPropertyEditors.LinkPickerOptions label {
+  display: block;
   width: 400px;
   padding-left: 0;
 }
@@ -95,6 +206,20 @@
 .SkybrudPropertyEditors.LinkPickerOptions .value label + label {
   margin-left: 10px;
 }
+.umb-editor-sub-views .SkybrudPropertyEditors.LinkPickerOptions .option {
+  display: block;
+}
+.umb-editor-sub-views .SkybrudPropertyEditors.LinkPickerOptions .option label {
+  margin-bottom: 10px;
+  width: auto;
+}
+.SkybrudPropertyEditors.LinkPickerOptions.umbraco-gte76 .optionGroup .optionGroupTitle {
+  margin-bottom: 20px;
+  background: #F3F3F5;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #B3AFBD;
+}
 .SkybrudPropertyEditors .linkpicker-sortable-placeholder {
   border: inherit;
   background-color: #d0e7f1 !important;
@@ -105,7 +230,7 @@
 .SkybrudPropertyEditors .ui-sortable-helper {
   display: none;
 }
-.SkybrudPropertyEditors .list .ui-sortable-helper {
+.SkybrudPropertyEditors .linkpicker-list .ui-sortable-helper {
   display: initial;
 }
 .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker label {
@@ -130,7 +255,7 @@
 .umb-grid .umb-control.-active .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker {
   padding: 10px;
 }
-.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .list .ui-sortable-helper {
+.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .linkpicker-list .ui-sortable-helper {
   width: initial !important;
   height: initial !important;
   padding: 0;
@@ -142,15 +267,19 @@
   box-shadow: none;
   visibility: visible !important;
 }
-.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .list .ui-sortable-helper * {
+.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .linkpicker-list .ui-sortable-helper * {
   display: initial;
 }
-.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .list .ui-sortable-helper:after {
+.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .linkpicker-list .ui-sortable-helper:after {
   display: none;
 }
-.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .list .ui-sortable-placeholder {
+.umb-grid .SkybrudPropertyEditors.SkybrudGridEditors.LinkPicker .linkpicker-list .ui-sortable-placeholder {
   background: transparent;
   height: 21px;
   position: static;
   margin: 0;
+}
+.umb-modal .SkybrudPropertyEditors.LinkPicker .linkpicker-preview,
+.umb-modal .SkybrudPropertyEditors.LinkPicker .linkpicker-preview-add {
+  max-width: initial;
 }

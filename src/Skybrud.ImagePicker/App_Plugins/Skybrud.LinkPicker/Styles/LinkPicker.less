@@ -17,11 +17,29 @@
             }
         }
 
-        @import "Table";
+        @import "_table.less";
+        @import "_preview.less";
 
     }
     
     &.LinkPickerOptions {
+
+        .optionGroup {
+            .optionGroupTitle {
+                margin-bottom: 20px;
+                background: #f8f8f8;
+                padding: 5px 10px;
+                font-weight: bold;
+                border-bottom: 1px solid #D9D9D9;
+            }
+            .option {
+                margin-left: 20px;
+            }
+            & + .optionGroup {
+                margin-top: 40px;
+            }
+        }
+
         .option {
             display: flex;
             &.limit {
@@ -43,10 +61,13 @@
                 }
             }
         }
+        
         label {
+            display: block;
             width: 400px;
             padding-left: 0;
         }
+        
         .value {
             display: inline-block;
             label {
@@ -57,6 +78,29 @@
                 }
             }
         }
+
+        .umb-editor-sub-views & {
+            .option {
+                display: block;
+                label {
+                    margin-bottom: 10px;
+                    width: auto;
+                }
+            }
+        }
+
+        &.umbraco-gte76 {
+            .optionGroup {
+                .optionGroupTitle {
+                    margin-bottom: 20px;
+                    background: #F3F3F5;
+                    padding: 5px 10px;
+                    font-weight: bold;
+                    border-bottom: 1px solid #B3AFBD;
+                }
+            }
+        }
+    
     }
 
     .linkpicker-sortable-placeholder {
@@ -71,7 +115,7 @@
         display: none;
     }
 
-    .list {
+    .linkpicker-list {
         .ui-sortable-helper {
             display: initial;
         }
@@ -109,7 +153,7 @@
         }
     }
     @{GridCssSelector} {
-        .list {
+        .linkpicker-list {
             .ui-sortable-helper {
                 width: initial !important;
                 height: initial !important;
@@ -136,4 +180,10 @@
             }
         }
     }
+}
+
+// Fix so the editors takes full width if in a dialog (eg. LeBlender)
+.umb-modal .SkybrudPropertyEditors.LinkPicker .linkpicker-preview,
+.umb-modal .SkybrudPropertyEditors.LinkPicker .linkpicker-preview-add {
+    max-width: initial;
 }

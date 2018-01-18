@@ -8,7 +8,22 @@
         restrict: 'E',
         replace: true,
         templateUrl: '/App_Plugins/Skybrud.LinkPicker/Views/LinkPickerDirective.html',
-        link: function (scope) {
+        link: function (scope, element) {
+
+            function ancestorHasClass(e, className) {
+                var p = e.parentNode;
+                while (p != null) {
+                    if (p.classList && p.classList.contains(className)) return true;
+                    p = p.parentNode;
+                }
+                return false;
+            }
+
+            // Determine wether the link picker dialog should close all other dialogs (it shouldn't when already in another dialog/modal)
+            var closeAllDialogs = !ancestorHasClass(element[0], 'umb-modal');
+
+            var v = Umbraco.Sys.ServerVariables.application.version.split('.');
+            scope.umbVersion = parseFloat(v[0] + '.' + v[1]);
 
             function initValue() {
 
@@ -45,7 +60,9 @@
                 if (scope.cfg.types.url === undefined) scope.cfg.types.url = true;
                 if (scope.cfg.types.content === undefined) scope.cfg.types.content = true;
                 if (scope.cfg.types.media === undefined) scope.cfg.types.media = true;
-                if (scope.cfg.showTable == undefined) scope.cfg.showTable = false;
+                if (scope.cfg.view == undefined) scope.cfg.view = 'preview';
+                if (scope.cfg.showTable === true) scope.cfg.view = 'table';
+                if (scope.cfg.showTable === false) scope.cfg.view = 'list';
                 if (!scope.cfg.columns) scope.cfg.columns = {};
                 if (scope.cfg.columns.type === undefined) scope.cfg.columns.type = true;
                 if (scope.cfg.columns.content === undefined) scope.cfg.columns.content = true;
@@ -59,13 +76,13 @@
             scope.addLink = function () {
                 p.addLink(function (link) {
                     scope.value.items.push(link);
-                });
+                }, closeAllDialogs);
             };
 
             scope.editLink = function (link, index) {
                 p.editLink(link, function (newLink) {
                     scope.value.items[index] = newLink;
-                });
+                }, closeAllDialogs);
             };
 
             scope.removeLink = function (index) {
@@ -91,6 +108,14 @@
                 handle: '.handle',
                 tolerance: 'pointer',
                 containment: 'parent'
+            };
+
+            scope.sortableOptionsPreview = {
+                distance: 10,
+                tolerance: 'pointer',
+                scroll: true,
+                zIndex: 6000,
+                disabled: false
             };
 
             initValue();

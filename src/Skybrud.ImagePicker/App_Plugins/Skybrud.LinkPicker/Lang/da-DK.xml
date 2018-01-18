@@ -8,5 +8,10 @@
     <key alias="name">Navn</key>
     <key alias="url">Url</key>
     <key alias="target">Target</key>
+    <key alias="editLink">Rediger</key>
+    <key alias="removeLink">Slet</key>
+    <key alias="targetBlank">ny fane/vindue</key>
+    <key alias="content">Indhold</key>
+    <key alias="media">Medie</key>
   </area>
 </language>
