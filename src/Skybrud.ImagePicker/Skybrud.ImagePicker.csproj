@@ -290,8 +290,6 @@
     <Content Include="App_Plugins\Skybrud.LinkPicker\Services\LinkPickerService.js" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.css" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.min.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.css" />
-    <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.min.css" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\_table.css" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Styles\_table.min.css" />
     <Content Include="App_Plugins\Skybrud.LinkPicker\Views\LinkPicker.html" />
@@ -307,7 +305,6 @@
     <None Include="App_Plugins\Skybrud.ImagePicker\Styles\ImagePicker.less" />
     <None Include="App_Plugins\Skybrud.LinkPicker\package.manifest" />
     <None Include="App_Plugins\Skybrud.LinkPicker\Styles\LinkPicker.less" />
-    <None Include="App_Plugins\Skybrud.LinkPicker\Styles\Table.less" />
     <None Include="App_Plugins\Skybrud.LinkPicker\Styles\_preview.less" />
     <None Include="App_Plugins\Skybrud.LinkPicker\Styles\_table.less" />
     <None Include="compilerconfig.json" />
