@@ -124,8 +124,8 @@ namespace Skybrud.ImagePicker {
         /// Parses the specified <see cref="JObject"/> into an instance of <see cref="ImagePickerItem"/>.
         /// </summary>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
-        /// <returns>An instance of <see cref="ImagePickerItem"/>, or <code>null</code> if <code>obj</code> is
-        /// <code>null</code>.</returns>
+        /// <returns>An instance of <see cref="ImagePickerItem"/>, or <c>null</c> if <paramref name="obj"/> is
+        /// <c>null</c>.</returns>
         public static ImagePickerItem Parse(JObject obj) {
             return obj == null ? null : new ImagePickerItem(obj);
         }

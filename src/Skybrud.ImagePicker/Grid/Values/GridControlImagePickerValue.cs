@@ -22,7 +22,7 @@ namespace Skybrud.ImagePicker.Grid.Values {
         #region Constructors
 
         /// <summary>
-        /// Initializes a enw instance based on the specified <code>control</code> and <code>obj</code>.
+        /// Initializes a enw instance based on the specified <paramref name="control"/> and <paramref name="obj"/>.
         /// </summary>
         /// <param name="control">The parent control.</param>
         /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>

@@ -91,8 +91,8 @@ namespace Skybrud.ImagePicker {
         /// Parses the specified <paramref name="content"/> into an instance of <see cref="ImagePickerImage"/>.
         /// </summary>
         /// <param name="content">The instance of <see cref="ImagePickerImage"/> to be parsed.</param>
-        /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <code>null</code> if
-        /// <paramref name="content"/> is <code>null</code>.</returns>
+        /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <c>null</c> if
+        /// <paramref name="content"/> is <c>null</c>.</returns>
         public static ImagePickerImage GetFromContent(IPublishedContent content) {
             return content == null ? null : new ImagePickerImage(content);
         }
@@ -101,7 +101,7 @@ namespace Skybrud.ImagePicker {
         /// Gets a reference to the image with the specified <paramref name="imageId"/>.
         /// </summary>
         /// <param name="imageId">The ID of the image..</param>
-        /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <code>null</code> if the image could not
+        /// <returns>Returns an instance of <see cref="ImagePickerImage"/>, or <c>null</c> if the image could not
         /// be found.</returns>
         public static ImagePickerImage GetFromId(int imageId) {
             return UmbracoContext.Current == null ? null : GetFromContent(UmbracoContext.Current.MediaCache.GetById(imageId));
