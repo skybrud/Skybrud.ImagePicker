@@ -92,10 +92,10 @@
                 if (!scope.cfg.image.height) scope.cfg.image.height = scope.cfg.image.width / 16 * 10;
 
                 //Single image size change
-                if (scope.cfg.limit == 1 && scope.cfg.layout.initial == 'tiles') {
-                    scope.cfg.image.width = 1000;
-                    scope.cfg.image.height = scope.cfg.image.width / 16 * 10;
-                }
+                //if (scope.cfg.limit == 1 && scope.cfg.layout.initial == 'tiles') {
+                //    scope.cfg.image.width = 1000;
+                //    scope.cfg.image.height = scope.cfg.image.width / 16 * 10;
+                //}
 
                 if (!scope.cfg.layout) scope.cfg.layout = {};
                 if (scope.cfg.layout.initial != 'tiles') scope.cfg.layout.initial = 'list';
