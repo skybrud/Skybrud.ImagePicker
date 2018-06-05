@@ -145,6 +145,12 @@
                                     </div>
                                     <input type="hidden" ng-model="item.$link" ng-required="cfg.items.link.required" id="imagePickerRowLink{{item.$uniqueId}}" />
                                 </div>
+                                <div class="subpart" ng-hide="!config.items.nocrop.visible">
+                                    <div class="title">
+                                        <localize key="imagepicker_labelNoCrop">Don´t crop image</localize>
+                                    </div>
+                                    <input type="checkbox" ng-model="item.nocrop" />
+                                </div>
                             </div>
                         </div>
                     </div>

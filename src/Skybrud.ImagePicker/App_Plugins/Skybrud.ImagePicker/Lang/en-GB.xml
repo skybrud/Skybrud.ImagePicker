@@ -22,6 +22,7 @@
     <key alias="labelTitlePlaceholder">Specify title here</key>
     <key alias="labelDescription">Description</key>
     <key alias="labelDescriptionPlaceholder">Specify description here</key>
+    <key alias="labelNoCrop">Don´t crop image</key>
     
     <key alias="labelLink">Link</key>
     <key alias="labelLinkType">Type</key>

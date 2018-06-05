@@ -40,6 +40,7 @@
     $scope.descriptionMode = $scope.propertyModes[0];
     $scope.linkMode = $scope.propertyModes[0];
 
+
     // Update the values for "titleMode", "descriptionMode" and "linkMode"
     angular.forEach($scope.propertyModes, function (mode) {
         if (cfg.items.title && cfg.items.title.mode == mode.alias) $scope.titleMode = mode;

@@ -64,7 +64,12 @@ namespace Skybrud.ImagePicker {
         [JsonConverter(typeof(LinkPickerItemConverter))]
         public LinkPickerItem Link { get; private set; }
 
-        /// <summary>
+		[JsonProperty("noCrop")]
+	    public bool NoCrop { get; private set; }
+
+
+
+	    /// <summary>
         /// Gets whether a valid link has been specified for this item.
         /// </summary>
         [JsonIgnore]
@@ -104,6 +109,23 @@ namespace Skybrud.ImagePicker {
             Link = link ?? LinkPickerItem.Parse(new JObject());
         }
 
+	    /// <summary>
+	    /// Initializes a new image picker item based on the specified <paramref name="image"/>, <paramref name="title"/>,
+	    /// <paramref name="description"/> and <paramref name="link"/>.
+	    /// </summary>
+	    /// <param name="image">An instance of <see cref="IPublishedContent"/> representing the selected image.</param>
+	    /// <param name="title">The title of the item.</param>
+	    /// <param name="description">The description of the item.</param>
+	    /// <param name="link">An instance of <see cref="LinkPickerItem"/> representing the link of the item.</param>
+	    /// <param name="noCrop">The NoCrop property value</param>
+	    public ImagePickerItem(ImagePickerImage image, string title, string description, LinkPickerItem link, bool noCrop) {
+		    Image = image;
+		    Title = title;
+		    Description = description;
+		    Link = link ?? LinkPickerItem.Parse(new JObject());
+		    NoCrop = noCrop;
+	    }
+
         /// <summary>
         /// Initializes a new image picker item based on the specified <see cref="JObject"/>.
         /// </summary>
@@ -114,6 +136,7 @@ namespace Skybrud.ImagePicker {
             Title = obj.GetString("title") ?? "";
             Description = obj.GetString("description") ?? "";
             Link = obj.GetObject("link", LinkPickerItem.Parse) ?? LinkPickerItem.Parse(new JObject());
+	        NoCrop = obj.GetBoolean("nocrop");
         }
 
         #endregion

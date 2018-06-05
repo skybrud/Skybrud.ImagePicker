@@ -76,6 +76,12 @@
                 </a>
             </div>
         </div>
+        <div class="subpart" ng-hide="!config.items.nocrop.visible">
+            <div class="title">
+                <localize key="imagepicker_labelNoCrop">No crop</localize>
+            </div>
+            <input type="checkbox" ng-model="item.nocrop" />
+        </div>
         <input type="hidden" ng-model="item.imageUrl" required id="imagePickerRowImage{{item.$uniqueId}}" />
         <input type="hidden" ng-model="item.$link" ng-required="cfg.items.link.required" id="imagePickerRowLink{{item.$uniqueId}}" />
     </div>

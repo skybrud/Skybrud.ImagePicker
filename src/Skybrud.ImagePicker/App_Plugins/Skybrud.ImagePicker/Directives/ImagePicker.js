@@ -112,6 +112,10 @@
                 scope.cfg.items.description.hidden = scope.cfg.items.description.mode == 'hidden';
                 scope.cfg.items.link.required = scope.cfg.items.link.mode == 'required';
                 scope.cfg.items.link.hidden = scope.cfg.items.link.mode == 'hidden';
+                
+                if (!scope.cfg.items.nocrop) scope.cfg.items.nocrop = {};
+                scope.cfg.items.nocrop.visible = scope.cfg.items.nocrop.mode === 'visible';
+                scope.cfg.items.nocrop.default = scope.cfg.items.nocrop.default === true;
 
                 scope.itemStyles = {
                     width: scope.cfg.image.width + 'px',
@@ -189,7 +193,8 @@
                         title: '',
                         description: '',
                         imageId: 0,
-                        link: null
+                        link: null,
+                        nocrop: scope.cfg.items.nocrop.default
                     };
 
                     // Collapse all open rows
@@ -235,7 +240,8 @@
                                 imageId: image.id,
                                 $image: image,
                                 link: null,
-                                $showInfo: scope.layout == 'list' && model.selectedImages.length == 1
+                                $showInfo: scope.layout == 'list' && model.selectedImages.length == 1,
+                                nocrop: scope.cfg.items.nocrop.default
                             };
 
                             item.$imageUrl = item.imageUrl = getImageUrl(item);

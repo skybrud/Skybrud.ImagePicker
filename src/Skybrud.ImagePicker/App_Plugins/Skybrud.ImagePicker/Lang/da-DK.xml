@@ -22,6 +22,7 @@
     <key alias="labelTitle_placeholder">Angiv titel her</key>
     <key alias="labelDescription">Beskrivelse</key>
     <key alias="labelDescriptionPlaceholder">Angiv beskrivelse her</key>
+    <key alias="labelNoCrop">Beskær ikke billede</key>
     
     <key alias="labelLink">Link</key>
     <key alias="labelLinkType">Type</key>
