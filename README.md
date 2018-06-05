@@ -127,6 +127,10 @@ The full configuration for the image picker looks like this:
             },
             "link": { 
                 "mode":  "optional"
+            },
+            "nocrop": {
+               "mode": "hidden",
+                "default": false
             }
         }
     }
