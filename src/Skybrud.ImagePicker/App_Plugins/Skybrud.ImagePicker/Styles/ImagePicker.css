@@ -324,7 +324,7 @@
 }
 .SkybrudImagePickerPreValues .option.width .value input[type='number'],
 .SkybrudImagePickerPreValues .option.height .value input[type='number'] {
-  width: 50px;
+  width: 65px;
 }
 .umb-overlay .SkybrudImagePickerPreValues .optionGroup {
   margin-top: 40px;
