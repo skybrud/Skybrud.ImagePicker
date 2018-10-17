@@ -34,6 +34,12 @@ namespace Skybrud.ImagePicker {
         public bool HasImage => Image != null;
 
         /// <summary>
+        /// Gets the ID of the image.
+        /// </summary>
+        [JsonProperty("imageId")]
+        public int ImageId { get; }
+
+        /// <summary>
         /// Gets the title of this item.
         /// </summary>
         [JsonProperty("title")]
@@ -132,6 +138,7 @@ namespace Skybrud.ImagePicker {
         /// <param name="obj">An instanceo of <see cref="JObject"/> representing the item.</param>
         protected ImagePickerItem(JObject obj) {
             JObject = obj;
+            ImageId = obj.GetInt32("imageId");
             Image = obj.GetInt32("imageId", ImagePickerImage.GetFromId);
             Title = obj.GetString("title") ?? "";
             Description = obj.GetString("description") ?? "";
