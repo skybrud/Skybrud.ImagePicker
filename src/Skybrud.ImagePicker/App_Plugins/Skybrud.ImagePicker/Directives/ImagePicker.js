@@ -10,6 +10,9 @@
         templateUrl: '/App_Plugins/Skybrud.ImagePicker/Views/ImagePickerDirective.html',
         link: function (scope) {
 
+            var v = Umbraco.Sys.ServerVariables.application.version.split(".");
+            scope.umbVersion = parseFloat(v[0] + "." + (v[1].length === 1 ? "0" + v[1] : v[1]));
+
             // Initial values
             scope.layout = 'list';
             scope.mode = 'view';

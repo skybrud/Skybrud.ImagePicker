@@ -1,5 +1,8 @@
 ﻿angular.module("umbraco").controller("Skybrud.ImagePickerPreValues.Controller", function ($scope) {
 
+    var v = Umbraco.Sys.ServerVariables.application.version.split(".");
+    $scope.umbVersion = parseFloat(v[0] + "." + (v[1].length === 1 ? "0" + v[1] : v[1]));
+
     // List of available layouts
     $scope.layouts = [
         { name: 'Tiles', alias: 'tiles' },

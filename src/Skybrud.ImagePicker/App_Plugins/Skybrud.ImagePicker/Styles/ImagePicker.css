@@ -352,3 +352,27 @@
 .ImagePickerDebugger label + label {
   margin-top: 10px;
 }
+.SkybrudImagePickerList div.table {
+  margin: 0;
+  border: 0;
+}
+.SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerList .addItem {
+  color: #00aea2;
+  font-weight: bold;
+}
+.SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-item {
+  background: #F3F3F5;
+  border: 1px solid #B3AFBD;
+}
+.SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-add {
+  color: #d8d7d9;
+  border: 2px dashed #d8d7d9;
+}
+.SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-add:hover {
+  color: #00aea2;
+  border-color: #03bfb3;
+}
+.SkybrudImagePickerPreValues.umbraco-gte76 .optionGroup .optionGroupTitle {
+  background: #F3F3F5;
+  border-bottom: 1px solid #B3AFBD;
+}
