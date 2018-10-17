@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="bs_latn_ba" intName="Bosnian language" localName="Bosanski jezik" lcid="" culture="bs-Latn-BA">
+  <area alias="imagepicker">
+
+    <key alias="modeTiles">Kartice</key>
+    <key alias="modeList">Lista</key>
+
+    <key alias="dialogSelectImage">Odaberite sliku</key>
+    <key alias="dialogSelectImages">Odaberite slike</key>
+
+    <key alias="confirmRemoveTile">Da li ste sigurni da želite obrisati karticu?</key>
+    <key alias="confirmRemoveRow">Da li ste sigurni da želite obrisati red?</key>
+
+    <key alias="labelNotSpecified">Nije odabrano</key>
+    <key alias="labelNoRows">Nije dodata nijedna slika.</key>
+    <key alias="labelMaxRows">Ne možete dodati više od %0% dozvoljenih redova.</key>
+    <key alias="labelMaxItemsExceeded">Odabirom ove slike dostigli ste ukupno {total} odabrane slike, a dozvoljeni je  maksimum {limit} slika.</key>
+
+    <key alias="labelImage">Slika</key>
+    <key alias="labelTitle">Naslov</key>
+    <key alias="labelTitlePlaceholder">Upišite naslov</key>
+    <key alias="labelDescription">Opis</key>
+    <key alias="labelDescriptionPlaceholder">Upišite opis</key>
+    
+    <key alias="labelLink">Link</key>
+    <key alias="labelLinkType">Tip</key>
+    <key alias="labelLinkUrl">URL</key>
+    <key alias="labelLinkId">ID</key>
+    <key alias="labelLinkText">Tekst</key>
+    <key alias="labelLinkTarget">Target</key>
+    
+    <key alias="optionAddImage">Dodajte sliku</key>
+    <key alias="optionRemoveItem">Obrišite sliku</key>
+    <key alias="optionMoveRight">Pomjerite sliku u desno</key>
+    <key alias="optionMoveLeft">Pomjerite sliku u lijevo</key>
+
+    <key alias="optionEditLink">Izmjeni linka</key>
+    <key alias="optionRemoveLink">Obriši link</key>
+    <key alias="optionAddLink">Dodaj link</key>
+
+    <key alias="optionAddRow">Dodaj novi red</key>
+
+    <key alias="tooltipEditRow">Izmijeni red</key>
+    <key alias="tooltipRemoveRow">Obrisi red</key>
+
+  </area>
+</language>
