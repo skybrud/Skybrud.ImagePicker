@@ -1,24 +1,26 @@
 ﻿{
 	"propertyEditors": [
-		{
-			"alias": "Skybrud.ImagePicker",
-			"name": "Skybrud Image Picker",
-			"editor": {
-				"view": "~/App_Plugins/Skybrud.ImagePicker/Views/ImagePicker.html",
-				"hideLabel": false,
-				"valueType": "JSON"	
-			},
-			"prevalues": {
-				"fields": [
-					{
-						"label": "Config",
-						"description": "Configure the image picker.",
-						"key": "config",
-                        "view": "~/App_Plugins/Skybrud.ImagePicker/Views/ImagePickerPreValues.html"
-					}
-				]
-			}
-		}
+    {
+      "alias": "Skybrud.ImagePicker",
+      "name": "Skybrud Image Picker",
+      "icon": "icon-pictures-alt-2",
+      "group": "Skybrud.dk",
+      "editor": {
+        "view": "~/App_Plugins/Skybrud.ImagePicker/Views/ImagePicker.html",
+        "hideLabel": false,
+        "valueType": "JSON"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Config",
+            "description": "Configure the image picker.",
+            "key": "config",
+            "view": "~/App_Plugins/Skybrud.ImagePicker/Views/ImagePickerPreValues.html"
+          }
+        ]
+      }
+    }
 	],
 	"javascript": [
 		"~/App_Plugins/Skybrud.ImagePicker/Services/ImagePickerService.js",
