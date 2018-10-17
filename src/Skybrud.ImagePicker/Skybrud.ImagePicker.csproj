@@ -278,6 +278,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\Skybrud.ImagePicker\Controllers\ImagePickerGridEditor.js" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\bs_latn_ba.xml" />
+    <Content Include="App_Plugins\Skybrud.ImagePicker\Lang\hr-HR.xml" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerDebugger.html" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerList.html" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\Views\Partials\ImagePickerTiles.html" />
