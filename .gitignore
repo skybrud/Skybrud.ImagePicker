@@ -9,3 +9,4 @@ node_modules/
 releases/temp/
 src/Skybrud.ImagePicker/Skybrud.ImagePicker/obj/
 src/.vs/
+package-lock.json
