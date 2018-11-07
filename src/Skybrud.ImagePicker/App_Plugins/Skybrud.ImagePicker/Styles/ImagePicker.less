@@ -451,43 +451,62 @@
 
 
 
+@background2: #F3F3F5;
+@border2: #B3AFBD;
+
+@gray-7: #BBBABF;
+@gray-8: #D8D7D9;
+
+@turquoise: #03BFB3;
+@turquoise-d1: #00AEA2;
+
 .SkybrudImagePickerList {
     div.table {
         margin: 0;
         border: 0;
     }
     .SkybrudImagePicker.umbraco-gte76 & .addItem {
-        color: #00aea2;
+        color: @turquoise-d1;
         font-weight: bold;
     }
 }
 
-
-
-
 .SkybrudImagePicker.umbraco-gte76 {
     .SkybrudImagePickerTiles {
         .tile.tile-item {
-            background: #F3F3F5;
-            border: 1px solid #B3AFBD;
+            background: @background2;
+            border: 1px solid @border2;
         }
 
         .tile.tile-add {
-            color: #d8d7d9;
-            border: 2px dashed #d8d7d9;
+            color: @gray-8;
+            border: 2px dashed @gray-8;
+
             &:hover {
-                color: #00aea2;
-                border-color: #03bfb3;
+                color: @turquoise-d1;
+                border-color: @turquoise;
+            }
             }
         }
+
+    .subpart input[type='text'],
+    .subpart textarea {
+        border-color: @gray-8;
+        &:hover {
+            border: 1px solid @gray-7;
+        }
+    }
+
+    .subpart .title {
+        border-bottom: 1px solid @border2;
     }
 }
 
 .SkybrudImagePickerPreValues.umbraco-gte76 {
     .optionGroup {
         .optionGroupTitle {
-            background: #F3F3F5;
-            border-bottom: 1px solid #B3AFBD;
+            background: @background2;
+            border-bottom: 1px solid @border2;
         }
     }
 }
