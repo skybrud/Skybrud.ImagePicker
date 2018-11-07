@@ -138,6 +138,9 @@
 .SkybrudImagePicker .SkybrudImagePickerList .subpart + .subpart {
   margin-top: 10px;
 }
+.SkybrudImagePicker .SkybrudImagePickerList > .table {
+  border: 0;
+}
 .SkybrudImagePicker .subpart .title {
   font-weight: bold;
   border-bottom: 1px solid #d9d9d9;
