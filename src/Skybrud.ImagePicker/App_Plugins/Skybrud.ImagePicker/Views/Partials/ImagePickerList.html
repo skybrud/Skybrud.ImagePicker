@@ -83,7 +83,14 @@
                                     </div>
                                     <div class="image" ng-if="item.$image">
                                         <img ng-src="{{item.imageUrl}}" alt="" /><br />
-                                        <a href="#" class="remove" ng-click="removeImage(item)" prevent-default><i class="icon icon-delete"></i></a>
+                                        <div class="actions">
+                                            <a class="action" data-element="action-edit" href="/umbraco/#/media/media/edit/{{item.imageId}}">
+                                                <i class="icon icon-edit"></i>
+                                            </a>
+                                            <a href="#" class="action -red" ng-click="removeImage(item)" prevent-default>
+                                                <i class="icon icon-delete"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                     <div ng-if="!item.$image" style="border: none">
                                         <a href="#" class="usky-editor-placeholder" ng-click="addImage(item)" prevent-default style="display: block; background: #f8f8f8;" ng-style="{width: config.image.width + 'px', height: config.image.height + 'px'}">

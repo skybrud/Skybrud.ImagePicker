@@ -169,25 +169,40 @@
 .SkybrudImagePicker .image {
   position: relative;
 }
-.SkybrudImagePicker .image .remove {
+.SkybrudImagePicker .image .actions {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  color: red;
-  background: white;
-  border-radius: 15px;
-  text-align: center;
   text-decoration: none;
-  width: 32px;
-  height: 32px;
-  overflow: hidden;
-  font-size: 24px;
-  line-height: 36px;
-  opacity: 0.5;
-  display: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  opacity: 0;
+  visibility: hidden;
 }
-.SkybrudImagePicker .image:hover .remove {
-  display: block;
+.SkybrudImagePicker .image .action {
+  font-size: 16px;
+  background: #fff;
+  height: 25px;
+  width: 25px;
+  border-radius: 15px;
+  color: #1e1c1c;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 5px;
+  text-decoration: none;
+}
+.SkybrudImagePicker .image .action.-red {
+  color: red;
+}
+.SkybrudImagePicker .image:hover .actions {
+  visibility: visible;
+  opacity: 1;
 }
 .SkybrudImagePicker .single-tile .image {
   overflow: hidden;
@@ -357,7 +372,7 @@
   border: 0;
 }
 .SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerList .addItem {
-  color: #00aea2;
+  color: #00AEA2;
   font-weight: bold;
 }
 .SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-item {
@@ -365,12 +380,23 @@
   border: 1px solid #B3AFBD;
 }
 .SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-add {
-  color: #d8d7d9;
-  border: 2px dashed #d8d7d9;
+  color: #D8D7D9;
+  border: 2px dashed #D8D7D9;
 }
 .SkybrudImagePicker.umbraco-gte76 .SkybrudImagePickerTiles .tile.tile-add:hover {
-  color: #00aea2;
-  border-color: #03bfb3;
+  color: #00AEA2;
+  border-color: #03BFB3;
+}
+.SkybrudImagePicker.umbraco-gte76 .subpart input[type='text'],
+.SkybrudImagePicker.umbraco-gte76 .subpart textarea {
+  border-color: #D8D7D9;
+}
+.SkybrudImagePicker.umbraco-gte76 .subpart input[type='text']:hover,
+.SkybrudImagePicker.umbraco-gte76 .subpart textarea:hover {
+  border: 1px solid #BBBABF;
+}
+.SkybrudImagePicker.umbraco-gte76 .subpart .title {
+  border-bottom: 1px solid #B3AFBD;
 }
 .SkybrudImagePickerPreValues.umbraco-gte76 .optionGroup .optionGroupTitle {
   background: #F3F3F5;
