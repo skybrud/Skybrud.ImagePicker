@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "App_Plugins/Skybrud.ImagePicker/Styles/ImagePicker.css",
-    "inputFile": "App_Plugins/Skybrud.ImagePicker/Styles/ImagePicker.less"
+    "outputFile": "App_Plugins/Skybrud.ImagePicker/Styles/Default.css",
+    "inputFile": "App_Plugins/Skybrud.ImagePicker/Styles/Default.less"
   }
 ]
