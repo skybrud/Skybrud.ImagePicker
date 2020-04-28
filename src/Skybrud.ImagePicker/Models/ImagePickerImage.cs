@@ -31,7 +31,7 @@ namespace Skybrud.ImagePicker.Models {
             Width = content.Value<int>(Constants.Conventions.Media.Width);
             Height = content.Value<int>(Constants.Conventions.Media.Height);
             Url = content.Url;
-            CropUrl = content.GetCropUrl(Width, Height, preferFocalPoint: true, imageCropMode: ImageCropMode.Pad);
+            CropUrl = content.GetCropUrl(Width, Height, preferFocalPoint: true, imageCropMode: ImageCropMode.Crop);
             AlternativeText = content.Value<string>("altText") ?? string.Empty;
         }
 
