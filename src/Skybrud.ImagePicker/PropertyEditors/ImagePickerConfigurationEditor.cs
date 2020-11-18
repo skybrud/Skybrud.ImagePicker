@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Umbraco.Core.PropertyEditors;
-using Umbraco.Web.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
-    public class ImagePickerConfigurationEditor : ConfigurationEditor<MediaPickerConfiguration> {
+    public class ImagePickerConfigurationEditor : ConfigurationEditor<ImagePickerConfiguration> {
 
         public ImagePickerConfigurationEditor() {
             Field("StartNodeId").Config = new Dictionary<string, object> {
@@ -16,5 +15,4 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         }
 
     }
-
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Skybrud.ImagePicker.Models;
 using Umbraco.Core;
+using Umbraco.Core.Composing;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Web.PublishedCache;
@@ -41,10 +43,14 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             if (inter == null) return isMultiple ? mediaItems : null;
 
+            Type type = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ModelType;
+
             foreach (Udi udi in udis) {
                 if (udi is GuidUdi guidUdi) {
                     IPublishedContent media = _publishedSnapshotAccessor.PublishedSnapshot.Media.GetById(guidUdi.Guid);
-                    if (media != null) return new ImagePickerImage(media);
+                    if (media != null) {
+                        return type == null ? new ImagePickerImage(media) : Current.Factory.CreateInstance(type, media);
+                    }
                 }
             }
 
@@ -61,8 +67,13 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         }
 
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
+            
             bool isMultiple = IsMultipleDataType(propertyType.DataType);
-            return isMultiple ? typeof(IEnumerable<ImagePickerImage>) : typeof(ImagePickerImage);
+
+            Type type = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ModelType ?? typeof(ImagePickerImage);
+
+            return isMultiple ? typeof(IEnumerable).MakeGenericType(type) : type;
+
         }
 
         private bool IsMultipleDataType(PublishedDataType dataType) {
