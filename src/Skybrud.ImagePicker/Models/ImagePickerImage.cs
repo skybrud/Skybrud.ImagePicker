@@ -8,32 +8,38 @@ namespace Skybrud.ImagePicker.Models {
 
     public class ImagePickerImage {
 
-        [JsonProperty("id")]
-        public int Id { get; }
+        #region Properties
 
-        [JsonProperty("width")]
-        public int Width { get; }
+        [JsonIgnore]
+        public IPublishedContent Media { get; }
 
-        [JsonProperty("height")]
-        public int Height { get; }
+        [JsonProperty("id", Order = -500)]
+        public virtual int Id => Media.Id;
 
-        [JsonProperty("url")]
-        public string Url { get; }
+        [JsonProperty("width", Order = -450)]
+        public virtual int Width => Media.Value<int>(Constants.Conventions.Media.Width);
 
-        [JsonProperty("cropUrl")]
-        public string CropUrl { get; }
+        [JsonProperty("height", Order = -400)]
+        public virtual int Height => Media.Value<int>(Constants.Conventions.Media.Height);
 
-        [JsonProperty("altText")]
-        public string AlternativeText { get; }
+        [JsonProperty("url", Order = -350)]
+        public virtual string Url => Media.Url;
+
+        [JsonProperty("cropUrl", Order = -300)]
+        public virtual string CropUrl => Media.GetCropUrl(Width, Height, preferFocalPoint: true, imageCropMode: ImageCropMode.Crop);
+
+        [JsonProperty("altText", Order = -250)]
+        public string AlternativeText => Media.Value<string>("altText") ?? string.Empty;
+
+        #endregion
+
+        #region Constructors
 
         public ImagePickerImage(IPublishedContent content) {
-            Id = content.Id;
-            Width = content.Value<int>(Constants.Conventions.Media.Width);
-            Height = content.Value<int>(Constants.Conventions.Media.Height);
-            Url = content.Url;
-            CropUrl = content.GetCropUrl(Width, Height, preferFocalPoint: true, imageCropMode: ImageCropMode.Crop);
-            AlternativeText = content.Value<string>("altText") ?? string.Empty;
+            Media = content;
         }
+
+        #endregion
 
     }
 
