@@ -5,14 +5,16 @@ namespace Skybrud.ImagePicker.PropertyEditors {
 
     public class ImagePickerConfigurationEditor : ConfigurationEditor<ImagePickerConfiguration> {
 
-        public ImagePickerConfigurationEditor() {
-            Field("StartNodeId").Config = new Dictionary<string, object> {
-                { "multiPicker", false },
-                { "onlyImages", true },
-                { "disableFolderSelect", true },
-                { "idType", "udi" }
-            };
+        public override IDictionary<string, object> ToValueEditor(object configuration) {
+
+            var d = base.ToValueEditor(configuration);
+
+            d["idType"] = "udi";
+
+            return d;
+
         }
 
     }
+
 }

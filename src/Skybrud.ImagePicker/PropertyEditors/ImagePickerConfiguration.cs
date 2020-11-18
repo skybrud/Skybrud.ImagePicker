@@ -11,12 +11,9 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         [ConfigurationField("model", "Model", "textstring", Description = "Specify the .NET type to be used as model. Default is ImagePickerImage.")]
         public string Model { get; set; }
 
-        public Type ModelType
-        {
+        public Type ModelType {
 
-
-            get
-            {
+            get {
 
                 if (_type == null && string.IsNullOrWhiteSpace(Model) == false) {
                     _type = Type.GetType(Model);

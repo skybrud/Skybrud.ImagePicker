@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.ImagePicker.Models;
 using Umbraco.Core;
 using Umbraco.Core.Composing;
@@ -39,7 +40,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             var isMultiple = IsMultipleDataType(propertyType.DataType);
 
             var udis = inter as Udi[] ?? new Udi[0];
-            var mediaItems = new List<ImagePickerImage>();
+            var mediaItems = new List<object>();
 
             if (inter == null) return isMultiple ? mediaItems : null;
 
@@ -49,12 +50,12 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                 if (udi is GuidUdi guidUdi) {
                     IPublishedContent media = _publishedSnapshotAccessor.PublishedSnapshot.Media.GetById(guidUdi.Guid);
                     if (media != null) {
-                        return type == null ? new ImagePickerImage(media) : Current.Factory.CreateInstance(type, media);
+                        mediaItems.Add(type == null ? new ImagePickerImage(media) : Current.Factory.CreateInstance(type, media));
                     }
                 }
             }
 
-            return isMultiple ? mediaItems : (object) mediaItems.FirstOrDefault();
+            return isMultiple ? mediaItems.Cast(type) : mediaItems.FirstOrDefault();
 
         }
 
@@ -72,13 +73,12 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             Type type = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ModelType ?? typeof(ImagePickerImage);
 
-            return isMultiple ? typeof(IEnumerable).MakeGenericType(type) : type;
+            return isMultiple ? typeof(IEnumerable<>).MakeGenericType(type) : type;
 
         }
 
         private bool IsMultipleDataType(PublishedDataType dataType) {
-            if (!(dataType.Configuration is Dictionary<string, object> config)) return false;
-            return config.TryGetValue("multiPicker", out object isMultiPicker) && isMultiPicker?.ToString() == "True";
+            return dataType.ConfigurationAs<ImagePickerConfiguration>()?.Multiple ?? false;
         }
 
     }
