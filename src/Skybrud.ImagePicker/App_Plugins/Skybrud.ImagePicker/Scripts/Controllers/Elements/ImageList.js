@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Skybrud.ImagePicker.Elements.Controller", function ($scope, editorService, skyElements) {
+﻿angular.module("umbraco").controller("Skybrud.ImagePicker.Elements.ImageList.Controller", function ($scope, editorService, skyElements) {
 
     $scope.images = {};
 
