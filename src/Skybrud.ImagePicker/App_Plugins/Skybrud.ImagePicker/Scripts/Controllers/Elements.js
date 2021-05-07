@@ -36,7 +36,11 @@
 
                         item.image = image;
 
-                        if (contentType.hasPropertyType("title")) item.value.properties.title = image.name;
+                        if (contentType.hasPropertyType("title")) {
+                            item.value.properties.title = image.name;
+                        } else if (contentType.hasPropertyType("name")) {
+                            item.value.properties.name = image.name;
+                        }
 
                         $scope.items.push(item);
 
