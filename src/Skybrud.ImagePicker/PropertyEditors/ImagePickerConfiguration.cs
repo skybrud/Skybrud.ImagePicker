@@ -50,7 +50,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// <summary>
         /// Gets the value type.
         /// </summary>
-        public Type ValueType => _valueType == null && string.IsNullOrWhiteSpace(ValueTypeName) == false ? _valueType = Type.GetType(ValueTypeName) : null;
+        public Type ValueType => _valueType == null && string.IsNullOrWhiteSpace(ValueTypeName) == false ? _valueType = Type.GetType(ValueTypeName) : _valueType;
 
         /// <summary>
         /// Gets the crop mode to be used for the returned values. This property currently always returns <see cref="ImageCropMode"/>.
