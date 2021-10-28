@@ -104,3 +104,16 @@
   pointer-events: none;
   user-select: none;
 }
+.skybrud-image-model-picker-overlay .umb-node-preview {
+  padding-left: 10px;
+  cursor: pointer;
+}
+.skybrud-image-model-picker-overlay .umb-node-preview:hover {
+  background: #e9e9eb;
+}
+.btn.btn-xs.skybrud-image-picker-button {
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 22px;
+  white-space: nowrap;
+}

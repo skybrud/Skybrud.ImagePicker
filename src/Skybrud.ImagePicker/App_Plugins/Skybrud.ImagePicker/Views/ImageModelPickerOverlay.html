@@ -1,0 +1,45 @@
+﻿<div class="skybrud-image-model-picker-overlay" ng-controller="Skybrud.ImagePicker.ImageModelPickerOverlay.Controller as vm">
+    <umb-editor-view>
+        <umb-editor-header
+            name="model.title"
+            name-locked="true"
+            hide-alias="true"
+            hide-icon="true"
+            hide-description="true">
+        </umb-editor-header>
+        <umb-editor-container>
+            <umb-box>
+                <umb-box-content>
+                    <div class="form-search" ng-if="model.filter" style="margin-bottom: 15px;">
+                        <i class="icon-search"></i>
+                        <input type="text"
+                                ng-model="vm.searchTerm"
+                                class="umb-search-field search-query input-block-level -full-width-input"
+                                localize="placeholder"
+                                placeholder="@placeholders_filter"
+                                umb-auto-focus
+                                no-dirty-check />
+                    </div>
+                    <umb-node-preview
+                        ng-repeat="availableItem in model.availableItems | orderBy:'name' | filter:vm.searchTerm"
+                        ng-click="vm.select(availableItem)"
+                        icon="availableItem.icon"
+                        name="availableItem.name"
+                        description="availableItem.description">
+                    </umb-node-preview>
+                </umb-box-content>
+            </umb-box>
+        </umb-editor-container>
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <umb-button
+                    type="button"
+                    button-style="link"
+                    label-key="general_close"
+                    shortcut="esc"
+                    action="vm.close()">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+    </umb-editor-view>
+</div>

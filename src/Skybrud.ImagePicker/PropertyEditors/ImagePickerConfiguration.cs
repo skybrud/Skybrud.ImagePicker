@@ -11,7 +11,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         #region Properties
 
         [ConfigurationField("multiPicker",
-            "Pick multiple images",
+            "Pick multiple images?",
             "boolean",
             Description = "Select whether this picker should support picking multiple images.")]
         public bool Multiple { get; set; }
@@ -23,15 +23,15 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         public Udi StartNodeId { get; set; }
 
         [ConfigurationField(Constants.DataTypes.ReservedPreValueKeys.IgnoreUserStartNodes,
-            "Ignore User Start Nodes",
+            "Ignore user start nodes",
             "boolean",
             Description = "Selecting this option allows a user to choose images that they normally don't have access to.")]
         public bool IgnoreUserStartNodes { get; set; }
         
         [ConfigurationField("model",
-            "Model",
-            "textstring",
-            Description = "Specify the .NET type that should be used for representing the selected image(s). Default is <code>ImagePickerImage</code>.")]
+            "Value type",
+            "/App_Plugins/Skybrud.ImagePicker/Views/ImageModelPicker.html",
+            Description = "Select the .NET type that should be used for representing the selected image(s).<br /><br /><a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v2.0/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
         public string Model { get; set; }
 
         public Type ModelType {

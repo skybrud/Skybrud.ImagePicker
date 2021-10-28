@@ -36,7 +36,7 @@
     <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.html" />
     <None Remove="App_Plugins\Skybrud.ImagePicker\Styles\Default.min.css" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
-    <None Include="../build/Limbo.png" Pack="true" PackagePath="\"/>
+    <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
