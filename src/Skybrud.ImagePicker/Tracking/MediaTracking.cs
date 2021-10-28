@@ -3,22 +3,18 @@ using Umbraco.Core;
 using Umbraco.Core.Models.Editors;
 using Umbraco.Core.PropertyEditors;
 
-namespace Skybrud.ImagePicker.Tracking
-{
-    public class MediaTracking : IDataValueReferenceFactory, IDataValueReference
-    {
+namespace Skybrud.ImagePicker.Tracking {
+    
+    public class MediaTracking : IDataValueReferenceFactory, IDataValueReference {
+        
         public IDataValueReference GetDataValueReference() => this;
 
-        public IEnumerable<UmbracoEntityReference> GetReferences(object value)
-        {
+        public IEnumerable<UmbracoEntityReference> GetReferences(object value) {
             var references = new List<UmbracoEntityReference>();
-            if (value != null)
-            {
-                foreach (var image in value.ToString().Split(','))
-                {
+            if (value != null) {
+                foreach (var image in value.ToString().Split(',')) {
                     var isValid = Udi.TryParse(image, out var udi);
-                    if (isValid)
-                    {
+                    if (isValid) {
                         references.Add(new UmbracoEntityReference(udi));
                     }
                 }
@@ -28,4 +24,5 @@ namespace Skybrud.ImagePicker.Tracking
 
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals("Skybrud.ImagePicker.Image");
     }
+
 }
