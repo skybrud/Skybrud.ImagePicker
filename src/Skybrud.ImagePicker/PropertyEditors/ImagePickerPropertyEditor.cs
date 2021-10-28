@@ -3,7 +3,7 @@ using Umbraco.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
-    [DataEditor(EditorAlias, EditorType.PropertyValue, "Skybrud ImagePicker Image", EditorView, Group = "Skybrud.dk", Icon = "icon-picture", ValueType = ValueTypes.Text)]
+    [DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView, Group = EditorGroup, Icon = EditorIcon, ValueType = ValueTypes.Text)]
     public class ImagePickerPropertyEditor : DataEditor {
 
         #region Constants
@@ -12,6 +12,21 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// Gets the alias of the editor.
         /// </summary>
         public const string EditorAlias = "Skybrud.ImagePicker.Image";
+
+        /// <summary>
+        /// Gets the name of the editor.
+        /// </summary>
+        public const string EditorName = "Skybrud ImagePicker Image";
+
+        /// <summary>
+        /// Gets the group name of the editor.
+        /// </summary>
+        public const string EditorGroup = "Skybrud.dk";
+
+        /// <summary>
+        /// Gets the icon of the editor.
+        /// </summary>
+        public const string EditorIcon = "icon-picture color-skybrud";
 
         /// <summary>
         /// Gets the view of the editor.
