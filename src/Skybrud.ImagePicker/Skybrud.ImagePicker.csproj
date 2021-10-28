@@ -25,9 +25,6 @@
 
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials" Version="1.1.25" />
-    <PackageReference Include="Skybrud.Umbraco.Elements" Version="1.0.0-alpha011">
-      <ExcludeAssets>contentFiles</ExcludeAssets>
-    </PackageReference>
     <PackageReference Include="UmbracoCms.Web" Version="8.6.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
