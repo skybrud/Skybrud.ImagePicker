@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Skybrud.ImagePicker.PropertyEditors;
 using Umbraco.Core;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
-using Umbraco.Web.Models;
 
 namespace Skybrud.ImagePicker.Models {
 
@@ -17,16 +17,16 @@ namespace Skybrud.ImagePicker.Models {
         public virtual int Id => Media.Id;
 
         [JsonProperty("width", Order = -450)]
-        public virtual int Width => Media.Value<int>(Constants.Conventions.Media.Width);
+        public virtual int Width { get; }
 
         [JsonProperty("height", Order = -400)]
-        public virtual int Height => Media.Value<int>(Constants.Conventions.Media.Height);
+        public virtual int Height { get; }
 
         [JsonProperty("url", Order = -350)]
         public virtual string Url => Media.Url;
 
         [JsonProperty("cropUrl", Order = -300)]
-        public virtual string CropUrl => Media.GetCropUrl(Width, Height, preferFocalPoint: true, imageCropMode: ImageCropMode.Crop);
+        public virtual string CropUrl { get; }
 
         [JsonProperty("altText", Order = -250)]
         public string AlternativeText => Media.Value<string>("altText") ?? string.Empty;
@@ -35,8 +35,16 @@ namespace Skybrud.ImagePicker.Models {
 
         #region Constructors
 
-        public ImagePickerImage(IPublishedContent content) {
+        public ImagePickerImage(IPublishedContent content, ImagePickerConfiguration config) {
+            
+            int width = content.Value<int>(Constants.Conventions.Media.Width);
+            int height = content.Value<int>(Constants.Conventions.Media.Height);
+            
             Media = content;
+            Width = width;
+            Height = height;
+            CropUrl = content.GetCropUrl(width, height, preferFocalPoint: config.PreferFocalPoint, imageCropMode: config.CropMode);
+
         }
 
         #endregion

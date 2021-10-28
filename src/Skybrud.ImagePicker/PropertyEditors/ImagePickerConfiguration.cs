@@ -1,6 +1,8 @@
 ﻿using System;
+using ImageProcessor.Imaging;
 using Umbraco.Core;
 using Umbraco.Core.PropertyEditors;
+using Umbraco.Web.Models;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
     
@@ -14,7 +16,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
             "Pick multiple images?",
             "boolean",
             Description = "Select whether this picker should support picking multiple images.")]
-        public bool Multiple { get; set; }
+        public bool IsMultiPicker { get; set; }
         
         [ConfigurationField("startNodeId",
             "Start node",
@@ -31,22 +33,32 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         [ConfigurationField("model",
             "Value type",
             "/App_Plugins/Skybrud.ImagePicker/Views/ImageModelPicker.html",
-            Description = "Select the .NET type that should be used for representing the selected image(s).<br /><br /><a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v2.0/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
+            Description = "Select the .NET value type that should be used for representing the selected image(s).<br /><br /><a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v2.0/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
         public string Model { get; set; }
 
+        /// <summary>
+        /// Gets the value type.
+        /// </summary>
         public Type ModelType {
 
-            get {
+            get
+            {
 
-                if (_type == null && string.IsNullOrWhiteSpace(Model) == false) {
-                    _type = Type.GetType(Model);
-                }
-
-                return _type;
+                return _type == null && string.IsNullOrWhiteSpace(Model) == false ? _type = Type.GetType(Model) : null;
 
             }
 
         }
+
+        /// <summary>
+        /// Gets the crop mode to be used for the returned values. This property currently always returns <see cref="ImageCropMode"/>.
+        /// </summary>
+        public ImageCropMode CropMode => ImageCropMode.Crop;
+
+        /// <summary>
+        /// Gets whether generated URLs should prefer a focal point. This property currently always returns <c>true</c>.
+        /// </summary>
+        public bool PreferFocalPoint => true;
 
         #endregion
 
