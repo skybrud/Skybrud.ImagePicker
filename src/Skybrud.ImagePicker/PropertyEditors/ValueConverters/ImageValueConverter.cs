@@ -70,8 +70,8 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             // Initialize a collection for the items
             List<object> items = new List<object>();
             
-            // Determine the item type
-            Type type = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ModelType;
+            // Determine the item value type
+            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType;
 
             foreach (Udi udi in udis)  {
                 
@@ -80,24 +80,24 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                 if (media == null) continue;
 
                 // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
-                if (type == null) {
+                if (valueType == null) {
                     items.Add(new ImagePickerImage(media, config));
                     continue;
                 }
 
                 // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
-                if (HasConstructor<IPublishedContent, ImagePickerConfiguration>(type)) {
-                    items.Add(Current.Factory.CreateInstance(type, media, config));
+                if (HasConstructor<IPublishedContent, ImagePickerConfiguration>(valueType)) {
+                    items.Add(Current.Factory.CreateInstance(valueType, media, config));
                     continue;
                 }
 
-                items.Add(Current.Factory.CreateInstance(type, media));
+                items.Add(Current.Factory.CreateInstance(valueType, media));
 
             }
 
             // Return the item(s) with the correct value type
-            type ??= typeof(ImagePickerImage);
-            return config.IsMultiPicker ? items.Cast(type).ToList(type) : items.FirstOrDefault();
+            valueType ??= typeof(ImagePickerImage);
+            return config.IsMultiPicker ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
 
@@ -119,9 +119,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             
             bool isMultiple = IsMultiPicker(propertyType.DataType);
 
-            Type type = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ModelType ?? typeof(ImagePickerImage);
+            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType ?? typeof(ImagePickerImage);
 
-            return isMultiple ? typeof(IEnumerable<>).MakeGenericType(type) : type;
+            return isMultiple ? typeof(IEnumerable<>).MakeGenericType(valueType) : valueType;
 
         }
 
