@@ -130,11 +130,22 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         /// </summary>
         /// <param name="dataType">The data type.</param>
         /// <returns><c>true</c> if <paramref name="dataType"/> is a multi picker; otherwise <c>false</c>.</returns>
-        private bool IsMultiPicker(PublishedDataType dataType) {
+        private static bool IsMultiPicker(PublishedDataType dataType) {
             return dataType.ConfigurationAs<ImagePickerConfiguration>()?.IsMultiPicker ?? false;
         }
 
-        public static bool HasConstructor<T1, T2>(Type type) {
+        /// <summary>
+        /// Returns whether the specified <paramref name="type"/> contains at least one constructor where the first
+        /// parameter is of type <typeparamref name="T1"/> and the second parameter is of type <typeparamref name="T2"/>.
+        ///
+        /// Any additional parameter the constructors may have are not relevant here, as their values will be attempted
+        /// to be solved using dependency injection.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first parameter.</typeparam>
+        /// <typeparam name="T2">The type of the second parameter.</typeparam>
+        /// <param name="type">The type to check.</param>
+        /// <returns><c>true</c> if at least one constructor is a match; otherwise <c>false</c>.</returns>
+        private static bool HasConstructor<T1, T2>(Type type) {
             return type
                 .GetConstructors(BindingFlags.Public | BindingFlags.Instance)
                 .Select(cs => cs.GetParameters())
