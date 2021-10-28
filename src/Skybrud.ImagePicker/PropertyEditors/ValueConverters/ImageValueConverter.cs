@@ -54,7 +54,8 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                 }
             }
 
-            return isMultiple ? mediaItems.Cast(type ?? typeof(ImagePickerImage)) : mediaItems.FirstOrDefault();
+            type ??= typeof(ImagePickerImage);
+            return isMultiple ? mediaItems.Cast(type).ToList(type) : mediaItems.FirstOrDefault();
 
         }
 
