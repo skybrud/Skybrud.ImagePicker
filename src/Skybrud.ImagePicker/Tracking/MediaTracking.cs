@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Skybrud.ImagePicker.PropertyEditors;
 using Umbraco.Core;
 using Umbraco.Core.Models.Editors;
 using Umbraco.Core.PropertyEditors;
@@ -22,7 +23,7 @@ namespace Skybrud.ImagePicker.Tracking {
             return references;
         }
 
-        public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals("Skybrud.ImagePicker.Image");
+        public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerPropertyEditor.EditorAlias);
     }
 
 }

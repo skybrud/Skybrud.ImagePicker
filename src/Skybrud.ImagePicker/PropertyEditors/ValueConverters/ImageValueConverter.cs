@@ -24,7 +24,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         #endregion
 
         public override bool IsConverter(IPublishedPropertyType propertyType) {
-            return propertyType.EditorAlias == "Skybrud.ImagePicker.Image";
+            return propertyType.EditorAlias == ImagePickerPropertyEditor.EditorAlias;
         }
 
         public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
