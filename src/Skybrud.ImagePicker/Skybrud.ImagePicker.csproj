@@ -8,9 +8,9 @@
   <PropertyGroup>
     <Version>2.0.0-alpha004</Version>
     <Authors>Anders Bjerner</Authors>
-    <Company>Skybrud.dk</Company>
+    <Company>Limbo</Company>
     <Description>Image picker functionality for Umbraco 8.</Description>
-    <Copyright>Copyright © 2020</Copyright>
+    <Copyright>Copyright © 2021</Copyright>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,7 +18,7 @@
     <PackageTags>Skybrud, Umbraco, Images, Picker</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://packages.skybrud.dk/skybrud.imagepicker/</PackageProjectUrl>
-    <PackageIconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</PackageIconUrl>
+    <PackageIcon>Limbo.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/skybrud/Skybrud.ImagePicker</RepositoryUrl>
   </PropertyGroup>
@@ -36,6 +36,7 @@
     <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.html" />
     <None Remove="App_Plugins\Skybrud.ImagePicker\Styles\Default.min.css" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
+    <None Include="../build/Limbo.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
