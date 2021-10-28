@@ -4,9 +4,9 @@ using Umbraco.Core;
 using Umbraco.Core.Models.Editors;
 using Umbraco.Core.PropertyEditors;
 
-namespace Skybrud.ImagePicker.Tracking {
+namespace Skybrud.ImagePicker.Factories {
     
-    public class MediaTracking : IDataValueReferenceFactory, IDataValueReference {
+    public class ImageReferenceFactory : IDataValueReferenceFactory, IDataValueReference {
         
         public IDataValueReference GetDataValueReference() => this;
 
