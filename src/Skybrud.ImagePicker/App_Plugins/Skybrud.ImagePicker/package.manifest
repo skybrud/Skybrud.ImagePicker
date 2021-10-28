@@ -1,6 +1,6 @@
 ﻿{
   "javascript": [
-    "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/Elements.js",
+    "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/Elements/ImageList.js",
     "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/ListPreview.js"
   ],
   "css": [

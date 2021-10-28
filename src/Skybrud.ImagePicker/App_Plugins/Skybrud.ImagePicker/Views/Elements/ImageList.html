@@ -1,4 +1,4 @@
-﻿<div class="skybrud-image-picker" ng-controller="Skybrud.ImagePicker.Elements.Controller" ng-class="{'--empty': value.length == 0}">
+﻿<div class="skybrud-image-picker" ng-controller="Skybrud.ImagePicker.Elements.ImageList.Controller" ng-class="{'--empty': value.length == 0}">
     <div class="items">
         <div class="element" ng-repeat="item in items">
             <div class="image">
@@ -19,8 +19,8 @@
                 </div>
                 <div ng-if="!item.image" style="background: #efefef; height: 175px; width: 250px;"></div>
                 <div class="element-name">
-                    {{item.value.properties.title}}
-                    <span ng-show="!item.value.properties.title">&nbsp;</span>
+                    {{item.value.properties.title || item.value.properties.name}}
+                    <span ng-show="!item.value.properties.title && !item.value.properties.name">&nbsp;</span>
                 </div>
                 <div class="actions">
                     <a href="#" class="action" ng-click="swap($index, $index - 1)" prevent-default ng-show="$index > 0">

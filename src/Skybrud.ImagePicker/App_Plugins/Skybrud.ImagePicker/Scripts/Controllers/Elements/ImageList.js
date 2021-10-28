@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Skybrud.ImagePicker.Elements.Controller", function ($scope, editorService, skyElements) {
+﻿angular.module("umbraco").controller("Skybrud.ImagePicker.Elements.ImageList.Controller", function ($scope, editorService, skyElements) {
 
     $scope.images = {};
 
@@ -36,7 +36,11 @@
 
                         item.image = image;
 
-                        if (contentType.hasPropertyType("title")) item.value.properties.title = image.name;
+                        if (contentType.hasPropertyType("title")) {
+                            item.value.properties.title = image.name;
+                        } else if (contentType.hasPropertyType("name")) {
+                            item.value.properties.name = image.name;
+                        }
 
                         $scope.items.push(item);
 
