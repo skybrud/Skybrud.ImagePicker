@@ -11,19 +11,20 @@ namespace Skybrud.ImagePicker.Tracking {
         public IDataValueReference GetDataValueReference() => this;
 
         public IEnumerable<UmbracoEntityReference> GetReferences(object value) {
-            var references = new List<UmbracoEntityReference>();
-            if (value != null) {
-                foreach (var image in value.ToString().Split(',')) {
-                    var isValid = Udi.TryParse(image, out var udi);
-                    if (isValid) {
-                        references.Add(new UmbracoEntityReference(udi));
-                    }
-                }
+            
+            List<UmbracoEntityReference> references = new List<UmbracoEntityReference>();
+            if (value is not string udis) return references;
+
+            foreach (string udi in udis.Split(',')) {
+                if (GuidUdi.TryParse(udi, out GuidUdi guidUdi)) references.Add(new UmbracoEntityReference(guidUdi));
             }
+            
             return references;
+
         }
 
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerPropertyEditor.EditorAlias);
+
     }
 
 }
