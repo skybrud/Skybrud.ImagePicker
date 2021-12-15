@@ -1,10 +1,10 @@
 ﻿using System;
-using Umbraco.Core;
-using Umbraco.Core.PropertyEditors;
-using Umbraco.Web.Models;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
-    
+
     public class ImagePickerConfiguration {
 
         private Type _valueType;
@@ -55,12 +55,12 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// <summary>
         /// Gets the crop mode to be used for the returned values. This property currently always returns <see cref="ImageCropMode"/>.
         /// </summary>
-        public ImageCropMode CropMode => ImageCropMode.Crop;
+        public static ImageCropMode CropMode => ImageCropMode.Crop;
 
         /// <summary>
         /// Gets whether generated URLs should prefer a focal point. This property currently always returns <c>true</c>.
         /// </summary>
-        public bool PreferFocalPoint => true;
+        public static bool PreferFocalPoint => true;
 
         #endregion
 

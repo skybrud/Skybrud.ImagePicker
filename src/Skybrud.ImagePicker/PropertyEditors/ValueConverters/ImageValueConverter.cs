@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.ImagePicker.Models;
-using Umbraco.Core;
-using Umbraco.Core.Composing;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Core.PropertyEditors;
-using Umbraco.Web.PublishedCache;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.PublishedCache;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
     public class ImageValueConverter : PropertyValueConverterBase {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
+        private readonly IServiceProvider _serviceProvider;
 
         #region Constructors
 
-        public ImageValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor) {
+        public ImageValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor, IServiceProvider serviceProvider) {
             _publishedSnapshotAccessor = publishedSnapshotAccessor ?? throw new ArgumentNullException(nameof(publishedSnapshotAccessor));
+            _serviceProvider = serviceProvider;
         }
 
         #endregion
@@ -46,7 +48,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
             return source?.ToString()
                 .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(Udi.Parse)
+                .Select(UdiParser.Parse)
                 .ToArray();
         }
         
@@ -74,9 +76,14 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType;
 
             foreach (Udi udi in udis)  {
+
+                var canGetPublishedSnapshot = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshotAccessor);
+
+                if (!canGetPublishedSnapshot)
+                    continue;
                 
                 // Look up the media
-                IPublishedContent media = _publishedSnapshotAccessor.PublishedSnapshot.Media.GetById(udi);
+                IPublishedContent media = publishedSnapshotAccessor.Media.GetById(udi);
                 if (media == null) continue;
 
                 // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
@@ -87,12 +94,11 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
                 // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
                 if (HasConstructor<IPublishedContent, ImagePickerConfiguration>(valueType)) {
-                    items.Add(Current.Factory.CreateInstance(valueType, media, config));
+                    items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media, config));
                     continue;
                 }
 
-                items.Add(Current.Factory.CreateInstance(valueType, media));
-
+                items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media));
             }
 
             // Return the item(s) with the correct value type

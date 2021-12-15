@@ -1,15 +1,14 @@
 ﻿using Skybrud.ImagePicker.Factories;
-using Umbraco.Core;
-using Umbraco.Core.Composing;
+using Umbraco.Cms.Core.Composing;
+using Umbraco.Cms.Core.DependencyInjection;
 
 namespace Skybrud.ImagePicker.Composers {
-    
-    public class ImagePickerComposer : IUserComposer {
-        
-        public void Compose(Composition composition) {
-            composition.DataValueReferenceFactories().Append<ImageReferenceFactory>();
-        }
 
+    public class ImagePickerComposer : IComposer {        
+
+        public void Compose(IUmbracoBuilder builder) {
+            builder.DataValueReferenceFactories().Append<ImageReferenceFactory>();
+        }
     }
 
 }

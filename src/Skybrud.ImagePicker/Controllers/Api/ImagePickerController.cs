@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.WebApi;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Cms.Web.Common.Attributes;
+using Umbraco.Cms.Web.Common.Filters;
 
 namespace Skybrud.ImagePicker.Controllers.Api {
 
@@ -17,7 +18,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
         #region Public API methods
 
         [HttpGet]
-        public IEnumerable<object> GetImageModels() {
+        public static IEnumerable<object> GetImageModels() {
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
@@ -43,7 +44,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
                         if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
                         
-                        yield return Map(type);
+                        yield return ImagePickerController.Map(type);
 
                         break;
 
@@ -59,7 +60,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
         #region Private helper methods
 
-        private JObject Map(Type type) {
+        private static JObject Map(Type type) {
 
             JObject json = new JObject {
                 { "assembly", type.Assembly.FullName },

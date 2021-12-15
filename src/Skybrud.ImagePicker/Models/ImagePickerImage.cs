@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Skybrud.ImagePicker.PropertyEditors;
-using Umbraco.Core;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web;
+using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Models {
 
@@ -23,7 +23,7 @@ namespace Skybrud.ImagePicker.Models {
         public virtual int Height { get; }
 
         [JsonProperty("url", Order = -350)]
-        public virtual string Url => Media.Url;
+        public virtual string Url => Media.Url();
 
         [JsonProperty("cropUrl", Order = -300)]
         public virtual string CropUrl { get; }
@@ -43,7 +43,7 @@ namespace Skybrud.ImagePicker.Models {
             Media = content;
             Width = width;
             Height = height;
-            CropUrl = content.GetCropUrl(width, height, preferFocalPoint: config.PreferFocalPoint, imageCropMode: config.CropMode);
+            CropUrl = content.GetCropUrl(width, height, preferFocalPoint: ImagePickerConfiguration.PreferFocalPoint, imageCropMode: ImagePickerConfiguration.CropMode);
 
         }
 

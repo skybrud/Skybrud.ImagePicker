@@ -1,5 +1,5 @@
-﻿using Umbraco.Core.Logging;
-using Umbraco.Core.PropertyEditors;
+﻿using Umbraco.Cms.Core.IO;
+using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
@@ -33,6 +33,8 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// </summary>
         public const string EditorView = "mediapicker";
 
+        private readonly IIOHelper _iOHelper;
+
         #endregion
 
         #region Constructors
@@ -41,10 +43,12 @@ namespace Skybrud.ImagePicker.PropertyEditors {
 
         #region Member methods
 
-        public ImagePickerPropertyEditor(ILogger logger) : base(logger) { }
+        public ImagePickerPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory) {
+            _iOHelper = iOHelper;
+        }
 
         protected override IConfigurationEditor CreateConfigurationEditor() {
-            return new ImagePickerConfigurationEditor();
+            return new ImagePickerConfigurationEditor(_iOHelper);
         }
 
         #endregion
