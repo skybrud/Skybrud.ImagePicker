@@ -18,7 +18,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
         #region Public API methods
 
         [HttpGet]
-        public static IEnumerable<object> GetImageModels() {
+        public IEnumerable<object> GetImageModels() {
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
@@ -44,7 +44,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
                         if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
                         
-                        yield return ImagePickerController.Map(type);
+                        yield return Map(type);
 
                         break;
 
