@@ -23,12 +23,13 @@ namespace Skybrud.ImagePicker.Controllers.Api {
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
                 AssemblyName assemblyName = assembly.GetName();
-                    
+
                 switch (assemblyName.Name) {
-                    case "Skybrud.ImagePicker":
                     case "Skybrud.LinkPicker":
                     case "Umbraco.Core":
-                    case "Umbraco.Web":
+                    case "Umbraco.Infrastructure":
+                    case "Umbraco.PublishedCache.NuCache":
+                    case "Umbraco.Web.Website":
                         continue;
                 }
 
@@ -46,7 +47,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                         
                         yield return Map(type);
 
-                        break;
+                        break; 
 
                     }
                     
