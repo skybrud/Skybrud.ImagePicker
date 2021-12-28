@@ -8,6 +8,7 @@ namespace Skybrud.ImagePicker.Composers {
 
         public void Compose(IUmbracoBuilder builder) {
             builder.DataValueReferenceFactories().Append<ImageReferenceFactory>();
+            builder.DataValueReferenceFactories().Append<ImageWithCropsReferenceFactory>();
         }
     }
 
