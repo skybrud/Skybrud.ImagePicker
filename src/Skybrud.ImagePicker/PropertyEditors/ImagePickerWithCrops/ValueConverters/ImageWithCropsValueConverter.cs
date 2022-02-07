@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.ImagePicker.Extensions;
 using Skybrud.ImagePicker.Models;
@@ -224,21 +222,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
                     yield return dto;
                 }
             }
-        }
-
-        [DataContract]
-        internal class MediaWithCropsDto {
-            [DataMember(Name = "key")]
-            public Guid Key { get; set; }
-
-            [DataMember(Name = "mediaKey")]
-            public Guid MediaKey { get; set; }
-
-            [DataMember(Name = "crops")]
-            public IEnumerable<ImageCropperValue.ImageCropperCrop> Crops { get; set; }
-
-            [DataMember(Name = "focalPoint")]
-            public ImageCropperValue.ImageCropperFocalPoint FocalPoint { get; set; }
         }        
 
     }

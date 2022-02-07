@@ -5,6 +5,8 @@ using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace Skybrud.ImagePicker.Extensions {
     public static class ConfigurationExtensions {
+
+        // Based on https://github.com/umbraco/Umbraco-CMS/blob/v9/contrib/src/Umbraco.Infrastructure/Extensions/MediaPicker3ConfigurationExtensions.cs
         public static void ApplyConfiguration(this ImageCropperValue imageCropperValue, ImagePickerWithCropsConfiguration configuration) {
             var crops = new List<ImageCropperValue.ImageCropperCrop>();
 
