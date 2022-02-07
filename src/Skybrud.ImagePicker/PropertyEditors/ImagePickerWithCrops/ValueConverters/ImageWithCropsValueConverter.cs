@@ -5,8 +5,8 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Skybrud.Essentials.Collections.Extensions;
 using Skybrud.ImagePicker.Extensions;
+using Skybrud.ImagePicker.Json;
 using Skybrud.ImagePicker.Models;
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
@@ -68,7 +68,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
             ImagePickerWithCropsConfiguration config = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>();
 
             // Get the UDIs from the intermediate value
-            var dtos = Deserialize(_jsonSerializer, inter);
+            var dtos = MediaWithCropsDeserializer.Deserialize(_jsonSerializer, inter);
 
             // Initialize a collection for the items
             List<object> items = new List<object>();
@@ -169,36 +169,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
                 .Any(ps => ps.Length >= 2 && ps[0].ParameterType == typeof(T1) && ps[1].ParameterType == typeof(T2));
         }
 
-        #endregion
-
-        private static IEnumerable<MediaWithCropsDto> Deserialize(IJsonSerializer jsonSerializer, object value) {
-            var rawJson = value is string str ? str : value?.ToString();
-            if (string.IsNullOrWhiteSpace(rawJson)) {
-                yield break;
-            }
-
-            if (!rawJson.DetectIsJson()) {
-                // Old comma seperated UDI format
-                foreach (var udiStr in rawJson.Split(Constants.CharArrays.Comma)) {
-                    if (UdiParser.TryParse(udiStr, out GuidUdi udi)) {
-                        yield return new MediaWithCropsDto {
-                            Key = Guid.NewGuid(),
-                            MediaKey = udi.Guid,
-                            Crops = Enumerable.Empty<ImageCropperValue.ImageCropperCrop>(),
-                            FocalPoint = new ImageCropperValue.ImageCropperFocalPoint {
-                                Left = 0.5m,
-                                Top = 0.5m
-                            }
-                        };
-                    }
-                }
-            } else {
-                // New JSON format
-                foreach (var dto in jsonSerializer.Deserialize<IEnumerable<MediaWithCropsDto>>(rawJson)) {
-                    yield return dto;
-                }
-            }
-        }        
+        #endregion           
 
     }
 

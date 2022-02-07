@@ -43,7 +43,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
 
         #region Member methods
 
-        public ImagePickerWithCropsPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory, iOHelper) { }
+        public ImagePickerWithCropsPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory, iOHelper) {
+            _iOHelper = iOHelper;
+        }
 
         protected override IConfigurationEditor CreateConfigurationEditor() => new ImagePickerWithCropsConfigurationEditor(_iOHelper);
 
