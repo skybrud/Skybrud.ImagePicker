@@ -5,7 +5,7 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
-    public class ImagePickerConfiguration {
+    public class ImagePickerConfiguration : MediaPickerConfiguration {
 
         private Type _valueType;
 
@@ -19,25 +19,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
             "boolean",
             Description = "Select whether this picker should support picking multiple images.")]
         public bool IsMultiPicker { get; set; }
-        
-        /// <summary>
-        /// Gets the UDI of the selected start node.
-        /// </summary>
-        [ConfigurationField("startNodeId",
-            "Start node",
-            "mediapicker",
-            Description = "Select the start node of the picker. If not specified, the start node will be based on the user's permissions.")]
-        public Udi StartNodeId { get; set; }
-
-        /// <summary>
-        /// Gets whether the user's start nodes should be ignored.
-        /// </summary>
-        [ConfigurationField(Constants.DataTypes.ReservedPreValueKeys.IgnoreUserStartNodes,
-            "Ignore user start nodes",
-            "boolean",
-            Description = "Selecting this option allows a user to choose images that they normally don't have access to.")]
-        public bool IgnoreUserStartNodes { get; set; }
-        
+             
         /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.
         /// </summary>

@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverters {
 
-    public class ImageWithCropsValueConverter : PropertyValueConverterBase {
+    public class ImageWithCropsValueConverter : MediaPickerWithCropsValueConverter {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor; 
         private readonly IServiceProvider _serviceProvider;
@@ -32,8 +32,8 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
                                             IServiceProvider serviceProvider,
                                             IJsonSerializer jsonSerializer,
                                             IPublishedUrlProvider publishedUrlProvider,
-                                            IPublishedValueFallback publishedValueFallback) {
-            _publishedSnapshotAccessor = publishedSnapshotAccessor ?? throw new ArgumentNullException(nameof(publishedSnapshotAccessor));
+                                            IPublishedValueFallback publishedValueFallback) : base(publishedSnapshotAccessor, publishedUrlProvider, publishedValueFallback, jsonSerializer) {
+            _publishedSnapshotAccessor = publishedSnapshotAccessor;
             _serviceProvider = serviceProvider;
             _jsonSerializer = jsonSerializer;
             _publishedUrlProvider = publishedUrlProvider;
@@ -51,21 +51,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
         /// <returns><c>true</c> if this class is the value converter for <paramref name="propertyType"/>; otherwise <c>false</c>.</returns>
         public override bool IsConverter(IPublishedPropertyType propertyType) {
             return propertyType.EditorAlias == ImagePickerWithCropsPropertyEditor.EditorAlias;
-        }
-
-        /// <summary>
-        /// Converts the source value to a corresponding intermediate value.
-        /// </summary>
-        /// <param name="owner">The element holding the property type.</param>
-        /// <param name="propertyType">The property type.</param>
-        /// <param name="source">The source value.</param>
-        /// <param name="preview">Whether preview mode is enabled.</param>
-        /// <returns>An array of <see cref="Udi"/> representing the intermediate value.</returns>
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
-            return source?.ToString()
-                .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(UdiParser.Parse)
-                .ToArray();
         }
         
         /// <summary>
@@ -141,15 +126,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
             return config.Multiple ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
-
-        /// <summary>
-        /// Gets the property cache level.
-        /// </summary>
-        /// <param name="propertyType">The property type.</param>
-        /// <returns>The property cache level.</returns>
-        public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) {
-            return PropertyCacheLevel.Snapshot;
-        }
         
         /// <summary>
         /// Returns the type of values returned by the converter.
@@ -195,7 +171,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
 
         #endregion
 
-        internal static IEnumerable<MediaWithCropsDto> Deserialize(IJsonSerializer jsonSerializer, object value) {
+        private static IEnumerable<MediaWithCropsDto> Deserialize(IJsonSerializer jsonSerializer, object value) {
             var rawJson = value is string str ? str : value?.ToString();
             if (string.IsNullOrWhiteSpace(rawJson)) {
                 yield break;

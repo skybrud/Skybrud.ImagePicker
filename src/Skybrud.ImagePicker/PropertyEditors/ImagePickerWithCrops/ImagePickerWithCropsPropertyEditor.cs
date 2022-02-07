@@ -4,7 +4,7 @@ using Umbraco.Cms.Core.PropertyEditors;
 namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
 
     [DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView, Group = EditorGroup, Icon = EditorIcon, ValueType = ValueTypes.Text)]
-    public class ImagePickerWithCropsPropertyEditor : DataEditor {
+    public class ImagePickerWithCropsPropertyEditor : MediaPicker3PropertyEditor {
 
         #region Constants
 
@@ -43,13 +43,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
 
         #region Member methods
 
-        public ImagePickerWithCropsPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory) {
-            _iOHelper = iOHelper;
-        }
+        public ImagePickerWithCropsPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory, iOHelper) { }
 
-        protected override IConfigurationEditor CreateConfigurationEditor() {
-            return new ImagePickerWithCropsConfigurationEditor(_iOHelper);
-        }
+        protected override IConfigurationEditor CreateConfigurationEditor() => new ImagePickerWithCropsConfigurationEditor(_iOHelper);
 
         #endregion
 

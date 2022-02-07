@@ -8,19 +8,20 @@ using Skybrud.ImagePicker.Models;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 using Umbraco.Cms.Core.PublishedCache;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
-    public class ImageValueConverter : PropertyValueConverterBase {
+    public class ImageValueConverter : MediaPickerValueConverter {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
         private readonly IServiceProvider _serviceProvider;
 
         #region Constructors
 
-        public ImageValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor, IServiceProvider serviceProvider) {
-            _publishedSnapshotAccessor = publishedSnapshotAccessor ?? throw new ArgumentNullException(nameof(publishedSnapshotAccessor));
+        public ImageValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor, IPublishedModelFactory publishedModelFactory, IServiceProvider serviceProvider) : base(publishedSnapshotAccessor, publishedModelFactory) {
+            _publishedSnapshotAccessor = publishedSnapshotAccessor;
             _serviceProvider = serviceProvider;
         }
 
@@ -35,21 +36,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         /// <returns><c>true</c> if this class is the value converter for <paramref name="propertyType"/>; otherwise <c>false</c>.</returns>
         public override bool IsConverter(IPublishedPropertyType propertyType) {
             return propertyType.EditorAlias == ImagePickerPropertyEditor.EditorAlias;
-        }
-
-        /// <summary>
-        /// Converts the source value to a corresponding intermediate value.
-        /// </summary>
-        /// <param name="owner">The element holding the property type.</param>
-        /// <param name="propertyType">The property type.</param>
-        /// <param name="source">The source value.</param>
-        /// <param name="preview">Whether preview mode is enabled.</param>
-        /// <returns>An array of <see cref="Udi"/> representing the intermediate value.</returns>
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
-            return source?.ToString()
-                .Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(UdiParser.Parse)
-                .ToArray();
         }
         
         /// <summary>
@@ -105,15 +91,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             valueType ??= typeof(ImagePickerImage);
             return config.IsMultiPicker ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
-        }
-
-        /// <summary>
-        /// Gets the property cache level.
-        /// </summary>
-        /// <param name="propertyType">The property type.</param>
-        /// <returns>The property cache level.</returns>
-        public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) {
-            return PropertyCacheLevel.Snapshot;
         }
         
         /// <summary>
