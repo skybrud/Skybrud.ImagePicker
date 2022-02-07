@@ -34,7 +34,9 @@
     <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.js" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.css" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.html" />
+    <None Remove="App_Plugins\Skybrud.ImagePicker\Scripts\Controllers\ImageWithCropsModelPicker.js" />
     <None Remove="App_Plugins\Skybrud.ImagePicker\Styles\Default.min.css" />
+    <None Remove="App_Plugins\Skybrud.ImagePicker\Views\ImageWithCropsModelPicker.html" />
     <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
     <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>

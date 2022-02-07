@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.Common.Attributes;
@@ -51,6 +52,46 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
                     }
                     
+                }
+
+            }
+
+        }
+
+        [HttpGet]
+        public IEnumerable<object> GetImageWithCropsModels() {
+
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
+
+                AssemblyName assemblyName = assembly.GetName();
+
+                switch (assemblyName.Name) {
+                    case "Skybrud.LinkPicker":
+                    case "Umbraco.Core":
+                    case "Umbraco.Infrastructure":
+                    case "Umbraco.PublishedCache.NuCache":
+                    case "Umbraco.Web.Website":
+                        continue;
+                }
+
+                foreach (Type type in assembly.GetTypes()) {
+
+                    ConstructorInfo[] constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
+
+                    foreach (ConstructorInfo constructor in constructors) {
+
+                        ParameterInfo[] parameters = constructor.GetParameters();
+
+                        if (parameters.Length == 0) continue;
+                        if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
+                        if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
+
+                        yield return Map(type);
+
+                        break;
+
+                    }
+
                 }
 
             }

@@ -31,7 +31,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
         /// <summary>
         /// Gets the view of the editor.
         /// </summary>
-        public const string EditorView = "mediapicker";
+        public const string EditorView = "mediapicker3";
 
         private readonly IIOHelper _iOHelper;
 

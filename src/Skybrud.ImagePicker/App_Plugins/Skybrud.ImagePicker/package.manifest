@@ -2,6 +2,7 @@
   "javascript": [
     "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/Elements/ImageList.js",
     "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/ImageModelPicker.js",
+    "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/ImageWithCropsModelPicker.js",
     "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/ImageModelPickerOverlay.js",
     "/App_Plugins/Skybrud.ImagePicker/Scripts/Controllers/ListPreview.js"
   ],

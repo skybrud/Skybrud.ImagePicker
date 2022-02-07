@@ -66,7 +66,10 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
             "boolean",
             Description = "Selecting this option allows a user to choose images that they normally don't have access to.")]
         public bool IgnoreUserStartNodes { get; set; }
-        
+
+        [ConfigurationField("enableLocalFocalPoint", "Enable Focal Point", "boolean")]
+        public bool EnableLocalFocalPoint { get; set; }
+
         /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.
         /// </summary>
