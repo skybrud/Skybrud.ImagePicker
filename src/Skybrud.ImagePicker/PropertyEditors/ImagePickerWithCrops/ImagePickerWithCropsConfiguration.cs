@@ -75,7 +75,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
         /// </summary>
         [ConfigurationField("model",
             "Value type",
-            "/App_Plugins/Skybrud.ImagePicker/Views/ImageWithCropsModelPicker.html",
+            "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/ImageWithCropsModelPicker.html",
             Description = "Select the .NET value type that should be used for representing the selected image(s).<br /><br /><a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v2.0/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
         public string ValueTypeName { get; set; }
 

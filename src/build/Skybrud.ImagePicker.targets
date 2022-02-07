@@ -3,7 +3,7 @@
   <!--Based on: https://github.com/bergmania/Bergmania.OpenStreetMap/blob/main/Bergmania.OpenStreetMap/build/Bergmania.OpenStreetMap.targets -->
 
   <PropertyGroup>
-    <SkybrudImagePickerContentFilesPath>$(MSBuildThisFileDirectory)..\content\App_Plugins\Skybrud.ImagePicker\**\*.*</SkybrudImagePickerContentFilesPath>
+    <SkybrudImagePickerContentFilesPath>$(MSBuildThisFileDirectory)..\content\App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.*</SkybrudImagePickerContentFilesPath>
   </PropertyGroup>
 
   <Target Name="CopySkybrudImagePickerAssets" BeforeTargets="Build">
@@ -13,13 +13,13 @@
     <Message Text="Copying Skybrud.ImagePicker files: $(SkybrudImagePickerContentFilesPath) - #@(SkybrudImagePickerContentFiles->Count()) files"  Importance="high" />
     <Copy
       SourceFiles="@(SkybrudImagePickerContentFiles)"
-      DestinationFiles="@(SkybrudImagePickerContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Skybrud.ImagePicker\%(RecursiveDir)%(Filename)%(Extension)')"
+      DestinationFiles="@(SkybrudImagePickerContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\Skybrud.Umbraco.ImagePicker\%(RecursiveDir)%(Filename)%(Extension)')"
       SkipUnchangedFiles="true" />
   </Target>
 
   <Target Name="ClearSkybrudImagePickerAssets" BeforeTargets="Clean">
     <ItemGroup>
-      <SkybrudImagePickerDir Include="$(MSBuildProjectDirectory)\App_Plugins\Skybrud.ImagePicker\" />
+      <SkybrudImagePickerDir Include="$(MSBuildProjectDirectory)\App_Plugins\Skybrud.Umbraco.ImagePicker\" />
     </ItemGroup>
     <Message Text="Clear old Skybrud.ImagePicker files"  Importance="high" />
     <RemoveDir Directories="@(SkybrudImagePickerDir)"  />

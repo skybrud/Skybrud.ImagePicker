@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Skybrud.ImagePicker.ImageWithCropsModelPicker.Controller", function ($scope, $http, editorService) {
+﻿angular.module("umbraco").controller("Skybrud.ImagePicker.ImageModelPicker.Controller", function ($scope, $http, editorService) {
 
     // Get the base URL for the API controller
     const baseUrl = Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath;
@@ -8,22 +8,22 @@
     vm.loaded = false;
     vm.models = [];
 
-    vm.changed = function () {
+    vm.changed = function() {
         $scope.model.value = vm.selected ? vm.selected.key : "";
     };
 
-    vm.reset = function () {
+    vm.reset = function() {
         vm.selected = null;
         $scope.model.value = "";
         delete vm.notFound;
     };
 
-    vm.add = function () {
+    vm.add = function() {
 
         editorService.open({
             title: "Select image model",
             size: "medium",
-            view: "/App_Plugins/Skybrud.ImagePicker/Views/ImageModelPickerOverlay.html",
+            view: "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/ImageModelPickerOverlay.html",
             filter: true,
             availableItems: vm.models,
             submit: function (model) {
@@ -32,7 +32,7 @@
                 delete vm.notFound;
                 editorService.close();
             },
-            close: function () {
+            close: function() {
                 editorService.close();
             }
         });
@@ -43,7 +43,7 @@
 
         if (!$scope.model.value) $scope.model.value = "";
 
-        $http.get(`${baseUrl}/backoffice/Skybrud/ImagePicker/GetImageWithCropsModels`).then(function (response) {
+        $http.get(`${baseUrl}/backoffice/Skybrud/ImagePicker/GetImageModels`).then(function (response) {
 
             vm.loaded = true;
             vm.models = response.data;
