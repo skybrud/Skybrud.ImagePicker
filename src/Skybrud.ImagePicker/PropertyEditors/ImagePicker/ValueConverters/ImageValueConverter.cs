@@ -99,7 +99,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             // Return the item(s) with the correct value type
             valueType ??= typeof(Image);
-            return config.IsMultiPicker ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
+            return config.Multiple ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
 
@@ -124,7 +124,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         /// <param name="dataType">The data type.</param>
         /// <returns><c>true</c> if <paramref name="dataType"/> is a multi picker; otherwise <c>false</c>.</returns>
         private static bool IsMultiPicker(PublishedDataType dataType) {
-            return dataType.ConfigurationAs<ImagePickerConfiguration>()?.IsMultiPicker ?? false;
+            return dataType.ConfigurationAs<ImagePickerConfiguration>()?.Multiple ?? false;
         }
 
         /// <summary>

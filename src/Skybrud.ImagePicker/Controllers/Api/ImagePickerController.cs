@@ -21,11 +21,11 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
         #region Public API methods
         /// <summary>
-        /// Gets all models that can be cast to for the mediapicker2
+        /// Gets all models that can be cast to
         /// </summary>
         /// <returns>Collection of custom types that can be cast to</returns>
         [HttpGet]
-        public IEnumerable<object> GetImageModels() {
+        public IEnumerable<object> GetImageModels(bool isMediaPicker3) {
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
@@ -51,52 +51,11 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
                         if (parameters.Length == 0) continue;
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
-                        if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
-
-                        yield return Map(type);
-
-                        break;
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        /// <summary>
-        /// Gets all models that can be cast to for the mediapicker3
-        /// </summary>
-        /// <returns>Collection of custom types that can be cast to</returns>
-        [HttpGet]
-        public IEnumerable<object> GetImageWithCropsModels() {
-
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
-
-                AssemblyName assemblyName = assembly.GetName();
-
-                switch (assemblyName.Name) {
-                    case "Skybrud.LinkPicker":
-                    case "Umbraco.Core":
-                    case "Umbraco.Infrastructure":
-                    case "Umbraco.PublishedCache.NuCache":
-                    case "Umbraco.Web.Website":
-                    case "Umbraco.Cms.Web.Common.PublishedModels":
-                        continue;
-                }
-
-                foreach (Type type in assembly.GetTypes()) {
-
-                    ConstructorInfo[] constructors = type.GetConstructors(BindingFlags.Instance | BindingFlags.Public);
-
-                    foreach (ConstructorInfo constructor in constructors) {
-
-                        ParameterInfo[] parameters = constructor.GetParameters();
-
-                        if (parameters.Length == 0) continue;
-                        if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
-                        if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
+                        if (isMediaPicker3) {
+                            if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
+                        } else {
+                            if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
+                        }
 
                         yield return Map(type);
 

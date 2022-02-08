@@ -15,15 +15,6 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         #region Properties
 
         /// <summary>
-        /// Gets whether the data type is configured as a multi picker.
-        /// </summary>
-        [ConfigurationField("multiPicker",
-            "Pick multiple images?",
-            "boolean",
-            Description = "Select whether this picker should support picking multiple images.")]
-        public bool IsMultiPicker { get; set; }
-
-        /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.
         /// </summary>
         [ConfigurationField("model",

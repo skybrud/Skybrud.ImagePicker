@@ -37,7 +37,6 @@
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.css" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.html" />
-    <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Scripts\Controllers\ImageWithCropsModelPicker.js" />
     <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.min.css" />
     <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Views\ImageWithCropsModelPicker.html" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\package.manifest" />
