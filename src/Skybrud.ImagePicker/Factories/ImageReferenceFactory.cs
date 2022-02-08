@@ -7,10 +7,15 @@ using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Factories {
 
+    /// <summary>
+    /// Factory to ensure we save image references when using the Skybrud.ImagePicker
+    /// </summary>
     public class ImageReferenceFactory : IDataValueReferenceFactory, IDataValueReference {
 
+        /// <inheritdoc />
         public IDataValueReference GetDataValueReference() => this;
 
+        /// <inheritdoc />
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerPropertyEditor.EditorAlias);
 
         IEnumerable<UmbracoEntityReference> IDataValueReference.GetReferences(object value) {

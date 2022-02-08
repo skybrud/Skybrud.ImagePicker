@@ -12,12 +12,18 @@ using Umbraco.Cms.Web.Common.Filters;
 
 namespace Skybrud.ImagePicker.Controllers.Api {
 
+    /// <summary>
+    /// Umbraco authorized controller for the backoffice plugins
+    /// </summary>
     [AngularJsonOnlyConfiguration]
     [PluginController("Skybrud")]
     public class ImagePickerController : UmbracoAuthorizedApiController {
 
         #region Public API methods
-
+        /// <summary>
+        /// Gets all models that can be cast to for the mediapicker2
+        /// </summary>
+        /// <returns>Collection of custom types that can be cast to</returns>
         [HttpGet]
         public IEnumerable<object> GetImageModels() {
 
@@ -59,6 +65,10 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
         }
 
+        /// <summary>
+        /// Gets all models that can be cast to for the mediapicker3
+        /// </summary>
+        /// <returns>Collection of custom types that can be cast to</returns>
         [HttpGet]
         public IEnumerable<object> GetImageWithCropsModels() {
 

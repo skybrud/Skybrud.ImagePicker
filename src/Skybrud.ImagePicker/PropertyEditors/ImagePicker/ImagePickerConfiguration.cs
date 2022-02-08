@@ -4,6 +4,10 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
+    /// <summary>
+    /// Extends the mediapicker configuration and adds our own fields
+    /// </summary>
+    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.MediaPickerConfiguration" />
     public class ImagePickerConfiguration : MediaPickerConfiguration {
 
         private Type _valueType;

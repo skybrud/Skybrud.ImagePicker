@@ -13,6 +13,10 @@ using Umbraco.Cms.Core.PublishedCache;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
+    /// <summary>
+    /// Extends the mediapicker value converter and ensures we can return our own types
+    /// </summary>
+    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.ValueConverters.MediaPickerValueConverter" />
     public class ImageValueConverter : MediaPickerValueConverter {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
@@ -20,6 +24,12 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageValueConverter"/> class.
+        /// </summary>
+        /// <param name="publishedSnapshotAccessor">The published snapshot accessor.</param>
+        /// <param name="publishedModelFactory">The published model factory.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public ImageValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor, IPublishedModelFactory publishedModelFactory, IServiceProvider serviceProvider) : base(publishedSnapshotAccessor, publishedModelFactory) {
             _publishedSnapshotAccessor = publishedSnapshotAccessor;
             _serviceProvider = serviceProvider;

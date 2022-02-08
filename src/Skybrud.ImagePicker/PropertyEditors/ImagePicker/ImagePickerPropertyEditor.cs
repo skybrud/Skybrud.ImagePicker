@@ -3,6 +3,10 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors {
 
+    /// <summary>
+    /// Extends the base Umbraco mediapicker and adds our own config options
+    /// </summary>
+    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.MediaPickerPropertyEditor" />
     [DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView, Group = EditorGroup, Icon = EditorIcon, ValueType = ValueTypes.Text)]
     public class ImagePickerPropertyEditor : MediaPickerPropertyEditor {
 
@@ -43,10 +47,16 @@ namespace Skybrud.ImagePicker.PropertyEditors {
 
         #region Member methods
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImagePickerPropertyEditor"/> class.
+        /// </summary>
+        /// <param name="dataValueEditorFactory">The data value editor factory.</param>
+        /// <param name="iOHelper">The i o helper.</param>
         public ImagePickerPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory, iOHelper) {
             _iOHelper = iOHelper;
         }
 
+        /// <inheritdoc />
         protected override IConfigurationEditor CreateConfigurationEditor() {
             return new ImagePickerConfigurationEditor(_iOHelper);
         }

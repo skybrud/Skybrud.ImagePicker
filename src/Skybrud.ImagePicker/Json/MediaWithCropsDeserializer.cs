@@ -8,6 +8,9 @@ using Umbraco.Cms.Core.Serialization;
 using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Json {
+    /// <summary>
+    /// Helper class to deserialize a json blob into the MediaWithCrops model
+    /// </summary>
     public class MediaWithCropsDeserializer {
 
         internal static IEnumerable<MediaWithCropsDto> Deserialize(IJsonSerializer jsonSerializer, object value) {

@@ -18,6 +18,11 @@ using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverters {
 
+
+    /// <summary>
+    /// Extends the mediapicker3 valueconverter
+    /// </summary>
+    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.ValueConverters.MediaPickerWithCropsValueConverter" />
     public class ImageWithCropsValueConverter : MediaPickerWithCropsValueConverter {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
@@ -28,6 +33,15 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
 
         #region Constructors
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImageWithCropsValueConverter"/> class.
+        /// </summary>
+        /// <param name="publishedSnapshotAccessor">The published snapshot accessor.</param>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="jsonSerializer">The json serializer.</param>
+        /// <param name="publishedUrlProvider">The published URL provider.</param>
+        /// <param name="publishedValueFallback">The published value fallback.</param>
         public ImageWithCropsValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor,
                                             IServiceProvider serviceProvider,
                                             IJsonSerializer jsonSerializer,

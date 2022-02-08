@@ -9,15 +9,21 @@ using Umbraco.Cms.Core.Serialization;
 using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Factories {
+    /// <summary>
+    /// Factory to ensure we save image references when using the Skybrud.ImagePicker
+    /// </summary>
     public class ImageWithCropsReferenceFactory : IDataValueReferenceFactory, IDataValueReference {
         private readonly IJsonSerializer _jsonSerializer;
 
+        /// <inheritdoc />
         public ImageWithCropsReferenceFactory(IJsonSerializer jsonSerializer) {
             _jsonSerializer = jsonSerializer;
         }
 
+        /// <inheritdoc />
         public IDataValueReference GetDataValueReference() => this;
 
+        /// <inheritdoc />
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerWithCropsPropertyEditor.EditorAlias);
 
         IEnumerable<UmbracoEntityReference> IDataValueReference.GetReferences(object value) {

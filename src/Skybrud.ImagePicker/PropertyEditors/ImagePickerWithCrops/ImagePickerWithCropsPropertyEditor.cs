@@ -3,6 +3,10 @@ using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
 
+    /// <summary>
+    /// Extends the MediaPicker3 property editor with our additional config options
+    /// </summary>
+    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.MediaPicker3PropertyEditor" />
     [DataEditor(EditorAlias, EditorType.PropertyValue, EditorName, EditorView, Group = EditorGroup, Icon = EditorIcon, ValueType = ValueTypes.Text)]
     public class ImagePickerWithCropsPropertyEditor : MediaPicker3PropertyEditor {
 
@@ -43,10 +47,17 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
 
         #region Member methods
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImagePickerWithCropsPropertyEditor"/> class.
+        /// </summary>
+        /// <param name="dataValueEditorFactory">The data value editor factory.</param>
+        /// <param name="iOHelper">The io helper.</param>
         public ImagePickerWithCropsPropertyEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper iOHelper) : base(dataValueEditorFactory, iOHelper) {
             _iOHelper = iOHelper;
         }
 
+        /// <inheritdoc />
         protected override IConfigurationEditor CreateConfigurationEditor() => new ImagePickerWithCropsConfigurationEditor(_iOHelper);
 
         #endregion

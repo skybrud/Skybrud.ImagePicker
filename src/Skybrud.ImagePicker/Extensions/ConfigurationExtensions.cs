@@ -4,9 +4,15 @@ using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace Skybrud.ImagePicker.Extensions {
+    /// <summary>
+    /// Extension methods for image configuration
+    /// </summary>
     public static class ConfigurationExtensions {
-
-        // Based on https://github.com/umbraco/Umbraco-CMS/blob/v9/contrib/src/Umbraco.Infrastructure/Extensions/MediaPicker3ConfigurationExtensions.cs
+        /// <summary>
+        /// Based on https://github.com/umbraco/Umbraco-CMS/blob/v9/contrib/src/Umbraco.Infrastructure/Extensions/MediaPicker3ConfigurationExtensions.cs
+        /// </summary>
+        /// <param name="imageCropperValue"></param>
+        /// <param name="configuration"></param>
         public static void ApplyConfiguration(this ImageCropperValue imageCropperValue, ImagePickerWithCropsConfiguration configuration) {
             var crops = new List<ImageCropperValue.ImageCropperCrop>();
 
