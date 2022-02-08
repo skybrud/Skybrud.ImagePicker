@@ -1,20 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net6.0</TargetFrameworks>
+    <LangVersion>9.0</LangVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <ContentTargetFolders>content</ContentTargetFolders>
   </PropertyGroup>
 
   <PropertyGroup>
     <Version>3.0.0-alpha001</Version>
-    <Authors>Anders Bjerner</Authors>
+    <Authors>Anders Bjerner, Jesper Mayntzhusen</Authors>
     <Company>Limbo</Company>
-    <Description>Image picker functionality for Umbraco 8.</Description>
+    <Description>Image picker functionality for Umbraco 9</Description>
     <Copyright>Copyright © 2021</Copyright>
   </PropertyGroup>
 
+  <!-- Information for the NuGet package -->
   <PropertyGroup>
     <PackageId>Skybrud.ImagePicker</PackageId>
-    <PackageTags>Skybrud, Umbraco, Images, Picker</PackageTags>
+    <PackageTags>Skybrud Umbraco Images Picker Limbo</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://packages.skybrud.dk/skybrud.imagepicker/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
@@ -23,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.33" />
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.35" />
     <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Infrastructure" Version="9.0.0" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
@@ -53,12 +56,14 @@
     </Content>
   </ItemGroup>
 
+  <!-- Include the targets file -->
   <ItemGroup>
-    <Content Include="../build/Skybrud.ImagePicker.targets" PackagePath="build\Skybrud.ImagePicker.targets" />
+    <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
   </ItemGroup>
 
-  <!-- <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)'=='Release' AND '$(BuildTools)'=='1'">
-    <Exec Command="&quot;$(ProjectDir)..\build\Skybrud.BuildTools.Tasks.exe&quot; &quot;postBuild&quot; &quot;$(ConfigurationName)&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
-  </Target> -->
+  <!-- Generate XML documentation -->
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
 
 </Project>
