@@ -16,10 +16,6 @@
 
     if (viewBaseName == "ImageModelPicker") isMediaPicker3 = false;
 
-    console.log(viewBaseName);
-    console.log(viewName);
-
-
     vm.changed = function () {
         $scope.model.value = vm.selected ? vm.selected.key : "";
     };
