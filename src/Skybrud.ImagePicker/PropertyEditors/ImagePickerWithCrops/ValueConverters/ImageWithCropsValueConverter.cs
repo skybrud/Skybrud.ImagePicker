@@ -20,7 +20,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
 
     public class ImageWithCropsValueConverter : MediaPickerWithCropsValueConverter {
 
-        private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor; 
+        private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
         private readonly IServiceProvider _serviceProvider;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly IPublishedUrlProvider _publishedUrlProvider;
@@ -43,7 +43,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
         #endregion
 
         #region Member methods
-        
+
         /// <summary>
         /// Returns whether this class is the value converter for the specified <paramref name="propertyType"/>.
         /// </summary>
@@ -52,7 +52,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
         public override bool IsConverter(IPublishedPropertyType propertyType) {
             return propertyType.EditorAlias == ImagePickerWithCropsPropertyEditor.EditorAlias;
         }
-        
+
         /// <summary>
         /// Converts the intermediate value to a corresponding object value.
         /// </summary>
@@ -72,17 +72,17 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
 
             // Initialize a collection for the items
             List<object> items = new List<object>();
-            
+
             // Determine the item value type
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>()?.ValueType;
 
-            foreach (MediaWithCropsDto dto in dtos)  {
+            foreach (MediaWithCropsDto dto in dtos) {
 
                 var canGetPublishedSnapshot = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshotAccessor);
 
                 if (!canGetPublishedSnapshot)
                     continue;
-                
+
                 // Look up the media
                 IPublishedContent mediaItem = publishedSnapshotAccessor.Media.GetById(dto.MediaKey);
 
@@ -98,13 +98,13 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
 
                 // TODO: This should be optimized/cached, as calling Activator.CreateInstance is slow
                 var mediaWithCropsType = typeof(MediaWithCrops<>).MakeGenericType(mediaItem.GetType());
-                var mediaWithCrops = (MediaWithCrops)Activator.CreateInstance(mediaWithCropsType, mediaItem, _publishedValueFallback, localCrops);
+                var mediaWithCrops = (MediaWithCrops) Activator.CreateInstance(mediaWithCropsType, mediaItem, _publishedValueFallback, localCrops);
 
                 if (!config.Multiple) {
                     // Short-circuit on single item
                     break;
                 }
-                
+
 
                 // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
                 if (valueType == null) {
@@ -126,14 +126,14 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverte
             return config.Multiple ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
-        
+
         /// <summary>
         /// Returns the type of values returned by the converter.
         /// </summary>
         /// <param name="propertyType">The property type.</param>
         /// <returns>The CLR type of values returned by the converter.</returns>
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
-            
+
             bool isMultiple = IsMultiPicker(propertyType.DataType);
 
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>()?.ValueType ?? typeof(ImageWithCrops);

@@ -1,7 +1,7 @@
-﻿using Skybrud.ImagePicker.Json;
+﻿using System.Collections.Generic;
+using Skybrud.ImagePicker.Json;
 using Skybrud.ImagePicker.Models;
 using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
-using System.Collections.Generic;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.Editors;
 using Umbraco.Cms.Core.PropertyEditors;
@@ -28,7 +28,7 @@ namespace Skybrud.ImagePicker.Factories {
             if (value is not string udis) return references;
 
             // If for some reason we can't convert it, but it's a list of udis - fx if upgrading from mediapickerv2 to v3
-            if(dtos is null) {
+            if (dtos is null) {
                 foreach (string udi in udis.Split(',')) {
                     if (UdiParser.TryParse(udi, out GuidUdi guidUdi)) references.Add(new UmbracoEntityReference(guidUdi));
                 }

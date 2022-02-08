@@ -11,7 +11,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         public override IDictionary<string, object> ToValueEditor(object configuration) {
 
             var d = base.ToValueEditor(configuration);
-            
+
             d["idType"] = "udi";
             d["disableFolderSelect"] = "true";
             d["onlyImages"] = "true";

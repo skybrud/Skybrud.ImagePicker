@@ -28,7 +28,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         #endregion
 
         #region Member methods
-        
+
         /// <summary>
         /// Returns whether this class is the value converter for the specified <paramref name="propertyType"/>.
         /// </summary>
@@ -37,7 +37,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         public override bool IsConverter(IPublishedPropertyType propertyType) {
             return propertyType.EditorAlias == ImagePickerPropertyEditor.EditorAlias;
         }
-        
+
         /// <summary>
         /// Converts the intermediate value to a corresponding object value.
         /// </summary>
@@ -57,17 +57,17 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             // Initialize a collection for the items
             List<object> items = new List<object>();
-            
+
             // Determine the item value type
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType;
 
-            foreach (Udi udi in udis)  {
+            foreach (Udi udi in udis) {
 
                 var canGetPublishedSnapshot = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshotAccessor);
 
                 if (!canGetPublishedSnapshot)
                     continue;
-                
+
                 // Look up the media
                 IPublishedContent media = publishedSnapshotAccessor.Media.GetById(udi);
                 if (media == null) continue;
@@ -92,14 +92,14 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             return config.IsMultiPicker ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
-        
+
         /// <summary>
         /// Returns the type of values returned by the converter.
         /// </summary>
         /// <param name="propertyType">The property type.</param>
         /// <returns>The CLR type of values returned by the converter.</returns>
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
-            
+
             bool isMultiple = IsMultiPicker(propertyType.DataType);
 
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType ?? typeof(Image);

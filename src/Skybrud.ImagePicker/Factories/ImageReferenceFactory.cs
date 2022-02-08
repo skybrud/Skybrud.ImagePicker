@@ -8,7 +8,7 @@ using Umbraco.Extensions;
 namespace Skybrud.ImagePicker.Factories {
 
     public class ImageReferenceFactory : IDataValueReferenceFactory, IDataValueReference {
-        
+
         public IDataValueReference GetDataValueReference() => this;
 
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerPropertyEditor.EditorAlias);

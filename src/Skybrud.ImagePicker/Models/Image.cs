@@ -36,10 +36,10 @@ namespace Skybrud.ImagePicker.Models {
         #region Constructors
 
         public Image(IPublishedContent content, ImagePickerConfiguration config) {
-            
+
             int width = content.Value<int>(Constants.Conventions.Media.Width);
             int height = content.Value<int>(Constants.Conventions.Media.Height);
-            
+
             Media = content;
             Width = width;
             Height = height;

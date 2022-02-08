@@ -1,6 +1,6 @@
-﻿using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace Skybrud.ImagePicker.Extensions {

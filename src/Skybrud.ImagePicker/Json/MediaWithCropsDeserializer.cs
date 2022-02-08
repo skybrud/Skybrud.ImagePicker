@@ -1,7 +1,7 @@
-﻿using Skybrud.ImagePicker.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Skybrud.ImagePicker.Models;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 using Umbraco.Cms.Core.Serialization;

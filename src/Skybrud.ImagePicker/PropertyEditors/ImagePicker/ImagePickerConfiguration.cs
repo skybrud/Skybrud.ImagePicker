@@ -1,5 +1,4 @@
 ﻿using System;
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 
@@ -19,7 +18,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
             "boolean",
             Description = "Select whether this picker should support picking multiple images.")]
         public bool IsMultiPicker { get; set; }
-             
+
         /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.
         /// </summary>

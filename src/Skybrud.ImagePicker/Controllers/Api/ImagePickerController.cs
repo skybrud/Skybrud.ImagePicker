@@ -46,13 +46,13 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                         if (parameters.Length == 0) continue;
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
                         if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
-                        
+
                         yield return Map(type);
 
-                        break; 
+                        break;
 
                     }
-                    
+
                 }
 
             }
