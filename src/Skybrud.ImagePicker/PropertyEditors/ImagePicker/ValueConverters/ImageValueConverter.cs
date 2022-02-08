@@ -74,7 +74,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
                 // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
                 if (valueType == null) {
-                    items.Add(new ImagePickerImage(media, config));
+                    items.Add(new Image(media, config));
                     continue;
                 }
 
@@ -88,7 +88,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             }
 
             // Return the item(s) with the correct value type
-            valueType ??= typeof(ImagePickerImage);
+            valueType ??= typeof(Image);
             return config.IsMultiPicker ? items.Cast(valueType).ToList(valueType) : items.FirstOrDefault();
 
         }
@@ -102,7 +102,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             
             bool isMultiple = IsMultiPicker(propertyType.DataType);
 
-            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType ?? typeof(ImagePickerImage);
+            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType ?? typeof(Image);
 
             return isMultiple ? typeof(IEnumerable<>).MakeGenericType(valueType) : valueType;
 

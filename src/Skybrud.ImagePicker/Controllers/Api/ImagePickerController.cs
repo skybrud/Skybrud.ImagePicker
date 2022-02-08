@@ -31,6 +31,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                     case "Umbraco.Infrastructure":
                     case "Umbraco.PublishedCache.NuCache":
                     case "Umbraco.Web.Website":
+                    case "Umbraco.Cms.Web.Common.PublishedModels":
                         continue;
                 }
 
@@ -71,6 +72,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                     case "Umbraco.Infrastructure":
                     case "Umbraco.PublishedCache.NuCache":
                     case "Umbraco.Web.Website":
+                    case "Umbraco.Cms.Web.Common.PublishedModels":
                         continue;
                 }
 

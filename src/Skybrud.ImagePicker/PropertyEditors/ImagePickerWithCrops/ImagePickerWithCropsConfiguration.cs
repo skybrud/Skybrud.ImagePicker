@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 

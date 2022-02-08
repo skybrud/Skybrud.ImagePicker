@@ -6,7 +6,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Models {
-    public class ImagePickerWithCropsImage {
+    public class ImageWithCrops {
         #region Properties
 
         [JsonIgnore]
@@ -34,7 +34,7 @@ namespace Skybrud.ImagePicker.Models {
 
         #region Constructors
 
-        public ImagePickerWithCropsImage(MediaWithCrops content, ImagePickerWithCropsConfiguration config) {
+        public ImageWithCrops(MediaWithCrops content, ImagePickerWithCropsConfiguration config) {
 
             int width = content.Value<int>(Constants.Conventions.Media.Width);
             int height = content.Value<int>(Constants.Conventions.Media.Height);

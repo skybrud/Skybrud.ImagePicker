@@ -6,7 +6,7 @@ using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Models {
 
-    public class ImagePickerImage {
+    public class Image {
 
         #region Properties
 
@@ -35,7 +35,7 @@ namespace Skybrud.ImagePicker.Models {
 
         #region Constructors
 
-        public ImagePickerImage(IPublishedContent content, ImagePickerConfiguration config) {
+        public Image(IPublishedContent content, ImagePickerConfiguration config) {
             
             int width = content.Value<int>(Constants.Conventions.Media.Width);
             int height = content.Value<int>(Constants.Conventions.Media.Height);
