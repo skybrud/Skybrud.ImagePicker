@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Skybrud.ImagePicker.Json;
 using Skybrud.ImagePicker.Models;
-using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
+using Skybrud.ImagePicker.PropertyEditors;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.Editors;
 using Umbraco.Cms.Core.PropertyEditors;

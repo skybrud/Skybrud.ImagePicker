@@ -16,7 +16,7 @@ using Umbraco.Cms.Core.Routing;
 using Umbraco.Cms.Core.Serialization;
 using Umbraco.Extensions;
 
-namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops.ValueConverters {
+namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
 
     /// <summary>

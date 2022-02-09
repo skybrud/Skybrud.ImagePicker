@@ -2,8 +2,7 @@
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
-
+namespace Skybrud.ImagePicker.PropertyEditors {
 
     /// <summary>
     /// Extends MediaPicker3 with our own additional fields
@@ -14,6 +13,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
         private Type _valueType;
 
         #region Properties
+
         /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.
         /// </summary>

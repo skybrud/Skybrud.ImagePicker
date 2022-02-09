@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops;
+using Skybrud.ImagePicker.PropertyEditors;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;

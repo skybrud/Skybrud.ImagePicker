@@ -2,7 +2,7 @@
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
 
-namespace Skybrud.ImagePicker.PropertyEditors.ImagePickerWithCrops {
+namespace Skybrud.ImagePicker.PropertyEditors {
 
     /// <summary>
     /// 
