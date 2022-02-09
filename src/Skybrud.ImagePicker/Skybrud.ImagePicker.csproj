@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <ContentTargetFolders>content</ContentTargetFolders>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.0.0-alpha004</Version>
-    <Authors>Anders Bjerner</Authors>
+    <Version>3.0.0-alpha001</Version>
+    <Authors>Anders Bjerner, Jesper Mayntzhusen</Authors>
     <Company>Limbo</Company>
-    <Description>Image picker functionality for Umbraco 8.</Description>
+    <Description>Image picker functionality for Umbraco 9</Description>
     <Copyright>Copyright © 2021</Copyright>
   </PropertyGroup>
 
+  <!-- Information for the NuGet package -->
   <PropertyGroup>
     <PackageId>Skybrud.ImagePicker</PackageId>
-    <PackageTags>Skybrud, Umbraco, Images, Picker</PackageTags>
+    <PackageTags>Skybrud Umbraco Images Picker Limbo</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://packages.skybrud.dk/skybrud.imagepicker/</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>
@@ -24,35 +26,43 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Skybrud.Essentials" Version="1.1.30" />
-    <PackageReference Include="UmbracoCms.Web" Version="8.6.0">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.35" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="9.0.0" />
+    <PackageReference Include="Umbraco.Cms.Infrastructure" Version="9.0.0" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Common" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.js" />
-    <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.css" />
-    <Content Include="App_Plugins\Skybrud.ImagePicker\**\*.html" />
-    <None Remove="App_Plugins\Skybrud.ImagePicker\Styles\Default.min.css" />
-    <Content Include="App_Plugins\Skybrud.ImagePicker\package.manifest" />
+    <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.js" />
+    <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.css" />
+    <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.html" />
+    <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.min.css" />
+    <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Views\ImageWithCropsModelPicker.html" />
+    <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\package.manifest" />
     <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="App_Plugins\Skybrud.ImagePicker\Styles\Default.css">
+    <Content Update="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.css">
       <DependentUpon>Default.less</DependentUpon>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="App_Plugins\Skybrud.ImagePicker\Styles\Default.min.css">
+    <Content Update="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.min.css">
       <DependentUpon>Default.css</DependentUpon>
     </Content>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(ConfigurationName)'=='Release' AND '$(BuildTools)'=='1'">
-    <Exec Command="&quot;$(ProjectDir)..\build\Skybrud.BuildTools.Tasks.exe&quot; &quot;postBuild&quot; &quot;$(ConfigurationName)&quot; &quot;$(ProjectPath)&quot; &quot;$(TargetPath)&quot;" />
-  </Target>
+  <!-- Include the targets file -->
+  <ItemGroup>
+    <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+  </ItemGroup>
+
+  <!-- Generate XML documentation -->
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
 
 </Project>

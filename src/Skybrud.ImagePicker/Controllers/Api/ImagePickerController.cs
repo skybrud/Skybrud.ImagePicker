@@ -2,32 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web.Mvc;
-using Umbraco.Web.WebApi;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Web.BackOffice.Controllers;
+using Umbraco.Cms.Web.Common.Attributes;
+using Umbraco.Cms.Web.Common.Filters;
 
 namespace Skybrud.ImagePicker.Controllers.Api {
 
+    /// <summary>
+    /// Umbraco authorized controller for the backoffice plugins
+    /// </summary>
     [AngularJsonOnlyConfiguration]
     [PluginController("Skybrud")]
     public class ImagePickerController : UmbracoAuthorizedApiController {
 
         #region Public API methods
-
+        /// <summary>
+        /// Gets all models that can be cast to
+        /// </summary>
+        /// <returns>Collection of custom types that can be cast to</returns>
         [HttpGet]
-        public IEnumerable<object> GetImageModels() {
+        public IEnumerable<object> GetImageModels(bool isMediaPicker3) {
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
                 AssemblyName assemblyName = assembly.GetName();
-                    
+
                 switch (assemblyName.Name) {
-                    case "Skybrud.ImagePicker":
                     case "Skybrud.LinkPicker":
                     case "Umbraco.Core":
-                    case "Umbraco.Web":
+                    case "Umbraco.Infrastructure":
+                    case "Umbraco.PublishedCache.NuCache":
+                    case "Umbraco.Web.Website":
+                    case "Umbraco.Cms.Web.Common.PublishedModels":
                         continue;
                 }
 
@@ -41,14 +51,18 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
                         if (parameters.Length == 0) continue;
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
-                        if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
-                        
+                        if (isMediaPicker3) {
+                            if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
+                        } else {
+                            if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
+                        }
+
                         yield return Map(type);
 
                         break;
 
                     }
-                    
+
                 }
 
             }
@@ -59,7 +73,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
         #region Private helper methods
 
-        private JObject Map(Type type) {
+        private static JObject Map(Type type) {
 
             JObject json = new JObject {
                 { "assembly", type.Assembly.FullName },
