@@ -54,7 +54,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
                         ParameterInfo[] parameters = constructor.GetParameters();
 
                         if (parameters.Length == 0) continue;
-                        if (parameters.Length > 1 && parameters.Skip(1).Any(x => x.ParameterType.IsValueType)) continue;
+                        if (parameters.Length > 1 && parameters.Skip(1).Any(x => !IsValidType(x))) continue;
                         if (isMediaPicker3) {
                             if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
                         } else {
@@ -76,6 +76,14 @@ namespace Skybrud.ImagePicker.Controllers.Api {
         #endregion
 
         #region Private helper methods
+
+        private static bool IsValidType(ParameterInfo parameter) {
+            return IsValidType(parameter.ParameterType);
+        }
+
+        private static bool IsValidType(Type type) {
+            return !type.IsValueType && type != typeof(IPublishedValueFallback);
+        }
 
         private static JObject Map(Type type) {
 
