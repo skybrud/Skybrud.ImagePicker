@@ -33,6 +33,9 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
                 switch (assemblyName.Name) {
                     case "Skybrud.LinkPicker":
+                    case "Skybrud.ImagePicker":
+                    case "Skybrud.Umbraco.Feedback":
+                    case "Skybrud.Umbraco.Spa":
                     case "Umbraco.Core":
                     case "Umbraco.Infrastructure":
                     case "Umbraco.PublishedCache.NuCache":
