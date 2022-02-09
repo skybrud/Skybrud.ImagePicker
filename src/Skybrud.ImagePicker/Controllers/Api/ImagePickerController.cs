@@ -22,9 +22,9 @@ namespace Skybrud.ImagePicker.Controllers.Api {
         #region Public API methods
 
         /// <summary>
-        /// Gets all models that can be cast to
+        /// Gets all models that can be cast to.
         /// </summary>
-        /// <returns>Collection of custom types that can be cast to</returns>
+        /// <returns>Collection of custom types that can be cast to.</returns>
         [HttpGet]
         public IEnumerable<object> GetImageModels(string editor = null) {
 
@@ -86,12 +86,12 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
         private static JObject Map(Type type) {
 
-            JObject json = new JObject {
+            JObject json = new() {
                 { "assembly", type.Assembly.FullName },
                 { "key", type.AssemblyQualifiedName },
-                { "icon", $"icon-box color-{type.Assembly.FullName.Split('.')[0].ToLower()}" },
+                { "icon", $"icon-box color-{type.Assembly.FullName?.Split('.')[0].ToLower()}" },
                 { "name", type.Name },
-                { "description", type.AssemblyQualifiedName?.Split(new string[] { ", Version" }, StringSplitOptions.None)[0] + ".dll" }
+                { "description", type.AssemblyQualifiedName?.Split(new[] { ", Version" }, StringSplitOptions.None)[0] + ".dll" }
             };
 
             return json;

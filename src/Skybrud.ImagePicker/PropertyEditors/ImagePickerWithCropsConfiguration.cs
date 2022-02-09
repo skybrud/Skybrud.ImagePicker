@@ -5,9 +5,9 @@ using Umbraco.Cms.Core.PropertyEditors;
 namespace Skybrud.ImagePicker.PropertyEditors {
 
     /// <summary>
-    /// Extends MediaPicker3 with our own additional fields
+    /// Extends MediaPicker3 with our own additional fields.
     /// </summary>
-    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.MediaPicker3Configuration" />
+    /// <seealso cref="MediaPicker3Configuration" />
     public class ImagePickerWithCropsConfiguration : MediaPicker3Configuration {
 
         private Type _valueType;

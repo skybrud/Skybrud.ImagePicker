@@ -20,9 +20,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
 
     /// <summary>
-    /// Extends the mediapicker3 valueconverter
+    /// Extends the <c>mediapicker3</c> value converter.
     /// </summary>
-    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.ValueConverters.MediaPickerWithCropsValueConverter" />
+    /// <seealso cref="MediaPickerWithCropsValueConverter" />
     public class ImageWithCropsValueConverter : MediaPickerWithCropsValueConverter {
 
         private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;

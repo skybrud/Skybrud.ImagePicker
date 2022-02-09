@@ -5,9 +5,9 @@ using Umbraco.Cms.Core.PropertyEditors;
 namespace Skybrud.ImagePicker.PropertyEditors {
 
     /// <summary>
-    /// 
+    /// Configuration editor for <see cref="ImagePickerWithCropsPropertyEditor"/>.
     /// </summary>
-    /// <seealso cref="Umbraco.Cms.Core.PropertyEditors.ConfigurationEditor" />
+    /// <seealso cref="ConfigurationEditor" />
     public class ImagePickerWithCropsConfigurationEditor : ConfigurationEditor<ImagePickerWithCropsConfiguration> {
 
         /// <summary>
