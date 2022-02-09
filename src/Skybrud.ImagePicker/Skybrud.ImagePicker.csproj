@@ -37,6 +37,7 @@
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.css" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.html" />
+    <Content Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Scripts\Intellisense.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\package.manifest" />
     <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
