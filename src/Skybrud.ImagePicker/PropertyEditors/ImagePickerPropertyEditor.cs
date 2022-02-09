@@ -20,7 +20,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// <summary>
         /// Gets the name of the editor.
         /// </summary>
-        public const string EditorName = "Skybrud ImagePicker Image";
+        public const string EditorName = "Skybrud Image";
 
         /// <summary>
         /// Gets the group name of the editor.
