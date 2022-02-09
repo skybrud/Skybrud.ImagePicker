@@ -37,8 +37,6 @@
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.css" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.html" />
-    <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.min.css" />
-    <None Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Views\ImageWithCropsModelPicker.html" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\package.manifest" />
     <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
@@ -46,12 +44,6 @@
   <ItemGroup>
     <Content Update="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.css">
       <DependentUpon>Default.less</DependentUpon>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.min.css">
-      <DependentUpon>Default.css</DependentUpon>
     </Content>
   </ItemGroup>
 
