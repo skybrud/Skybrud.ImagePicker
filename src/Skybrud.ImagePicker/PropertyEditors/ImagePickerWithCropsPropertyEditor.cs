@@ -15,7 +15,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// <summary>
         /// Gets the alias of the editor.
         /// </summary>
-        public const string EditorAlias = "Skybrud.ImagePickerWithCrops.Image";
+        public const string EditorAlias = "Skybrud.ImagePicker.ImageWithCrops";
 
         /// <summary>
         /// Gets the name of the editor.
