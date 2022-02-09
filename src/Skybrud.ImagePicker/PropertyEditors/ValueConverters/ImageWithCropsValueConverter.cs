@@ -96,6 +96,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
 
                 foreach (MediaWithCropsDto dto in dtos) {
+                    
+                    // Short-circuit on single item
+                    if (!config.Multiple && items.Count > 0) break; 
 
                     // Look up the media
                     IPublishedContent mediaItem = publishedSnapshot.Media.GetById(dto.MediaKey);
@@ -113,11 +116,6 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                     // TODO: This should be optimized/cached, as calling Activator.CreateInstance is slow
                     var mediaWithCropsType = typeof(MediaWithCrops<>).MakeGenericType(mediaItem.GetType());
                     var mediaWithCrops = (MediaWithCrops) Activator.CreateInstance(mediaWithCropsType, mediaItem, _publishedValueFallback, localCrops);
-
-                    if (!config.Multiple) {
-                        // Short-circuit on single item
-                        break;
-                    }
 
                     // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
                     if (valueType == null) {
