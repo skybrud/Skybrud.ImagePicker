@@ -79,60 +79,62 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         public override object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
 
             // Get the data type configuration
-            ImagePickerWithCropsConfiguration config = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>();
+            ImagePickerWithCropsConfiguration config = propertyType.DataType
+                .ConfigurationAs<ImagePickerWithCropsConfiguration>();
 
             // Get the UDIs from the intermediate value
-            var dtos = MediaWithCropsDeserializer.Deserialize(_jsonSerializer, inter);
+            IEnumerable<MediaWithCropsDto> dtos = MediaWithCropsDeserializer
+                .Deserialize(_jsonSerializer, inter);
 
             // Initialize a collection for the items
-            List<object> items = new List<object>();
+            List<object> items = new();
 
             // Determine the item value type
-            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>()?.ValueType;
+            Type valueType = config.ValueType;
 
-            foreach (MediaWithCropsDto dto in dtos) {
+            // Attempt to get the current published snapshot
+            if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
 
-                var canGetPublishedSnapshot = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshotAccessor);
+                foreach (MediaWithCropsDto dto in dtos) {
 
-                if (!canGetPublishedSnapshot)
-                    continue;
+                    // Look up the media
+                    IPublishedContent mediaItem = publishedSnapshot.Media.GetById(dto.MediaKey);
 
-                // Look up the media
-                IPublishedContent mediaItem = publishedSnapshotAccessor.Media.GetById(dto.MediaKey);
+                    if (mediaItem == null) continue;
 
-                if (mediaItem == null) continue;
+                    ImageCropperValue localCrops = new() {
+                        Crops = dto.Crops,
+                        FocalPoint = dto.FocalPoint,
+                        Src = mediaItem.Url(_publishedUrlProvider)
+                    };
 
-                var localCrops = new ImageCropperValue {
-                    Crops = dto.Crops,
-                    FocalPoint = dto.FocalPoint,
-                    Src = mediaItem.Url(_publishedUrlProvider)
-                };
+                    localCrops.ApplyConfiguration(config);
 
-                localCrops.ApplyConfiguration(config);
+                    // TODO: This should be optimized/cached, as calling Activator.CreateInstance is slow
+                    var mediaWithCropsType = typeof(MediaWithCrops<>).MakeGenericType(mediaItem.GetType());
+                    var mediaWithCrops = (MediaWithCrops) Activator.CreateInstance(mediaWithCropsType, mediaItem, _publishedValueFallback, localCrops);
 
-                // TODO: This should be optimized/cached, as calling Activator.CreateInstance is slow
-                var mediaWithCropsType = typeof(MediaWithCrops<>).MakeGenericType(mediaItem.GetType());
-                var mediaWithCrops = (MediaWithCrops) Activator.CreateInstance(mediaWithCropsType, mediaItem, _publishedValueFallback, localCrops);
+                    if (!config.Multiple) {
+                        // Short-circuit on single item
+                        break;
+                    }
 
-                if (!config.Multiple) {
-                    // Short-circuit on single item
-                    break;
+                    // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
+                    if (valueType == null) {
+                        items.Add(new ImageWithCrops(mediaWithCrops, config));
+                        continue;
+                    }
+
+                    // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
+                    if (HasConstructor<MediaWithCrops, ImagePickerWithCropsConfiguration>(valueType)) {
+                        items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, mediaWithCrops, config));
+                        continue;
+                    }
+
+                    items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, mediaWithCrops));
+
                 }
 
-
-                // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
-                if (valueType == null) {
-                    items.Add(new ImageWithCrops(mediaWithCrops, config));
-                    continue;
-                }
-
-                // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
-                if (HasConstructor<MediaWithCrops, ImagePickerWithCropsConfiguration>(valueType)) {
-                    items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, mediaWithCrops, config));
-                    continue;
-                }
-
-                items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, mediaWithCrops));
             }
 
             // Return the item(s) with the correct value type

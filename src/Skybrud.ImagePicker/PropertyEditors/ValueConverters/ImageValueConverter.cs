@@ -71,30 +71,30 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             // Determine the item value type
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType;
 
-            foreach (Udi udi in udis) {
+            // Attempt to get the current published snapshot
+            if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
+                
+                foreach (Udi udi in udis) {
 
-                var canGetPublishedSnapshot = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out var publishedSnapshotAccessor);
+                    // Look up the media
+                    IPublishedContent media = publishedSnapshot.Media.GetById(udi);
+                    if (media == null) continue;
 
-                if (!canGetPublishedSnapshot)
-                    continue;
+                    // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
+                    if (valueType == null) {
+                        items.Add(new Image(media, config));
+                        continue;
+                    }
 
-                // Look up the media
-                IPublishedContent media = publishedSnapshotAccessor.Media.GetById(udi);
-                if (media == null) continue;
+                    // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
+                    if (HasConstructor<IPublishedContent, ImagePickerConfiguration>(valueType)) {
+                        items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media, config));
+                        continue;
+                    }
 
-                // If the configuration doesn't specify a value type, we just create a new ImagePickerImage
-                if (valueType == null) {
-                    items.Add(new Image(media, config));
-                    continue;
+                    items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media));
                 }
 
-                // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
-                if (HasConstructor<IPublishedContent, ImagePickerConfiguration>(valueType)) {
-                    items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media, config));
-                    continue;
-                }
-
-                items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, media));
             }
 
             // Return the item(s) with the correct value type
