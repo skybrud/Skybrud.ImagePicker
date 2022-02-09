@@ -66,7 +66,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             Udi[] udis = inter as Udi[] ?? Array.Empty<Udi>();
 
             // Initialize a collection for the items
-            List<object> items = new List<object>();
+            List<object> items = new();
 
             // Determine the item value type
             Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerConfiguration>()?.ValueType;
