@@ -4,8 +4,10 @@ using System.Runtime.Serialization;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace Skybrud.ImagePicker.Models {
+
     [DataContract]
     internal class MediaWithCropsDto {
+
         [DataMember(Name = "key")]
         public Guid Key { get; set; }
 
@@ -17,5 +19,7 @@ namespace Skybrud.ImagePicker.Models {
 
         [DataMember(Name = "focalPoint")]
         public ImageCropperValue.ImageCropperFocalPoint FocalPoint { get; set; }
+
     }
+
 }

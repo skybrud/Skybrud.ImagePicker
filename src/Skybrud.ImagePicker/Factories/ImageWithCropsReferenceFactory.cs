@@ -9,10 +9,12 @@ using Umbraco.Cms.Core.Serialization;
 using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Factories {
+
     /// <summary>
     /// Factory to ensure we save image references when using the Skybrud.ImagePicker
     /// </summary>
     public class ImageWithCropsReferenceFactory : IDataValueReferenceFactory, IDataValueReference {
+
         private readonly IJsonSerializer _jsonSerializer;
 
         /// <inheritdoc />
@@ -27,6 +29,7 @@ namespace Skybrud.ImagePicker.Factories {
         public bool IsForEditor(IDataEditor dataEditor) => dataEditor.Alias.InvariantEquals(ImagePickerWithCropsPropertyEditor.EditorAlias);
 
         IEnumerable<UmbracoEntityReference> IDataValueReference.GetReferences(object value) {
+
             List<UmbracoEntityReference> references = new List<UmbracoEntityReference>();
 
             var dtos = MediaWithCropsDeserializer.Deserialize(_jsonSerializer, value);
@@ -38,7 +41,6 @@ namespace Skybrud.ImagePicker.Factories {
                 foreach (string udi in udis.Split(',')) {
                     if (UdiParser.TryParse(udi, out GuidUdi guidUdi)) references.Add(new UmbracoEntityReference(guidUdi));
                 }
-
                 return references;
             }
 
@@ -48,6 +50,9 @@ namespace Skybrud.ImagePicker.Factories {
             }
 
             return references;
+
         }
+
     }
+
 }

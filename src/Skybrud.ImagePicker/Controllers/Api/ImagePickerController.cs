@@ -20,6 +20,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
     public class ImagePickerController : UmbracoAuthorizedApiController {
 
         #region Public API methods
+
         /// <summary>
         /// Gets all models that can be cast to
         /// </summary>

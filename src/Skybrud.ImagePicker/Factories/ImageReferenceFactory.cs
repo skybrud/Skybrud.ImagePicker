@@ -28,6 +28,7 @@ namespace Skybrud.ImagePicker.Factories {
 
             return references;
         }
+
     }
 
 }

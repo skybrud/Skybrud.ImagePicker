@@ -17,6 +17,7 @@ namespace Skybrud.ImagePicker.Composers {
             builder.DataValueReferenceFactories().Append<ImageReferenceFactory>();
             builder.DataValueReferenceFactories().Append<ImageWithCropsReferenceFactory>();
         }
+
     }
 
 }

@@ -13,8 +13,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         /// Initializes a new instance of the <see cref="ImagePickerConfigurationEditor"/> class.
         /// </summary>
         /// <param name="ioHelper"></param>
-        public ImagePickerConfigurationEditor(IIOHelper ioHelper) : base(ioHelper) {
-        }
+        public ImagePickerConfigurationEditor(IIOHelper ioHelper) : base(ioHelper) { }
 
         /// <summary>Converts to valueeditor.</summary>
         /// <param name="configuration">The configuration.</param>

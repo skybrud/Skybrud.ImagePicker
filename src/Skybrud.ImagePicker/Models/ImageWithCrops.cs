@@ -6,10 +6,12 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
 
 namespace Skybrud.ImagePicker.Models {
+
     /// <summary>
     /// Image class that extends MediaWithCrops with image specific properties
     /// </summary>
     public class ImageWithCrops {
+
         #region Properties
 
         /// <summary>
@@ -76,5 +78,7 @@ namespace Skybrud.ImagePicker.Models {
         }
 
         #endregion
+
     }
+
 }
