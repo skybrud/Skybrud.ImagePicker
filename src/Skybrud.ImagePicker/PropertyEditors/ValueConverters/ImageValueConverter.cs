@@ -73,7 +73,7 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             // Attempt to get the current published snapshot
             if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
-                
+
                 foreach (Udi udi in udis) {
 
                     // Look up the media

@@ -96,9 +96,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
             if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
 
                 foreach (MediaWithCropsDto dto in dtos) {
-                    
+
                     // Short-circuit on single item
-                    if (!config.Multiple && items.Count > 0) break; 
+                    if (!config.Multiple && items.Count > 0) break;
 
                     // Look up the media
                     IPublishedContent mediaItem = publishedSnapshot.Media.GetById(dto.MediaKey);
