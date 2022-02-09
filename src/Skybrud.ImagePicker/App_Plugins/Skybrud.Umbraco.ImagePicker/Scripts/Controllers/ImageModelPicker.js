@@ -8,13 +8,12 @@
     vm.loaded = false;
     vm.models = [];
 
-    var viewPaths = $scope.model.view.split("/"); // array of path parts
-    var viewName = viewPaths[viewPaths.length - 1]; // last part - ImageModelPicker.html
-    var viewBaseName = viewName.split(".")[0] // ImageModelPicker
+    // Get the query string of the view URL
+    const urlParts = $scope.model.view.split("?");
+    const urlQuery = urlParts.length === 1 ? "" : urlParts[1];
 
-    var isMediaPicker3 = true;
-
-    if (viewBaseName == "ImageModelPicker") isMediaPicker3 = false;
+    // Get the "editor" parameter from the query string
+    const editor = new URLSearchParams(urlQuery).get("editor");
 
     vm.changed = function () {
         $scope.model.value = vm.selected ? vm.selected.key : "";
@@ -51,7 +50,7 @@
 
         if (!$scope.model.value) $scope.model.value = "";
 
-        $http.get(`${baseUrl}/backoffice/Skybrud/ImagePicker/GetImageModels?isMediaPicker3=${isMediaPicker3}`).then(function (response) {
+        $http.get(`${baseUrl}/backoffice/Skybrud/ImagePicker/GetImageModels?editor=${editor}`).then(function (response) {
 
             vm.loaded = true;
             vm.models = response.data;

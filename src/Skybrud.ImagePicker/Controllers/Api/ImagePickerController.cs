@@ -26,7 +26,10 @@ namespace Skybrud.ImagePicker.Controllers.Api {
         /// </summary>
         /// <returns>Collection of custom types that can be cast to</returns>
         [HttpGet]
-        public IEnumerable<object> GetImageModels(bool isMediaPicker3) {
+        public IEnumerable<object> GetImageModels(string editor = null) {
+
+            // Determine the type of the input type that custom model constructors should have as their first parameter
+            Type inputModelType = editor == "v3" ? typeof(MediaWithCrops) : typeof(IPublishedContent);
 
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies()) {
 
@@ -55,11 +58,7 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
                         if (parameters.Length == 0) continue;
                         if (parameters.Length > 1 && parameters.Skip(1).Any(x => !IsValidType(x))) continue;
-                        if (isMediaPicker3) {
-                            if (parameters[0].ParameterType != typeof(MediaWithCrops)) continue;
-                        } else {
-                            if (parameters[0].ParameterType != typeof(IPublishedContent)) continue;
-                        }
+                        if (parameters[0].ParameterType != inputModelType) continue;
 
                         yield return Map(type);
 
