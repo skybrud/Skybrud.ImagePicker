@@ -25,21 +25,19 @@
     <RepositoryUrl>https://github.com/skybrud/Skybrud.ImagePicker</RepositoryUrl>
   </PropertyGroup>
 
+  <!-- Include NuGet dependencies -->
   <ItemGroup>
     <PackageReference Include="Skybrud.Essentials" Version="1.1.35" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.0.0" />
   </ItemGroup>
 
+  <!-- Include backoffice assets -->
   <ItemGroup>
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.css" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\**\*.html" />
     <Content Remove="App_Plugins\Skybrud.Umbraco.ImagePicker\Scripts\Intellisense.js" />
     <Content Include="App_Plugins\Skybrud.Umbraco.ImagePicker\package.manifest" />
-    <None Include="../build/Limbo.png" Pack="true" PackagePath="\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="App_Plugins\Skybrud.Umbraco.ImagePicker\Styles\Default.css">
       <DependentUpon>Default.less</DependentUpon>
     </Content>
@@ -48,6 +46,11 @@
   <!-- Include the targets file -->
   <ItemGroup>
     <Content Include="../build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+  </ItemGroup>
+
+  <!-- Include package icon for NuGet -->
+  <ItemGroup>
+    <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <!-- Generate XML documentation -->
