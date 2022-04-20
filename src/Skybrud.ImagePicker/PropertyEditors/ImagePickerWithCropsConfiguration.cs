@@ -21,7 +21,7 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         [ConfigurationField("typeConverter",
             "Type converter",
             "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/TypeConverter.html?editor=v3",
-            Description = "Select a type converter, which will be used for converting the selected items.")]
+            Description = "Select a type converter, which will be used for converting the selected items.<a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v3.0/imagewithcrops/configuration/#type-converter\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
         public JObject TypeConverter { get; set; }
 
         /// <summary>
