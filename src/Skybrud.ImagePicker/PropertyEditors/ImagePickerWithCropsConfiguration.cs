@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
 
@@ -9,10 +10,19 @@ namespace Skybrud.ImagePicker.PropertyEditors {
     /// </summary>
     /// <seealso cref="MediaPicker3Configuration" />
     public class ImagePickerWithCropsConfiguration : MediaPicker3Configuration {
-
+        
         private Type _valueType;
 
         #region Properties
+        
+        /// <summary>
+        /// Gets a reference to a <see cref="JObject"/> with information about the selected type converter.
+        /// </summary>
+        [ConfigurationField("typeConverter",
+            "Type converter",
+            "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/TypeConverter.html?editor=v3",
+            Description = "Select a type converter, which will be used for converting the selected items.")]
+        public JObject TypeConverter { get; set; }
 
         /// <summary>
         /// Gets the name of the value type. This will be used for resolving the <see cref="ValueType"/> parameter.

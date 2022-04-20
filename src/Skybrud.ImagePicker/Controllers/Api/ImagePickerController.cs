@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using Skybrud.ImagePicker.Converters.ImageWithCrops;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.BackOffice.Controllers;
@@ -18,6 +19,20 @@ namespace Skybrud.ImagePicker.Controllers.Api {
     [AngularJsonOnlyConfiguration]
     [PluginController("Skybrud")]
     public class ImagePickerController : UmbracoAuthorizedApiController {
+        
+        private readonly ImageWithCropsTypeConverterCollection _imageWithCropsTypeConverterCollection;
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance based on the specified dependency.
+        /// </summary>
+        /// <param name="imageWithCropsTypeConverterCollection"></param>
+        public ImagePickerController(ImageWithCropsTypeConverterCollection imageWithCropsTypeConverterCollection) {
+            _imageWithCropsTypeConverterCollection = imageWithCropsTypeConverterCollection;
+        }
+
+        #endregion
 
         #region Public API methods
 
@@ -70,6 +85,22 @@ namespace Skybrud.ImagePicker.Controllers.Api {
 
             }
 
+        }
+
+        /// <summary>
+        /// Returns a list of all type converters for the iamge with crops property editor.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public object GetTypeConverters(string editor = null) {
+            return editor switch {
+                "v3" => _imageWithCropsTypeConverterCollection
+                    .ToArray()
+                    .Select(x => new {
+                        assembly = x.GetType().Assembly.FullName, key = x.GetType().AssemblyQualifiedName, name = x.Name
+                    }),
+                _ => Array.Empty<object>()
+            };
         }
 
         #endregion

@@ -1,0 +1,4 @@
+﻿﻿<div class="umb-contentpicker" ng-controller="Skybrud.ImagePicker.TypeConverter as vm">
+    <div ng-if="vm.error" ng-bind-html="vm.error" class="alert alert-danger">{{vm.error}}</div>
+    <select ng-options="type as type.name for type in vm.types track by type.key" ng-model="vm.selected" ng-change="vm.updated()" class="umb-property-editor"></select>
+</div>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Skybrud.Essentials.Collections.Extensions;
+using Skybrud.Essentials.Json.Extensions;
+using Skybrud.ImagePicker.Converters.ImageWithCrops;
 using Skybrud.ImagePicker.Extensions;
 using Skybrud.ImagePicker.Json;
 using Skybrud.ImagePicker.Models;
@@ -31,8 +33,9 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         private readonly IPublishedUrlProvider _publishedUrlProvider;
         private readonly IPublishedValueFallback _publishedValueFallback;
 
-        #region Constructors
+        private readonly ImageWithCropsTypeConverterCollection _converterCollection;
 
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageWithCropsValueConverter"/> class.
@@ -42,16 +45,19 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         /// <param name="jsonSerializer">The json serializer.</param>
         /// <param name="publishedUrlProvider">The published URL provider.</param>
         /// <param name="publishedValueFallback">The published value fallback.</param>
+        /// <param name="converterCollection">The current converter collection.</param>
         public ImageWithCropsValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor,
                                             IServiceProvider serviceProvider,
                                             IJsonSerializer jsonSerializer,
                                             IPublishedUrlProvider publishedUrlProvider,
-                                            IPublishedValueFallback publishedValueFallback) : base(publishedSnapshotAccessor, publishedUrlProvider, publishedValueFallback, jsonSerializer) {
+                                            IPublishedValueFallback publishedValueFallback,
+                                            ImageWithCropsTypeConverterCollection converterCollection) : base(publishedSnapshotAccessor, publishedUrlProvider, publishedValueFallback, jsonSerializer) {
             _publishedSnapshotAccessor = publishedSnapshotAccessor;
             _serviceProvider = serviceProvider;
             _jsonSerializer = jsonSerializer;
             _publishedUrlProvider = publishedUrlProvider;
             _publishedValueFallback = publishedValueFallback;
+            _converterCollection = converterCollection;
         }
 
         #endregion
@@ -88,10 +94,10 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
 
             // Initialize a collection for the items
             List<object> items = new();
-
-            // Determine the item value type
-            Type valueType = config.ValueType;
-
+            
+            // Get the type converter (if any) and determine the item value type
+            Type valueType = TryGetConverter(config, out IImageWithCropsTypeConverter converter) ? converter.GetType(propertyType, config) : config.ValueType;
+            
             // Attempt to get the current published snapshot
             if (_publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot)) {
 
@@ -123,6 +129,11 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                         continue;
                     }
 
+                    if (converter != null) {
+                        items.Add(converter.Convert(owner, propertyType, mediaWithCrops, config));
+                        continue;
+                    }
+
                     // If the selected type has a constructor with an ImagePickerConfiguration as the second parameter, we choose that constructor
                     if (HasConstructor<MediaWithCrops, ImagePickerWithCropsConfiguration>(valueType)) {
                         items.Add(ActivatorUtilities.CreateInstance(_serviceProvider, valueType, mediaWithCrops, config));
@@ -147,12 +158,16 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
         /// <param name="propertyType">The property type.</param>
         /// <returns>The CLR type of values returned by the converter.</returns>
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
+            
+            // Call the base value converter if the config isn't the right type
+            if (propertyType.DataType.Configuration is not ImagePickerWithCropsConfiguration config) return base.GetPropertyValueType(propertyType);
+            
+            // Look up the selected converter and get it's desired type
+            if (TryGetConverter(config, out IImageWithCropsTypeConverter converter)) return converter.GetType(propertyType, config);
 
-            bool isMultiple = IsMultiPicker(propertyType.DataType);
-
-            Type valueType = propertyType.DataType.ConfigurationAs<ImagePickerWithCropsConfiguration>()?.ValueType ?? typeof(ImageWithCrops);
-
-            return isMultiple ? typeof(IEnumerable<>).MakeGenericType(valueType) : valueType;
+            // Return a type based on the value type (with fallback to "ImageWithCrops" if not specified or not found)
+            Type valueType = config.ValueType ?? typeof(ImageWithCrops);
+            return config.Multiple ? typeof(IEnumerable<>).MakeGenericType(valueType) : valueType;
 
         }
 
@@ -181,6 +196,12 @@ namespace Skybrud.ImagePicker.PropertyEditors.ValueConverters {
                 .GetConstructors(BindingFlags.Public | BindingFlags.Instance)
                 .Select(cs => cs.GetParameters())
                 .Any(ps => ps.Length >= 2 && ps[0].ParameterType == typeof(T1) && ps[1].ParameterType == typeof(T2));
+        }
+
+        private bool TryGetConverter(ImagePickerWithCropsConfiguration config, out IImageWithCropsTypeConverter converter) {
+            converter = null;
+            string key = config.TypeConverter?.GetString("key");
+            return !string.IsNullOrWhiteSpace(key) && _converterCollection.TryGet(key, out converter);
         }
 
         #endregion           

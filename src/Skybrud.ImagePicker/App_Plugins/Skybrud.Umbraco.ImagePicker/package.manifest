@@ -1,7 +1,8 @@
 ﻿{
   "javascript": [
     "/App_Plugins/Skybrud.Umbraco.ImagePicker/Scripts/Controllers/ImageModelPicker.js",
-    "/App_Plugins/Skybrud.Umbraco.ImagePicker/Scripts/Controllers/ImageModelPickerOverlay.js"
+    "/App_Plugins/Skybrud.Umbraco.ImagePicker/Scripts/Controllers/ImageModelPickerOverlay.js",
+    "/App_Plugins/Skybrud.Umbraco.ImagePicker/Scripts/Controllers/TypeConverter.js"
   ],
   "css": [
     "/App_Plugins/Skybrud.Umbraco.ImagePicker/Styles/Default.css"
