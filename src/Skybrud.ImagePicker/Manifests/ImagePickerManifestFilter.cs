@@ -14,7 +14,6 @@ namespace Skybrud.ImagePicker.Manifests {
                 Scripts = new[] {
                     $"/App_Plugins/{ImagePickerPackage.Alias}/Scripts/Controllers/ImageModelPicker.js",
                     $"/App_Plugins/{ImagePickerPackage.Alias}/Scripts/Controllers/ImageModelPickerOverlay.js",
-                    $"/App_Plugins/{ImagePickerPackage.Alias}/Scripts/Controllers/ImageModelPicker.js",
                     $"/App_Plugins/{ImagePickerPackage.Alias}/Scripts/Controllers/TypeConverter.js"
                 },
                 Stylesheets = new[] {
