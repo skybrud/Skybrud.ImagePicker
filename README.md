@@ -26,6 +26,12 @@ For the Umbraco 8 version of this package, see the [**v2/main**](https://github.
 **Umbraco 7**  
 For the Umbraco 7 version of this package, see the [**v1/main**](https://github.com/skybrud/Skybrud.ImagePicker/tree/v1/main) branch instead.
 
+## Features
+
+- Allows selecting a *type converter* on the data type, in which case the type converter will be used for converting the selected items from Umbraco's `MediaWithCrops` to a desired type.
+
+- Allows selecting a *value type* on the data type, in which case this type is used instead of Umbraco's `MediaWithCrops` model.
+
 ## Documentation
 
 Coming soon ;)
