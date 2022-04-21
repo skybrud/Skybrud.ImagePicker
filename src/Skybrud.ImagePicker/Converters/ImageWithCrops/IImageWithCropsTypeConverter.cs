@@ -18,7 +18,7 @@ namespace Skybrud.ImagePicker.Converters.ImageWithCrops {
         string Name { get; }
 
         /// <summary>
-        /// Returns the CLR type for this type converter.
+        /// Returns the CLR item type. As the <see cref="Convert"/> method may return different types, the <see cref="GetType"/> method should return a common type.
         /// </summary>
         /// <param name="propertyType">The property type.</param>
         /// <param name="config">The configuration of the parent data type.</param>
