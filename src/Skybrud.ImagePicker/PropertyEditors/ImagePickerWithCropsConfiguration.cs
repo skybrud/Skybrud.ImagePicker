@@ -21,7 +21,8 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         [ConfigurationField("typeConverter",
             "Type converter",
             "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/TypeConverter.html?editor=v3",
-            Description = "Select a type converter, which will be used for converting the selected items.<a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v3.0/imagewithcrops/configuration/#type-converter\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
+            Description = "<a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v3.0/imagewithcrops/configuration/#type-converter\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>\r\n" +
+                          "Select a type converter, which will be used for converting the selected items.")]
         public JObject TypeConverter { get; set; }
 
         /// <summary>
@@ -30,7 +31,8 @@ namespace Skybrud.ImagePicker.PropertyEditors {
         [ConfigurationField("model",
             "Value type",
             "/App_Plugins/Skybrud.Umbraco.ImagePicker/Views/ImageModelPicker.html?editor=v3",
-            Description = "Select the .NET value type that should be used for representing the selected image(s).<br /><br /><a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v3.0/imagewithcrops/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>")]
+            Description = "<a href=\"https://packages.skybrud.dk/skybrud.imagepicker/docs/v3.0/imagewithcrops/configuration/#value-type\" class=\"btn btn-primary btn-xs skybrud-image-picker-button\" target=\"_blank\" rel=\"noreferrer noopener\">See the documentation &rarr;</a>\r\n" +
+                          "Select the .NET value type that should be used for representing the selected image(s).")]
         public string ValueTypeName { get; set; }
 
         /// <summary>
