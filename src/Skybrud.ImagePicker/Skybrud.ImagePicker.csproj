@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>3.0.0-alpha002</Version>
+    <Version>3.0.0-alpha003</Version>
     <Authors>Anders Bjerner, Jesper Mayntzhusen</Authors>
     <Company>Limbo</Company>
     <Description>Image picker functionality for Umbraco 9.</Description>
