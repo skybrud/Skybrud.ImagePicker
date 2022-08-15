@@ -35,11 +35,18 @@ namespace Skybrud.ImagePicker.Models {
 
         #region Constructors
 
+        public ImagePickerImage(IPublishedContent content) : this(content, null) { }
+
         public ImagePickerImage(IPublishedContent content, ImagePickerConfiguration config) {
-            
+
+            // Make sure we have a configuration
+            config ??= new ImagePickerConfiguration();
+
+            // Get the width and height
             int width = content.Value<int>(Constants.Conventions.Media.Width);
             int height = content.Value<int>(Constants.Conventions.Media.Height);
             
+            // Populate the properties
             Media = content;
             Width = width;
             Height = height;
