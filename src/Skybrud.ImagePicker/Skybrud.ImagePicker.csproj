@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>2.0.0-alpha004</Version>
+    <VersionPrefix>2.0.0-alpha004</VersionPrefix>
+    <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Authors>Anders Bjerner</Authors>
     <Company>Limbo</Company>
     <Description>Image picker functionality for Umbraco 8.</Description>
