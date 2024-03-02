@@ -1,5 +1,6 @@
 ---
-title: v2.0
+order: -2
+title: Version 2
 ---
 
 # Skybrud ImagePicker

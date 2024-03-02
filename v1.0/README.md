@@ -1,5 +1,6 @@
 ---
-title: v1.0
+order: -1
+title: Version 1
 ---
 
 # Documentation
